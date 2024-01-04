@@ -10,6 +10,7 @@
     "kysely-codegen": "kysely-codegen --env-file .env.local --out-file lib/db-schema.d.ts"
   },
   "dependencies": {
+    "@planetscale/database": "^1.13.0",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -19,6 +20,7 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "server-only": "^0.0.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7"
   },
