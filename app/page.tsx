@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { productsRepository } from '@/repository/products';
+import { productsRepository } from '@/repository/products'
 
 export default async function Home() {
-  const products = await productsRepository.all();
+  const products = await productsRepository.all()
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -11,7 +11,7 @@ export default async function Home() {
       <ul>
         {products.map((product, index) => (
           <li key={index}>
-            {product.id}: {product.name} (category: {product.category_id})
+            {product && product.id ? `${product.id}: ${product.name} (category: ${product.category_id})` : '-'}
           </li>
         ))}
       </ul>
