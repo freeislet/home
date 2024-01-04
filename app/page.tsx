@@ -9,8 +9,10 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Button>Click me</Button>
       <ul>
-        {products.map(product => (
-          <li>{product.id}: {product.name} (category: {product.category_id})</li>
+        {products.map((product, index) => (
+          <li key={index}>
+            {product.id}: {product.name} (category: {product.category_id})
+          </li>
         ))}
       </ul>
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
