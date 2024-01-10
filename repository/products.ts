@@ -1,5 +1,5 @@
-import { db } from '@/lib/database'
-import { Products } from '@/lib/db-schema'
+import { db } from '@/db/kysely'
+import { Products } from '@/db/db'
 
 export class ProductsRepository {
   async all() {

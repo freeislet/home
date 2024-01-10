@@ -7,15 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "kysely-codegen": "kysely-codegen --env-file .env.local --out-file lib/db-schema.d.ts"
+    "kysely-codegen": "kysely-codegen --env-file .env.local --out-file db/db.d.ts"
   },
   "dependencies": {
+    "@lucia-auth/adapter-mysql": "^2.1.0",
+    "@lucia-auth/oauth": "^3.5.1",
     "@planetscale/database": "^1.13.0",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "kysely": "^0.27.1",
     "kysely-planetscale": "^1.4.0",
+    "lucia": "^2.7.6",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
     "react": "^18",
