@@ -1,13 +1,13 @@
 import Image from 'next/image'
-import { getPageSession } from "@/auth/lucia"
-import { redirect } from "next/navigation"
-import Form from "@/components/form"
+import { getPageSession } from '@/auth/lucia'
+import { redirect } from 'next/navigation'
+import Form from '@/components/form'
 import { productsRepository } from '@/repository/products'
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 
 export default async function Home() {
   const session = await getPageSession()
-	if (!session) redirect("/login")
+  if (!session) redirect('/login')
 
   const products = await productsRepository.all()
 

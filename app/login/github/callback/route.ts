@@ -1,21 +1,21 @@
-import { auth, githubAuth } from "@/auth/lucia"
-import { OAuthRequestError } from "@lucia-auth/oauth"
-import { cookies, headers } from "next/headers"
-import type { NextRequest } from "next/server"
+import { auth, githubAuth } from '@/auth/lucia'
+import { OAuthRequestError } from '@lucia-auth/oauth'
+import { cookies, headers } from 'next/headers'
+import type { NextRequest } from 'next/server'
 
 export const GET = async (request: NextRequest) => {
-  const storedState = cookies().get("github_oauth_state")?.value
+  const storedState = cookies().get('github_oauth_state')?.value
   const url = new URL(request.url)
-  const state = url.searchParams.get("state")
-  const code = url.searchParams.get("code")
+  const state = url.searchParams.get('state')
+  const code = url.searchParams.get('code')
 
   // validate state
   if (!storedState || !state || storedState !== state || !code) {
     return new Response(null, {
-      status: 400
+      status: 400,
     })
   }
-  
+
   try {
     const { getExistingUser, githubUser, createUser } =
       await githubAuth.validateCallback(code)
@@ -25,8 +25,8 @@ export const GET = async (request: NextRequest) => {
       if (existingUser) return existingUser
       const user = await createUser({
         attributes: {
-          username: githubUser.login
-        }
+          username: githubUser.login,
+        },
       })
       return user
     }
@@ -34,30 +34,30 @@ export const GET = async (request: NextRequest) => {
     const user = await getUser()
     const session = await auth.createSession({
       userId: user.userId,
-      attributes: {}
+      attributes: {},
     })
     const authRequest = auth.handleRequest(request.method, {
       cookies,
-      headers
+      headers,
     })
     authRequest.setSession(session)
 
     return new Response(null, {
       status: 302,
       headers: {
-        Location: "/" // redirect to profile page
-      }
+        Location: '/', // redirect to profile page
+      },
     })
   } catch (e) {
     if (e instanceof OAuthRequestError) {
       // invalid code
       return new Response(null, {
-        status: 400
+        status: 400,
       })
     }
-    
+
     return new Response(null, {
-      status: 500
+      status: 500,
     })
   }
 }
