@@ -3,4 +3,4 @@ dist/
 build/
 node_modules/
 .next/
-db/db.d.ts
+src/db/db.d.ts
