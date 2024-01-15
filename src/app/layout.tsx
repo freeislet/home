@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [siteConfig.author],
-  creator: siteConfig.author.name,
+  authors: [{ name: siteConfig.creator, url: siteConfig.links.blog }],
+  creator: siteConfig.creator,
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
