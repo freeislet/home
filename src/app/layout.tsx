@@ -4,9 +4,9 @@ import type { Metadata } from 'next'
 import { siteConfig } from '@/config/site'
 import { notoSansKr } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
-import { Providers } from '@/components/app/providers'
-import { SiteHeader } from '@/components/app/site-header'
-import { SiteFooter } from '@/components/app/site-footer'
+import { Providers } from './_components/providers'
+import { SiteHeader } from './_components/site-header'
+import { SiteFooter } from './_components/site-footer'
 
 export const metadata: Metadata = {
   title: {
