@@ -18,7 +18,7 @@ export function SiteHeader() {
 
         <Link href="/" className="my-flex-row space-x-2 mr-6">
           <Logo />
-          <span className="inline-block font-bold">{siteConfig.name}</span>
+          <span className="font-bold">{siteConfig.name}</span>
         </Link>
 
         <div className="hidden md:flex mr-4">
