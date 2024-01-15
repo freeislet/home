@@ -65,7 +65,7 @@ export function NavMain() {
             <NavLink
               key={item.href}
               href={item.href}
-              className="text-foreground/60 hover:text-foreground/80 transition-colors"
+              className="my-flex-row text-foreground/60 hover:text-foreground/80 transition-colors"
               activeClassName="text-foreground"
             >
               {item.title}

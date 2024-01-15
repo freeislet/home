@@ -16,8 +16,8 @@ export function SiteHeader() {
           <NavSidebar />
         </div>
 
-        <Link href="/" className="my-flex-row space-x-2 mr-6">
-          <Logo />
+        <Link href="/" className="my-flex-row mr-6">
+          <Logo marginRight={2} />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
 

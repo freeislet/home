@@ -28,12 +28,8 @@ export function NavSidebar() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
-        <MobileLink
-          href="/"
-          className="flex items-center"
-          onOpenChange={setOpen}
-        >
-          <Logo size={20} className="mr-1" />
+        <MobileLink href="/" className="my-flex-row" onOpenChange={setOpen}>
+          <Logo size={20} />
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
@@ -66,11 +62,6 @@ export function NavSidebar() {
                             className="text-muted-foreground"
                           >
                             {item.title}
-                            {item.label && (
-                              <span className="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline">
-                                {item.label}
-                              </span>
-                            )}
                           </MobileLink>
                         ) : (
                           item.title

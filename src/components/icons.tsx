@@ -3,16 +3,27 @@ import { cn } from '@/lib/utils'
 
 type IconProps = PartialOmit<ImageProps, 'src'> & {
   size?: number
+  marginRight?: number
   darkInvert?: boolean
 }
 
-export const Icon = ({ size, darkInvert, ...imageProps }: IconProps) => {
+export const Icon = ({
+  size,
+  marginRight,
+  darkInvert,
+  ...imageProps
+}: IconProps) => {
   size ??= 32
+  marginRight ??= 1
   darkInvert ??= true
 
   imageProps.width ??= size
   imageProps.height ??= size
-  imageProps.className = cn(imageProps.className, { 'dark:invert': darkInvert })
+  imageProps.className = cn(
+    imageProps.className,
+    marginRight && `mr-${marginRight}`,
+    { 'dark:invert': darkInvert }
+  )
   imageProps.alt ??= ''
 
   return <Image {...(imageProps as ImageProps)} />

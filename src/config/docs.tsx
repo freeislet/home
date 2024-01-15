@@ -1,10 +1,10 @@
+import { Logo } from '@/components/icons'
+
 export interface NavItem {
-  title: string
-  label?: string
+  title: string | React.ReactNode
+  description?: string | React.ReactNode
   href?: string
   disabled?: boolean
-  external?: boolean
-  icon?: React.ReactNode
 
   children?: NavItem[]
 }
@@ -15,7 +15,12 @@ const navItems: NavItem[] = [
     href: '/link1',
   },
   {
-    title: 'Link 2',
+    title: (
+      <>
+        <Logo />
+        <span>Link 2</span>
+      </>
+    ),
     href: '/link2',
   },
   {
