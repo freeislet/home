@@ -2,38 +2,42 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import url from 'url'
+import { hrefAsString, getBasePathname } from '@/lib/url'
 import { cn } from '@/lib/utils'
 
 type LinkProps = React.ComponentProps<typeof Link>
 type NavLinkProps = LinkProps & {
   activeClassName: string
-  partialAsActive?: boolean
+  allowPartialMatch?: boolean
   partialActiveClassName?: string
+  partialDepthLimit?: number
 }
 
 export function NavLink({
   children,
   activeClassName,
-  partialAsActive,
+  allowPartialMatch,
   partialActiveClassName,
+  partialDepthLimit,
   ...linkProps
 }: { children: React.ReactNode } & NavLinkProps) {
+  const href = hrefAsString(linkProps.href)
   const pathname = usePathname()
 
-  const href = url.format(linkProps.href)
-  const isActive = pathname === href
-  const isPartialActive = !isActive && pathname.startsWith(href)
+  const getClassName = () => {
+    const isActive = pathname === href
+    if (isActive) return activeClassName
 
-  let className
+    if (!allowPartialMatch) return
 
-  if (isActive) className = activeClassName
-  else if (isPartialActive) {
-    if (partialAsActive) className = activeClassName
-    else className = partialActiveClassName
+    const hrefPartial = partialDepthLimit
+      ? getBasePathname(href, partialDepthLimit)
+      : href
+    const isPartialActive = pathname.startsWith(hrefPartial)
+    if (isPartialActive) return partialActiveClassName || activeClassName
   }
 
-  linkProps.className = cn(linkProps.className, className)
+  linkProps.className = cn(linkProps.className, getClassName())
 
   return <Link {...linkProps}>{children}</Link>
 }

@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image'
 import { cn } from '@/lib/utils'
 
-type IconProps = PartialOmit<ImageProps, 'src'> & {
+type IconProps = PartialExcept<ImageProps, 'src'> & {
   size?: number
   marginRight?: number
   darkInvert?: boolean
@@ -13,7 +13,7 @@ export const Icon = ({
   darkInvert,
   ...imageProps
 }: IconProps) => {
-  size ??= 32
+  size ??= 24
   marginRight ??= 1
   darkInvert ??= true
 
@@ -31,6 +31,14 @@ export const Icon = ({
 
 type IconsProps = Omit<IconProps, 'src'>
 
-export const Logo = (props: IconsProps) => (
-  <Icon src="/cloud.svg" size={24} {...props} />
+export const Logo = (props: IconsProps) => <Icon src="/cloud.svg" {...props} />
+
+export const AiIcon = (props: IconsProps) => <Icon src="/ai.svg" {...props} />
+
+export const GeminiIcon = (props: IconsProps) => (
+  <Icon src="/gemini.svg" {...props} />
+)
+
+export const DiagramIcon = (props: IconsProps) => (
+  <Icon src="/diagram.svg" {...props} />
 )

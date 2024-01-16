@@ -1,39 +1,48 @@
-import { Logo } from '@/components/icons'
+import { type NavItem } from '@/lib/nav'
+import { AiIcon, GeminiIcon, DiagramIcon } from '@/components/icons'
 
-export interface NavItem {
-  title: string | React.ReactNode
-  description?: string | React.ReactNode
-  href?: string
-  disabled?: boolean
-
-  children?: NavItem[]
-}
-
-const navItems: NavItem[] = [
+const nav: NavItem[] = [
   {
-    title: 'Link 1',
-    href: '/link1',
+    title: (
+      <>
+        <AiIcon />
+        Generative AI
+      </>
+    ),
+    href: '/generative-ai/gemini/chatbot',
+    children: [
+      {
+        title: (
+          <>
+            <GeminiIcon />
+            Gemini Chatbot
+          </>
+        ),
+        href: '/generative-ai/gemini/chatbot',
+      },
+      {
+        title: (
+          <>
+            <GeminiIcon />
+            Gemini Multimodal
+          </>
+        ),
+        href: '/generative-ai/gemini/multimodal',
+      },
+    ],
   },
   {
     title: (
       <>
-        <Logo />
-        <span>Link 2</span>
+        <DiagramIcon />
+        Visual Scripting
       </>
     ),
-    href: '/link2',
-  },
-  {
-    title: 'with submenu',
-    href: '/link3',
+    href: '/visual-scripting/blockly',
     children: [
       {
-        title: 'Sub 1',
-        href: '/link3/sub1',
-      },
-      {
-        title: 'Sub 2',
-        href: '/link3/sub2',
+        title: 'Blockly',
+        href: '/visual-scripting/blockly',
       },
     ],
   },
@@ -44,11 +53,9 @@ const navItems: NavItem[] = [
 ]
 
 export interface DocsConfig {
-  mainNav: NavItem[]
-  sidebarNav: NavItem[]
+  nav: NavItem[]
 }
 
 export const docsConfig: DocsConfig = {
-  mainNav: navItems,
-  sidebarNav: navItems,
+  nav,
 }

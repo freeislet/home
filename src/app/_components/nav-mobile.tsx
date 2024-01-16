@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 
-export function NavSidebar() {
+export function NavMobile() {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -34,7 +34,7 @@ export function NavSidebar() {
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            {docsConfig.mainNav?.map(
+            {docsConfig.nav?.map(
               (item) =>
                 item.href && (
                   <MobileLink
@@ -48,7 +48,7 @@ export function NavSidebar() {
             )}
           </div>
           <div className="flex flex-col space-y-2">
-            {docsConfig.sidebarNav.map((item, index) => (
+            {docsConfig.nav.map((item, index) => (
               <div key={index} className="flex flex-col space-y-3 pt-6">
                 <h4 className="font-medium">{item.title}</h4>
                 {item?.children?.length &&
