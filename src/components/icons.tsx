@@ -15,15 +15,18 @@ export const Icon = ({
 }: IconProps) => {
   size ??= 24
   marginRight ??= 1
-  darkInvert ??= true
+  darkInvert ??= false
+
+  const marginRightClassName = marginRight && `mr-${marginRight}`
 
   imageProps.width ??= size
   imageProps.height ??= size
   imageProps.className = cn(
     imageProps.className,
-    marginRight && `mr-${marginRight}`,
+    // marginRight && `mr-${marginRight}`, // 동적으로 이름 조합 불가 (purge 됨)
     { 'dark:invert': darkInvert }
   )
+  if (marginRight) imageProps.style = { marginRight: `${marginRight / 4}rem` }
   imageProps.alt ??= ''
 
   return <Image {...(imageProps as ImageProps)} />
@@ -31,7 +34,9 @@ export const Icon = ({
 
 type IconsProps = Omit<IconProps, 'src'>
 
-export const Logo = (props: IconsProps) => <Icon src="/cloud.svg" {...props} />
+export const Logo = (props: IconsProps) => (
+  <Icon src="/cloud.svg" darkInvert {...props} />
+)
 
 export const AiIcon = (props: IconsProps) => <Icon src="/ai.svg" {...props} />
 
