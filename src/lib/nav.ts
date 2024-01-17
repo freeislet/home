@@ -1,13 +1,13 @@
 export interface NavItem {
   title: React.ReactNode
-  href: string
+  href?: string
   disabled?: boolean
 
   children?: NavItem[]
 }
 
 export function filterValidNav(navItems: NavItem[]): NavItem[] {
-  return navItems?.filter((item) => item.href && !item.disabled) ?? []
+  return navItems?.filter((item) => !item.disabled) ?? []
 }
 
 export function getBaseNavItem(

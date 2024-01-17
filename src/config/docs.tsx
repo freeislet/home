@@ -15,19 +15,19 @@ const nav: NavItem[] = [
         title: (
           <>
             <GeminiIcon />
-            Gemini Chatbot
+            Gemini
           </>
         ),
-        href: '/generative-ai/gemini/chatbot',
-      },
-      {
-        title: (
-          <>
-            <GeminiIcon />
-            Gemini Multimodal
-          </>
-        ),
-        href: '/generative-ai/gemini/multimodal',
+        children: [
+          {
+            title: 'Chatbot',
+            href: '/generative-ai/gemini/chatbot',
+          },
+          {
+            title: 'Multimodal',
+            href: '/generative-ai/gemini/multimodal',
+          },
+        ],
       },
     ],
   },

@@ -8,15 +8,11 @@ type IconProps = PartialExcept<ImageProps, 'src'> & {
 }
 
 export const Icon = ({
-  size,
-  marginRight,
-  darkInvert,
+  size = 24,
+  marginRight = 1,
+  darkInvert = false,
   ...imageProps
 }: IconProps) => {
-  size ??= 24
-  marginRight ??= 1
-  darkInvert ??= false
-
   const marginRightClassName = marginRight && `mr-${marginRight}`
 
   imageProps.width ??= size
@@ -26,10 +22,13 @@ export const Icon = ({
     // marginRight && `mr-${marginRight}`, // 동적으로 이름 조합 불가 (purge 됨)
     { 'dark:invert': darkInvert }
   )
-  if (marginRight) imageProps.style = { marginRight: `${marginRight / 4}rem` }
   imageProps.alt ??= ''
 
-  return <Image {...(imageProps as ImageProps)} />
+  const style = marginRight
+    ? { marginRight: `${marginRight / 4}rem` }
+    : undefined
+
+  return <Image style={style} {...(imageProps as ImageProps)} />
 }
 
 type IconsProps = Omit<IconProps, 'src'>
