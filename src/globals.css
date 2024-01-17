@@ -94,4 +94,8 @@
   .bg-background-blur {
     @apply backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-background/95;
   }
+
+  .no-ring {
+    @apply ring-0 ring-offset-0;
+  }
 }

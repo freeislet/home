@@ -17,11 +17,11 @@ export function NavTree({
     <div
       className={cn(
         'my-flex-col',
-        depth === 0 ? 'space-y-2 text-[15px]' : 'space-y-1.5 ml-2 text-sm'
+        depth === 0 ? 'space-y-5 text-[15px]' : 'space-y-2 mt-3 ml-3 text-sm'
       )}
     >
       {filterValidNav(nav).map((item, index) => (
-        <React.Fragment key={index}>
+        <div key={index}>
           {item.href ? (
             <NavLink
               href={item.href}
@@ -31,14 +31,14 @@ export function NavTree({
               {item.title}
             </NavLink>
           ) : (
-            <div className="my-flex-row font-medium text-muted-foreground">
+            <div className="my-flex-row text-muted-foreground">
               {item.title}
             </div>
           )}
           {item.children?.length && (
             <NavTree nav={item.children} depth={depth + 1} />
           )}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   )
