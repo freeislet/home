@@ -9,7 +9,7 @@ const nav: NavItem[] = [
         Generative AI
       </>
     ),
-    href: '/generative-ai/gemini/chatbot',
+    href: '/generative-ai',
     children: [
       {
         title: (
@@ -38,7 +38,7 @@ const nav: NavItem[] = [
         Visual Scripting
       </>
     ),
-    href: '/visual-scripting/blockly',
+    href: '/visual-scripting',
     children: [
       {
         title: 'Blockly',

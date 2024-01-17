@@ -10,7 +10,6 @@ type NavLinkProps = LinkProps & {
   activeClassName: string
   allowPartialMatch?: boolean
   partialActiveClassName?: string
-  partialDepthLimit?: number
 }
 
 export function NavLink({
@@ -18,7 +17,6 @@ export function NavLink({
   activeClassName,
   allowPartialMatch,
   partialActiveClassName,
-  partialDepthLimit,
   ...linkProps
 }: { children: React.ReactNode } & NavLinkProps) {
   const href = hrefAsString(linkProps.href)
@@ -30,10 +28,7 @@ export function NavLink({
 
     if (!allowPartialMatch) return
 
-    const hrefPartial = partialDepthLimit
-      ? getBasePathname(href, partialDepthLimit)
-      : href
-    const isPartialActive = pathname.startsWith(hrefPartial)
+    const isPartialActive = pathname.startsWith(href)
     if (isPartialActive) return partialActiveClassName || activeClassName
   }
 

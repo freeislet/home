@@ -17,7 +17,8 @@ export function NavTree({
     <div
       className={cn(
         'my-flex-col',
-        depth === 0 ? 'space-y-5 text-[15px]' : 'space-y-2 mt-3 ml-3 text-sm'
+        depth === 0 ? 'space-y-5 text-[15px]' : 'space-y-2 mt-3 ml-3 text-sm',
+        depth > 1 && 'mt-2'
       )}
     >
       {filterValidNav(nav).map((item, index) => (
