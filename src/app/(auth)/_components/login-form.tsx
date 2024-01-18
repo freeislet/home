@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 // import { userAuthSchema } from '@/lib/validations/auth'
-import { buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 // import { Input } from '@/components/ui/input'
 // import { Label } from '@/components/ui/label'
 // import { toast } from '@/components/ui/use-toast'
@@ -100,9 +100,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           </span>
         </div>
       </div>
-      <button
-        type="button"
-        className={cn(buttonVariants({ variant: 'outline' }))}
+      <Button
+        variant="outline"
         onClick={() => {
           setIsGitHubLoading(true)
           router.push('/login/github')
@@ -115,7 +114,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           <GitHubIcon className="size-4 mr-2" />
         )}{' '}
         Github
-      </button>
+      </Button>
     </div>
   )
 }
