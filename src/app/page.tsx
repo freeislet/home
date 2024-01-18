@@ -6,7 +6,7 @@ import { productsRepository } from '@/repository/products'
 import Form from '@/components/form'
 import { Button } from '@/components/ui/button'
 
-export default async function Home() {
+export default async function IndexPage() {
   const session = await getPageSession()
   if (!session) redirect('/login')
 

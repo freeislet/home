@@ -1,4 +1,4 @@
-export default function GeminiMultimodal() {
+export default function GeminiMultimodalPage() {
   return (
     <div className="my-container">
       <span>TBD: Gemini Multimodal</span>

@@ -1,4 +1,4 @@
-export default function About() {
+export default function AboutPage() {
   return (
     <div className="my-container">
       <span>About...</span>
