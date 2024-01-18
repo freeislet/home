@@ -6,7 +6,7 @@ import { NavMain } from './nav-main'
 import { NavMobile } from './nav-mobile'
 import { Logo } from '@/components/icons'
 import { ThemeMode } from '@/components/theme-mode'
-import { UserAvatar } from '@/components/user-avatar'
+import { UserNav } from '@/components/user-nav'
 
 export async function SiteHeader() {
   const session = await getPageSession()
@@ -28,16 +28,9 @@ export async function SiteHeader() {
         </div>
 
         <div className="my-flex-row ml-auto">
-          {session ? (
-            <UserAvatar user={session?.user} className="mr-2" />
-          ) : (
-            <Link
-              href="/login"
-              className="text-sm underline-offset-4 hover:underline mr-4"
-            >
-              log in
-            </Link>
-          )}
+          <div className="mr-2">
+            <UserNav user={session?.user} />
+          </div>
           <ThemeMode />
         </div>
       </div>

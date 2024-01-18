@@ -1,7 +1,7 @@
 import { type AvatarProps } from '@radix-ui/react-avatar'
 
-import { User } from '@/auth/auth'
 import { cn } from '@/lib/utils'
+import { User } from '@/auth/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 interface UserAvatarProps extends AvatarProps {
