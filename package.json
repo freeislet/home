@@ -10,6 +10,7 @@
     "kysely-codegen": "kysely-codegen --env-file .env.local --out-file db/db.d.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@lucia-auth/adapter-mysql": "^2.1.0",
     "@lucia-auth/oauth": "^3.5.1",
     "@planetscale/database": "^1.13.0",
@@ -29,10 +30,12 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.49.3",
     "react-icons": "^5.0.1",
     "server-only": "^0.0.1",
     "tailwind-merge": "^2.2.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
