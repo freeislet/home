@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 
 export default async function IndexPage() {
   const session = await getPageSession()
-  if (!session) redirect('/login')
+  // if (!session) redirect('/login')
 
   const products = await productsRepository.all()
 
@@ -16,8 +16,8 @@ export default async function IndexPage() {
     <div className="container">
       <div>
         <h1>Profile</h1>
-        <p>User id: {session.user.userId}</p>
-        <p>Username: {session.user.githubUsername}</p>
+        <p>User id: {session?.user.userId}</p>
+        <p>Username: {session?.user.githubUsername}</p>
         <Form action="/api/logout">
           <input type="submit" value="Sign out" />
         </Form>
