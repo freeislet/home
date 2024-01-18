@@ -12,7 +12,7 @@ export function ThemeMode() {
     setMounted(true)
   }, [])
 
-  if (!mounted) return
+  if (!mounted) return <div className="m-px size-6 invisible" />
 
   return (
     <button
