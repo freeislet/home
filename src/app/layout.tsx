@@ -40,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body className={cn('bg-background', notoSansKr.className)}>
         <Providers>
           <div className="flex flex-col min-h-screen">

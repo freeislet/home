@@ -2,7 +2,8 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { hrefAsString, getBasePathname } from '@/lib/url'
+
+import { hrefAsString } from '@/lib/url'
 import { cn } from '@/lib/utils'
 
 type LinkProps = React.ComponentProps<typeof Link>

@@ -4,31 +4,26 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
 
+import { cn } from '@/lib/utils'
+
 export function ThemeMode() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const btnClass = 'border rounded-md p-1'
-
-  if (!mounted) {
-    // layout shift 방지용 placeholder
-    return (
-      <button className={`invisible ${btnClass}`}>
-        <BsFillSunFill />
-      </button>
-    )
-  }
+  const invisible = !mounted // layout shift 방지를 위해 mount 전에도 invisible 렌더
 
   return (
     <button
-      className={btnClass}
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      className={cn('border rounded-md p-1', { invisible })}
+      onClick={() =>
+        resolvedTheme && setTheme(resolvedTheme === 'light' ? 'dark' : 'light')
+      }
     >
-      {theme === 'light' ? <BsFillSunFill /> : <BsFillMoonFill />}
+      {resolvedTheme === 'light' ? <BsFillSunFill /> : <BsFillMoonFill />}
     </button>
   )
 }
