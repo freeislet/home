@@ -17,7 +17,7 @@ export function SiteHeader() {
         </div>
 
         <Link href="/" className="my-flex-row mr-8">
-          <Logo size={30} />
+          <Logo className="size-8" />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
 

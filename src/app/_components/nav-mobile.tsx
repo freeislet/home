@@ -34,7 +34,7 @@ export function NavMobile() {
       </SheetTrigger>
       <SheetContent side="left" className="w-[250px]">
         <Link href="/" className="my-flex-row border-b">
-          <Logo size={30} />
+          <Logo className="size-8" />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
         <ScrollArea className="my-8 h-[calc(100vh-8rem)] pb-10 pl-4">
