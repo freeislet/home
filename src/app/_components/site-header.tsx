@@ -27,8 +27,8 @@ export async function SiteHeader() {
           <NavMain />
         </div>
 
-        <div className="my-flex-row ml-auto">
-          <UserNav user={session?.user} className="mr-2" />
+        <div className="my-flex-row ml-auto space-x-2">
+          <UserNav user={session?.user} />
           <ThemeMode />
         </div>
       </div>

@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 
 import { User } from '@/auth/types'
 import { UserAvatar } from '@/components/user-avatar'
@@ -22,6 +25,8 @@ interface UserNavProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function UserNav({ user, ...props }: UserNavProps) {
+  const { theme, setTheme } = useTheme()
+
   if (!user)
     return (
       <div {...props}>
@@ -33,7 +38,7 @@ export function UserNav({ user, ...props }: UserNavProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger>
         <UserAvatar user={user} {...props} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -52,7 +57,7 @@ export function UserNav({ user, ...props }: UserNavProps) {
           <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
           <DropdownMenuPortal>
             <DropdownMenuSubContent>
-              <DropdownMenuRadioGroup>
+              <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                 <DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
