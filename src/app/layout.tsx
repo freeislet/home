@@ -1,5 +1,6 @@
 import '@/globals.css'
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 
 import { siteConfig } from '@/config/site'
 import { notoSansKr } from '@/lib/fonts'
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SiteFooter />
           </div>
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
