@@ -14,7 +14,7 @@ export async function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background-blur">
       <div className="my-container my-flex-row h-14">
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <NavMobile />
         </div>
 
@@ -23,14 +23,12 @@ export async function SiteHeader() {
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
 
-        <div className="hidden sm:block mr-4">
+        <div className="hidden md:block mr-4">
           <NavMain />
         </div>
 
         <div className="my-flex-row ml-auto">
-          <div className="mr-2">
-            <UserNav user={session?.user} />
-          </div>
+          <UserNav user={session?.user} className="mr-2" />
           <ThemeMode />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import { User } from '@/auth/auth'
+import { User } from '@/auth/types'
 import { UserAvatar } from '@/components/user-avatar'
 import {
   DropdownMenu,
@@ -30,18 +30,16 @@ export function UserNav({ user, ...props }: UserNavProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <UserAvatar user={user} {...props} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col space-y-1 leading-none">
-            {<p className="font-medium">{user.username}</p>}
-            {/* {user.email && (
-              <p className="w-[200px] truncate text-sm text-muted-foreground">
-                {user.email}
-              </p>
-            )} */}
+            <p className="font-medium">{user.username}</p>
+            <p className="w-[200px] truncate text-sm text-muted-foreground">
+              {user.email}
+            </p>
           </div>
         </div>
         <DropdownMenuSeparator />

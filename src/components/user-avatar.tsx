@@ -1,7 +1,7 @@
 import { type AvatarProps } from '@radix-ui/react-avatar'
 
 import { cn } from '@/lib/utils'
-import { User } from '@/auth/auth'
+import { User } from '@/auth/types'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 interface UserAvatarProps extends AvatarProps {
@@ -17,7 +17,7 @@ export function UserAvatar({ user, className, ...props }: UserAvatarProps) {
 
   return (
     <Avatar className={cn('size-8', className)} {...props}>
-      <AvatarImage src="" />
+      <AvatarImage src={user.avatarUrl ?? ''} />
       <AvatarFallback className="text-sm">{initials}</AvatarFallback>
     </Avatar>
   )

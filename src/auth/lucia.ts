@@ -1,11 +1,13 @@
+import { cache } from 'react'
+import * as context from 'next/headers'
 import { lucia } from 'lucia'
 import { nextjs_future } from 'lucia/middleware'
 import { github } from '@lucia-auth/oauth/providers'
 import { planetscale } from '@lucia-auth/adapter-mysql'
 import { connect } from '@planetscale/database'
+
 import { dbConfig } from '../db/kysely'
-import { cache } from 'react'
-import * as context from 'next/headers'
+import { getUserAttributes } from './utils'
 
 export const auth = lucia({
   adapter: planetscale(connect(dbConfig), {
@@ -18,12 +20,7 @@ export const auth = lucia({
   sessionCookie: {
     expires: false,
   },
-
-  getUserAttributes: (data) => {
-    return {
-      username: data.username,
-    }
-  },
+  getUserAttributes,
 })
 
 export type Auth = typeof auth
@@ -34,7 +31,7 @@ export const githubAuth = github(auth, {
   scope: undefined,
 })
 
-export const getPageSession = cache(() => {
+export const getPageSession = cache(async () => {
   const authRequest = auth.handleRequest('GET', context)
-  return authRequest.validate()
+  return await authRequest.validate()
 })
