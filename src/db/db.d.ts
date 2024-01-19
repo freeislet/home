@@ -5,6 +5,8 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   : ColumnType<T, T | undefined, T>;
 
 export interface AuthUser {
+  avatar_url: string | null;
+  email: string | null;
   id: string;
   username: string;
 }
