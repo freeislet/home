@@ -10,10 +10,7 @@ export function filterValidNav(navItems: NavItem[]): NavItem[] {
   return navItems?.filter((item) => !item.disabled) ?? []
 }
 
-export function getBaseNavItem(
-  nav: NavItem[],
-  pathname: string
-): NavItem | undefined {
+export function getBaseNavItem(nav: NavItem[], pathname: string): NavItem | undefined {
   const matchPathname = (item: NavItem) => {
     if (item.href === pathname) return true
     if (item.children) {

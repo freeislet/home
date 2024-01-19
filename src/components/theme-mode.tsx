@@ -15,10 +15,7 @@ export function ThemeMode() {
   if (!mounted) return <div className="m-px size-6 invisible" />
 
   return (
-    <button
-      className="border rounded-md p-1"
-      onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
-    >
+    <button className="border rounded-md p-1" onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}>
       {resolvedTheme === 'light' ? <BsFillSunFill /> : <BsFillMoonFill />}
     </button>
   )

@@ -9,21 +9,10 @@ interface IconProps extends PartialExcept<ImageProps, 'src'> {
   imageClassName?: string
 }
 
-export const Icon = ({
-  darkInvert = false,
-  imageClassName,
-  alt,
-  className,
-  ...props
-}: IconProps) => {
+export const Icon = ({ darkInvert = false, imageClassName, alt, className, ...props }: IconProps) => {
   return (
     <div className={cn(DEFAULT_LAYOUT, className, 'relative')}>
-      <Image
-        alt={alt ?? ''}
-        className={cn(imageClassName, { 'dark:invert': darkInvert })}
-        fill
-        {...props}
-      />
+      <Image alt={alt ?? ''} className={cn(imageClassName, { 'dark:invert': darkInvert })} fill {...props} />
     </div>
   )
 }
@@ -40,21 +29,13 @@ export const SvgIcon = ({ children, className, ...props }: SvgIconProps) => {
 
 type IconPresetProps = Omit<IconProps, 'src'>
 
-export const Logo = (props: IconPresetProps) => (
-  <Icon src="/cloud.svg" darkInvert {...props} />
-)
+export const Logo = (props: IconPresetProps) => <Icon src="/cloud.svg" darkInvert {...props} />
 
-export const AiIcon = (props: IconPresetProps) => (
-  <Icon src="/ai.svg" {...props} />
-)
+export const AiIcon = (props: IconPresetProps) => <Icon src="/ai.svg" {...props} />
 
-export const GeminiIcon = (props: IconPresetProps) => (
-  <Icon src="/gemini.svg" {...props} />
-)
+export const GeminiIcon = (props: IconPresetProps) => <Icon src="/gemini.svg" {...props} />
 
-export const DiagramIcon = (props: IconPresetProps) => (
-  <Icon src="/diagram.svg" {...props} />
-)
+export const DiagramIcon = (props: IconPresetProps) => <Icon src="/diagram.svg" {...props} />
 
 export const GoogleIcon = (props: SvgIconProps) => (
   <SvgIcon role="img" viewBox="0 0 24 24" {...props}>

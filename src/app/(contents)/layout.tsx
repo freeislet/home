@@ -1,10 +1,6 @@
 import { NavSidebar } from '../_components/nav-sidebar'
 
-export default function ContentsLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function ContentsLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <NavSidebar />

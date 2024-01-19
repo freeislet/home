@@ -24,10 +24,7 @@ export function NavMobile() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          className="mr-2 px-1.5 text-base bg-secondary focus-visible:no-ring"
-        >
+        <Button variant="ghost" className="mr-2 px-1.5 text-base bg-secondary focus-visible:no-ring">
           <BsList size={24} />
           <span className="sr-only">Toggle Menu</span>
         </Button>

@@ -22,8 +22,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   try {
-    const { githubUser, getExistingUser, createUser } =
-      await githubAuth.validateCallback(code)
+    const { githubUser, getExistingUser, createUser } = await githubAuth.validateCallback(code)
 
     const userDbAttributes: UserDbAttributes = {
       username: githubUser.login,
@@ -35,17 +34,11 @@ export const GET = async (request: NextRequest) => {
       const existingUser = await getExistingUser()
       if (existingUser) {
         const existingUserDbAttributes = getUserDbAttributes(existingUser)
-        const updatedDbAttributes = filterDiff(
-          userDbAttributes,
-          existingUserDbAttributes
-        )
+        const updatedDbAttributes = filterDiff(userDbAttributes, existingUserDbAttributes)
         if (isEmpty(updatedDbAttributes)) return existingUser
 
         try {
-          const updatedUser = await auth.updateUserAttributes(
-            existingUser.userId,
-            updatedDbAttributes
-          )
+          const updatedUser = await auth.updateUserAttributes(existingUser.userId, updatedDbAttributes)
           return updatedUser
         } catch (e) {
           if (e instanceof LuciaError && e.message === `AUTH_INVALID_USER_ID`) {

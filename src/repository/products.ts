@@ -7,11 +7,7 @@ export class ProductsRepository {
   }
 
   async findById(id: number) {
-    return await db
-      .selectFrom('products')
-      .where('id', '=', id)
-      .selectAll()
-      .executeTakeFirst()
+    return await db.selectFrom('products').where('id', '=', id).selectAll().executeTakeFirst()
   }
 }
 

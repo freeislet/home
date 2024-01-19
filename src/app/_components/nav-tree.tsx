@@ -6,13 +6,7 @@ import { type NavItem, filterValidNav } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import { NavLink } from '@/components/nav-link'
 
-export function NavTree({
-  nav,
-  depth = 0,
-}: {
-  nav: NavItem[]
-  depth?: number
-}) {
+export function NavTree({ nav, depth = 0 }: { nav: NavItem[]; depth?: number }) {
   return (
     <div
       className={cn(
@@ -32,13 +26,9 @@ export function NavTree({
               {item.title}
             </NavLink>
           ) : (
-            <div className="my-flex-row text-muted-foreground">
-              {item.title}
-            </div>
+            <div className="my-flex-row text-muted-foreground">{item.title}</div>
           )}
-          {item.children?.length && (
-            <NavTree nav={item.children} depth={depth + 1} />
-          )}
+          {item.children?.length && <NavTree nav={item.children} depth={depth + 1} />}
         </div>
       ))}
     </div>

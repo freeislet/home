@@ -2,13 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-const Form = ({
-  children,
-  action,
-}: {
-  children: React.ReactNode
-  action: string
-}) => {
+const Form = ({ children, action }: { children: React.ReactNode; action: string }) => {
   const router = useRouter()
 
   return (
