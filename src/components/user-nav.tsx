@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-import { cn } from '@/lib/utils'
 import { User } from '@/auth/types'
 import { UserAvatar } from '@/components/user-avatar'
 import {
@@ -10,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import Form from './form'
 
 interface UserNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: User
@@ -50,7 +50,9 @@ export function UserNav({ user, ...props }: UserNavProps) {
         <DropdownMenuItem>Theme</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <span>Sign out</span>
+          <Form action="/api/logout">
+            <input type="submit" value="Sign out" />
+          </Form>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

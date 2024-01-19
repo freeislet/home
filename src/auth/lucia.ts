@@ -28,7 +28,7 @@ export type Auth = typeof auth
 export const githubAuth = github(auth, {
   clientId: process.env.GITHUB_CLIENT_ID ?? '',
   clientSecret: process.env.GITHUB_CLIENT_SECRET ?? '',
-  scope: undefined,
+  scope: ['user:email'], // fetches non-public emails as well
 })
 
 export const getPageSession = cache(async () => {
