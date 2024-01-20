@@ -34,7 +34,7 @@ export function NavMobile() {
           <Logo className="size-8" />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
-        <ScrollArea className="my-8 h-[calc(100vh-8rem)] pb-10 pl-4">
+        <ScrollArea className="my-8 h-[calc(100vh-8rem)] pl-4">
           <NavTree nav={docsConfig.nav} />
         </ScrollArea>
       </SheetContent>
