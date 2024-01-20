@@ -42,7 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <div className="flex flex-col min-h-screen">
             <SiteHeader />
-            <main className="flex-1 flex">{children}</main>
+            <div className="flex-1 flex">{children}</div>
             <SiteFooter />
           </div>
         </Providers>

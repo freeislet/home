@@ -1,21 +1,26 @@
-'use client'
-
-import * as React from 'react'
-
 import { type NavItem, filterValidNav } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import { NavLink } from '@/components/nav-link'
 
-export function NavTree({ nav, depth = 0 }: { nav: NavItem[]; depth?: number }) {
+interface NavTreeProps extends React.HTMLAttributes<HTMLDivElement> {
+  nav: NavItem[]
+  depth?: number
+}
+
+export function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
+  const validNav = filterValidNav(nav)
+
   return (
     <div
       className={cn(
         'my-flex-col',
         depth === 0 ? 'space-y-5 text-[15px]' : 'space-y-2 mt-3 ml-3 text-sm',
-        depth > 1 && 'mt-2'
+        depth > 1 && 'mt-2',
+        className
       )}
+      {...props}
     >
-      {filterValidNav(nav).map((item, index) => (
+      {validNav.map((item, index) => (
         <div key={index}>
           {item.href ? (
             <NavLink

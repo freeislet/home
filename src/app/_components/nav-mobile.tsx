@@ -8,10 +8,10 @@ import { BsList } from 'react-icons/bs'
 import { docsConfig } from '@/config/docs'
 import { siteConfig } from '@/config/site'
 import { Logo } from '@/components/icons'
+import { NavTree } from '@/components/nav-tree'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { NavTree } from './nav-tree'
 
 export function NavMobile() {
   const [open, setOpen] = useState(false)
@@ -35,7 +35,9 @@ export function NavMobile() {
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
         <ScrollArea className="my-8 h-[calc(100vh-8rem)] pl-4">
-          <NavTree nav={docsConfig.nav} />
+          <nav>
+            <NavTree nav={docsConfig.nav} className="pb-10" />
+          </nav>
         </ScrollArea>
       </SheetContent>
     </Sheet>
