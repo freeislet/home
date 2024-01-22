@@ -78,7 +78,7 @@
 
 @layer components {
   .my-container {
-    @apply w-full px-4 lg:px-8;
+    @apply w-full max-w-[1400px] mx-auto px-4 lg:px-8;
   }
 
   .my-flex-row {
