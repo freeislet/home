@@ -1,12 +1,12 @@
 import { cache } from 'react'
 import * as context from 'next/headers'
-import { lucia } from 'lucia'
+import { lucia, type Session } from 'lucia'
 import { nextjs_future } from 'lucia/middleware'
 import { github } from '@lucia-auth/oauth/providers'
 import { planetscale } from '@lucia-auth/adapter-mysql'
 import { connect } from '@planetscale/database'
 
-import { dbConfig } from '../db/kysely'
+import { dbConfig } from '@/db/kysely'
 import { getUserAttributes } from './utils'
 
 export const auth = lucia({
@@ -31,7 +31,7 @@ export const githubAuth = github(auth, {
   scope: ['user:email'], // fetches non-public emails as well
 })
 
-export const getPageSession = cache(async () => {
+export const getPageSession = cache(async (): Promise<Session | null> => {
   const authRequest = auth.handleRequest('GET', context)
   return await authRequest.validate()
 })
