@@ -2,7 +2,7 @@ import 'server-only'
 
 import { Kysely } from 'kysely'
 import { PlanetScaleDialect } from 'kysely-planetscale'
-import type { DB } from './db'
+import type { DB } from './schema'
 
 export const dbConfig = {
   host: process.env.DATABASE_HOST,
