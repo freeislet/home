@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
@@ -12,6 +13,7 @@ export function HeroSection({ className, ...props }: HeroSectionProps) {
     visible: {
       opacity: 1,
       transition: {
+        delayChildren: 0.2,
         staggerChildren: 0.2,
       },
     },
@@ -29,15 +31,26 @@ export function HeroSection({ className, ...props }: HeroSectionProps) {
   }
 
   return (
-    <div className={cn('p-20', className)} {...props}>
-      <motion.div variants={groupVariants} initial="hidden" whileInView="visible">
-        <motion.h1 className="text-6xl font-extrabold leading-normal" variants={variants}>
-          free islet's home
+    <div
+      className={cn('relative max-h-[calc(100vh-5.5rem)] h-[50rem] bg-gradient-space text-white', className)}
+      {...props}
+    >
+      <Image
+        className="absolute h-full"
+        src="/spaceboy3.jpeg"
+        alt="hero image"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="50% 20%"
+      ></Image>
+      <motion.div variants={groupVariants} initial="hidden" whileInView="visible" className="absolute p-16 space-y-3">
+        <motion.h1 variants={variants} className="text-4xl sm:text-5xl md:text-7xl font-extrabold">
+          free islet&apos;s home
         </motion.h1>
-        <motion.h3 className="text-3xl font-mediuem leading-normal" variants={variants}>
+        <motion.h3 variants={variants} className="text-2xl sm:text-3xl font-mediuem">
           Portfolio, Blog
         </motion.h3>
-        <motion.h6 className="text-lg font-light leading-loose" variants={variants}>
+        <motion.h6 variants={variants} className="text-lg font-light">
           ...under construction
         </motion.h6>
       </motion.div>
