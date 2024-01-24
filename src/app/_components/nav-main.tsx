@@ -11,8 +11,8 @@ export function NavMain() {
   const validNav = filterValidNav(docsConfig.nav)
 
   // tRPC test
-  const products = trpc.products.useQuery()
-  console.log(products)
+  // const products = trpc.products.useQuery()
+  // console.log(products)
 
   return (
     <nav className="my-flex-row gap-4 text-sm">
