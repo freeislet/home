@@ -2,11 +2,12 @@ import Link from 'next/link'
 
 import { getPageSession } from '@/auth/lucia'
 import { siteConfig } from '@/config/site'
-import { NavMain } from './nav-main'
-import { NavMobile } from './nav-mobile'
 import { Logo } from '@/components/icons'
 import { ThemeMode } from '@/components/theme-mode'
 import { UserNav } from '@/components/user-nav'
+import { NavMain } from './nav-main'
+import { NavMobile } from './nav-mobile'
+import { ScrollProgress } from './scroll-progress'
 
 export async function SiteHeader() {
   const session = await getPageSession()
@@ -32,6 +33,7 @@ export async function SiteHeader() {
           <ThemeMode />
         </div>
       </div>
+      <ScrollProgress />
     </header>
   )
 }
