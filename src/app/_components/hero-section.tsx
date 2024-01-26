@@ -47,15 +47,15 @@ export function HeroSection({ className, ...props }: HeroSectionProps) {
         whileInView="visible"
         className="absolute p-16 space-y-2 sm:space-y-3 text-white"
       >
-        <motion.h1 variants={variants} className="text-4xl sm:text-5xl md:text-7xl font-extrabold">
+        <motion.h1 variants={variants} className="md:text-7xl">
           free islet&apos;s home
         </motion.h1>
-        <motion.h3 variants={variants} className="text-2xl sm:text-3xl font-mediuem">
+        <motion.h2 variants={variants} className="font-medium">
           Portfolio, Blog
-        </motion.h3>
-        <motion.h6 variants={variants} className="text-base sm:text-lg font-light">
+        </motion.h2>
+        <motion.p variants={variants} className="sm:text-lg font-light">
           ...under construction
-        </motion.h6>
+        </motion.p>
       </motion.div>
     </div>
   )

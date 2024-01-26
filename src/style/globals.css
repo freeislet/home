@@ -78,13 +78,31 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl font-extrabold;
+  }
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold;
+  }
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl font-medium;
+  }
+  h4 {
+    @apply text-lg sm:text-xl md:text-2xl font-medium;
+  }
+  h5 {
+    @apply text-lg md:text-xl font-medium;
+  }
+  h6 {
+    @apply text-lg font-medium;
+  }
 }
 
 @layer components {
   .my-container {
     @apply w-full max-w-[1400px] mx-auto px-4 lg:px-8;
   }
-
   .my-container-full {
     @apply w-full max-w-[1400px] mx-auto;
   }
@@ -92,9 +110,12 @@
   .my-flex-row {
     @apply flex items-center;
   }
-
   .my-flex-col {
     @apply flex flex-col;
+  }
+
+  .my-prose {
+    @apply prose max-w-none;
   }
 }
 
