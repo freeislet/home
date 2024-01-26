@@ -97,6 +97,9 @@
   h6 {
     @apply text-lg font-medium;
   }
+  p {
+    @apply text-sm md:text-base;
+  }
 }
 
 @layer components {
