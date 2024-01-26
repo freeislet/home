@@ -3,10 +3,9 @@ import { CatalogSection } from './_components/catalog-section'
 
 export default async function IndexPage() {
   return (
-    <div className="my-container my-8 space-y-12">
+    <div className="my-container-full">
       <HeroSection />
-      {/* <CatalogSection /> */}
-      <div className="h-[1000px]" />
+      <CatalogSection className="bg-slate-200" />
     </div>
   )
 }

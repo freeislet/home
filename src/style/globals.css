@@ -71,6 +71,10 @@
     @apply border-border;
   }
 
+  html {
+    @apply snap-proximity snap-y;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -79,6 +83,10 @@
 @layer components {
   .my-container {
     @apply w-full max-w-[1400px] mx-auto px-4 lg:px-8;
+  }
+
+  .my-container-full {
+    @apply w-full max-w-[1400px] mx-auto;
   }
 
   .my-flex-row {
