@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 import { docsConfig, type CatalogItem } from '@/config/docs'
 import { cn } from '@/lib/utils'
@@ -17,7 +18,7 @@ export function CatalogSection({ className, ...props }: CatalogSectionProps) {
           <CatalogItem key={index} item={item} className={bgs[index % bgs.length]} />
         ))}
       </div>
-      <div className="absolute inset-0 p-4 md:p-8">
+      <div className="absolute inset-0 m-4 md:m-8">
         <ScrollPath />
       </div>
     </div>
@@ -39,24 +40,37 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
 }
 
 function ScrollPath({ className, ...props }: React.SVGAttributes<SVGElement>) {
+  // "M0,0 C 25,1 20,-1 30,0 C 40,1 40,-1 50,0 C 55,1 60,-2 70,0 C 80,1 90,-1 100,0"
+  const d = 'M0,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-10'
+
   return (
-    <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      className={cn('overflow-visible', className)}
-      {...props}
-    >
-      <path
-        // d="M0,0 C 25,1 20,-1 30,0 C 40,1 40,-1 50,0 C 55,1 60,-2 70,0 C 80,1 90,-1 100,0"
-        d="M0,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-10"
-        fill="transparent"
-        stroke="rgba(100, 100, 160, 0.3)"
-        strokeWidth="7px"
-        strokeLinecap="round"
-        vectorEffect="non-scaling-stroke"
+    <>
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className={cn('overflow-visible', className)}
+        {...props}
+      >
+        <path
+          d={d}
+          fill="transparent"
+          stroke="rgba(100, 100, 160, 0.3)"
+          strokeWidth="7px"
+          strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
+          id="scroll-path"
+        />
+      </svg>
+      <motion.img
+        src="./spaceship.svg"
+        className="absolute top-0 left-0 size-14"
+        style={{ offsetPath: `path("${d}")`, transform: 'rotate(90deg)' }}
+        initial={{ offsetDistance: '0%' }}
+        animate={{ offsetDistance: '100%' }}
+        transition={{ duration: 10 }}
       />
-    </svg>
+    </>
   )
 }
