@@ -1,3 +1,5 @@
+// 참고: https://dev.to/murashow/how-to-use-resize-observer-with-react-5ff5
+
 import { MutableRefObject, useLayoutEffect, useRef, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 
