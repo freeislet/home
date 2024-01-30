@@ -6,6 +6,7 @@ export default async function IndexPage() {
     <div className="my-container-full">
       <HeroSection />
       <CatalogSection className="bg-slate-200 dark:bg-slate-700" />
+      <div className="h-[200px] bg-slate-100 dark:bg-slate-800"></div>
     </div>
   )
 }

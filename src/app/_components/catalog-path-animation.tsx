@@ -1,7 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { motion, useScroll } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import PathScaler from '@/lib/path-scaler'
@@ -11,7 +11,7 @@ interface CatalogPathAnimationProps extends React.SVGAttributes<SVGElement> {
   containerHeight: number
 }
 
-const path = 'M0,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-10'
+const path = 'M50,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-20'
 const pathWidth = 100
 const pathHeight = 100
 const pathScaler = new PathScaler(path, pathWidth, pathHeight)
@@ -28,13 +28,22 @@ export function CatalogPathAnimation({
   }, [containerWidth, containerHeight])
 
   const scrollRef = useRef(null)
-  const { scrollYProgress } = useScroll({ target: scrollRef, offset: ['100px end', '1.05 end'] })
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ['100px end', `${containerHeight + 200}px end`],
+  })
+  const pathProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
 
+  const [loading, setLoading] = useState(true)
   const [offsetDistance, setOffsetDistance] = useState('0%')
-  useLayoutEffect(
-    () => scrollYProgress.on('change', (latestProgress) => setOffsetDistance(`${latestProgress * 100}%`)),
-    [scrollYProgress]
-  )
+  useLayoutEffect(() => {
+    setLoading(false)
+    return pathProgress.on('change', (latest) => setOffsetDistance(`${latest * 100}%`))
+  }, [])
 
   return (
     <>
@@ -45,26 +54,31 @@ export function CatalogPathAnimation({
         viewBox={`0 0 ${pathWidth} ${pathHeight}`}
         preserveAspectRatio="none"
         className={cn('overflow-visible', className)}
+        style={{ filter: 'drop-shadow(2px 3px #5556)' }}
         {...props}
       >
         <path
           d={path}
           fill="transparent"
-          stroke="rgba(100, 100, 160, 0.3)"
-          strokeWidth="7px"
+          stroke="rgb(200, 200, 240)"
+          strokeWidth="5px"
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
         />
       </svg>
-      <motion.img
-        src="./spaceship.svg"
-        className="absolute top-0 left-0 size-14"
-        style={{
-          offsetPath,
-          offsetDistance,
-          transform: 'rotate(90deg)',
-        }}
-      />
+      <div
+        className={cn('absolute top-0 left-0 size-12 md:size-14', { hidden: loading })}
+        style={{ filter: 'drop-shadow(0.125rem 0.25rem 2px #0005)' }}
+      >
+        <motion.img
+          src="./spaceship.svg"
+          style={{
+            offsetPath,
+            offsetDistance,
+            transform: 'rotate(90deg)',
+          }}
+        />
+      </div>
     </>
   )
 }

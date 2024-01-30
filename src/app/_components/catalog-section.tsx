@@ -15,13 +15,13 @@ export function CatalogSection({ className, ...props }: CatalogSectionProps) {
   const [pathContainerRef, pathContainerSize] = useElementSize()
 
   return (
-    <div className={cn('relative p-8 pl-6 md:p-16 md:pl-12', className)} {...props}>
+    <div className={cn('relative p-12 pl-6 md:p-20 md:pl-12', className)} {...props}>
       <div className="space-y-6 md:space-y-12 text-gray-500">
         {docsConfig.catalog.map((item, index) => (
           <CatalogItem key={index} item={item} className={bgs[index % bgs.length]} />
         ))}
       </div>
-      <div ref={pathContainerRef} className="absolute inset-0 m-4 md:m-8">
+      <div ref={pathContainerRef} className="absolute inset-0 m-6 md:m-10">
         <CatalogPathAnimation containerWidth={pathContainerSize.width} containerHeight={pathContainerSize.height} />
       </div>
     </div>
