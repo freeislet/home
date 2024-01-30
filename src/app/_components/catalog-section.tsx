@@ -1,18 +1,18 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
 
 import { docsConfig, type CatalogItem } from '@/config/docs'
 import { cn } from '@/lib/utils'
-import PathScaler from '@/lib/path-scaler'
 import { useElementSize } from '@/components/element'
+import { CatalogPathAnimation } from './catalog-path-animation'
 
 interface CatalogSectionProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+const bgs = ['bg-[#F8E3E3]', 'bg-[#E3F1F8]', 'bg-[#E3F8EE]', 'bg-[#F4F8E3]', 'bg-[#E6E3F8]', 'bg-[#F8ECE3]']
+
 export function CatalogSection({ className, ...props }: CatalogSectionProps) {
   const [pathContainerRef, pathContainerSize] = useElementSize()
-  const bgs = ['bg-[#F8E3E3]', 'bg-[#E3F1F8]', 'bg-[#E3F8EE]', 'bg-[#F4F8E3]', 'bg-[#E6E3F8]', 'bg-[#F8ECE3]']
 
   return (
     <div className={cn('relative p-8 pl-6 md:p-16 md:pl-12', className)} {...props}>
@@ -22,7 +22,7 @@ export function CatalogSection({ className, ...props }: CatalogSectionProps) {
         ))}
       </div>
       <div ref={pathContainerRef} className="absolute inset-0 m-4 md:m-8">
-        <ScrollPath parentWidth={pathContainerSize.width} parentHeight={pathContainerSize.height} />
+        <CatalogPathAnimation containerWidth={pathContainerSize.width} containerHeight={pathContainerSize.height} />
       </div>
     </div>
   )
@@ -39,48 +39,5 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
         <p>{item.description}</p>
       </div>
     </section>
-  )
-}
-
-interface ScrollPathProps extends React.SVGAttributes<SVGElement> {
-  parentWidth: number
-  parentHeight: number
-}
-
-function ScrollPath({ parentWidth, parentHeight, className, ...props }: ScrollPathProps) {
-  // "M0,0 C 25,1 20,-1 30,0 C 40,1 40,-1 50,0 C 55,1 60,-2 70,0 C 80,1 90,-1 100,0"
-  const d = 'M0,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-10'
-
-  const pathScaler = new PathScaler(d, 100, 100)
-  const scaledPath = pathScaler.getScaledPath(parentWidth, parentHeight)
-
-  return (
-    <>
-      <svg
-        width="100%"
-        height="100%"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className={cn('overflow-visible', className)}
-        {...props}
-      >
-        <path
-          d={d}
-          fill="transparent"
-          stroke="rgba(100, 100, 160, 0.3)"
-          strokeWidth="7px"
-          strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-      <motion.img
-        src="./spaceship.svg"
-        className="absolute top-0 left-0 size-14"
-        style={{ offsetPath: `path("${scaledPath}")`, transform: 'rotate(90deg)' }}
-        initial={{ offsetDistance: '0%' }}
-        animate={{ offsetDistance: '100%' }}
-        transition={{ duration: 10 }}
-      />
-    </>
   )
 }
