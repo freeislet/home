@@ -45,6 +45,18 @@ export function CatalogPathAnimation({
     return pathProgress.on('change', (latest) => setOffsetDistance(`${latest * 100}%`))
   }, [])
 
+  const spriteStyle = {
+    offsetPath,
+    offsetDistance,
+  }
+  const spriteAnimation = {
+    rotate: [0, -6, 6, -4, 4, 0, 0],
+  }
+  const spriteTransition = {
+    repeat: Infinity,
+    duration: 1.2,
+  }
+
   return (
     <>
       <svg
@@ -70,14 +82,9 @@ export function CatalogPathAnimation({
         className={cn('absolute top-0 left-0 size-12 md:size-14', { hidden: loading })}
         style={{ filter: 'drop-shadow(0.125rem 0.25rem 2px #0005)' }}
       >
-        <motion.img
-          src="./spaceship.svg"
-          style={{
-            offsetPath,
-            offsetDistance,
-            transform: 'rotate(90deg)',
-          }}
-        />
+        <motion.div style={spriteStyle} animate={spriteAnimation} transition={spriteTransition}>
+          <motion.img src="./spaceship.svg" style={{ transform: 'rotate(90deg)' }} />
+        </motion.div>
       </div>
     </>
   )
