@@ -1,7 +1,7 @@
 'use client'
 
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { motion, useScroll, useSpring, useMotionValue } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
 import PathScaler from '@/lib/path-scaler'
@@ -15,6 +15,9 @@ const path = 'M50,0 H97 S 100,0 100,3 V97 S 100,100 97,100 h-20'
 const pathWidth = 100
 const pathHeight = 100
 const pathScaler = new PathScaler(path, pathWidth, pathHeight)
+
+const spriteAnimation = { rotate: [0, -6, 6, -4, 4, 0, 0] }
+const spriteTransition = { repeat: Infinity, duration: 1.2 }
 
 export function CatalogPathAnimation({
   containerWidth,
@@ -39,23 +42,11 @@ export function CatalogPathAnimation({
   })
 
   const [loading, setLoading] = useState(true)
-  const [offsetDistance, setOffsetDistance] = useState('0%')
+  const offsetDistance = useMotionValue('0%')
   useLayoutEffect(() => {
     setLoading(false)
-    return pathProgress.on('change', (latest) => setOffsetDistance(`${latest * 100}%`))
+    return pathProgress.on('change', (latest) => offsetDistance.set(`${latest * 100}%`))
   }, [])
-
-  const spriteStyle = {
-    offsetPath,
-    offsetDistance,
-  }
-  const spriteAnimation = {
-    rotate: [0, -6, 6, -4, 4, 0, 0],
-  }
-  const spriteTransition = {
-    repeat: Infinity,
-    duration: 1.2,
-  }
 
   return (
     <>
@@ -82,7 +73,7 @@ export function CatalogPathAnimation({
         className={cn('absolute top-0 left-0 size-12 md:size-14', { hidden: loading })}
         style={{ filter: 'drop-shadow(0.125rem 0.25rem 2px #0005)' }}
       >
-        <motion.div style={spriteStyle} animate={spriteAnimation} transition={spriteTransition}>
+        <motion.div style={{ offsetPath, offsetDistance }} animate={spriteAnimation} transition={spriteTransition}>
           <motion.img src="./spaceship.svg" style={{ transform: 'rotate(90deg)' }} />
         </motion.div>
       </div>
