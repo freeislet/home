@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, useScroll, useSpring, useMotionValue } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
@@ -43,7 +43,7 @@ export function CatalogPathAnimation({
 
   const [loading, setLoading] = useState(true)
   const offsetDistance = useMotionValue('0%')
-  useLayoutEffect(() => {
+  useEffect(() => {
     setLoading(false)
     return pathProgress.on('change', (latest) => offsetDistance.set(`${latest * 100}%`))
   }, [])
@@ -70,11 +70,11 @@ export function CatalogPathAnimation({
         />
       </svg>
       <div
-        className={cn('absolute top-0 left-0 size-12 md:size-14', { hidden: loading })}
+        className={cn('absolute top-0 left-0 size-12 md:size-20', { hidden: loading })}
         style={{ filter: 'drop-shadow(0.125rem 0.25rem 2px #0005)' }}
       >
         <motion.div style={{ offsetPath, offsetDistance }} animate={spriteAnimation} transition={spriteTransition}>
-          <motion.img src="./spaceship.svg" style={{ transform: 'rotate(90deg)' }} />
+          <motion.img src="./rocket.svg" style={{ transform: 'rotate(45deg)' }} />
         </motion.div>
       </div>
     </>
