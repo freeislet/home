@@ -31,11 +31,15 @@ type IconPresetProps = Omit<IconProps, 'src'>
 
 export const Logo = (props: IconPresetProps) => <Icon src="/cloud.svg" darkInvert {...props} />
 
+export const GameDevIcon = (props: IconPresetProps) => <Icon src="/game-card.svg" {...props} />
+
+export const WebDevIcon = (props: IconPresetProps) => <Icon src="/coding-web.svg" {...props} />
+
+export const DiagramIcon = (props: IconPresetProps) => <Icon src="/diagram.svg" {...props} />
+
 export const AiIcon = (props: IconPresetProps) => <Icon src="/ai.svg" {...props} />
 
 export const GeminiIcon = (props: IconPresetProps) => <Icon src="/gemini.svg" {...props} />
-
-export const DiagramIcon = (props: IconPresetProps) => <Icon src="/diagram.svg" {...props} />
 
 export const GoogleIcon = (props: SvgIconProps) => (
   <SvgIcon role="img" viewBox="0 0 24 24" {...props}>

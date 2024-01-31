@@ -1,7 +1,7 @@
 import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
-import { AiIcon, GeminiIcon, DiagramIcon } from '@/components/icons'
+import { GameDevIcon, WebDevIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
 import image1 from '~/public/spaceship1.jpeg'
 import image2 from '~/public/spaceship2.jpeg'
 import image3 from '~/public/spaceship3.jpeg'
@@ -11,11 +11,52 @@ const nav: NavItem[] = [
   {
     title: (
       <>
-        <AiIcon />
-        Generative AI
+        <GameDevIcon />
+        Game
       </>
     ),
-    href: '/generative-ai',
+    href: '/game',
+    children: [
+      {
+        title: 'Game Dev',
+        href: '/game/game-dev',
+      },
+    ],
+  },
+  {
+    title: (
+      <>
+        <WebDevIcon />
+        Web
+      </>
+    ),
+    href: '/web',
+    children: [
+      {
+        title: (
+          <>
+            <DiagramIcon />
+            Visual Scripting
+          </>
+        ),
+        href: '/web/visual-scripting',
+        children: [
+          {
+            title: 'Blockly',
+            href: '/web/visual-scripting/blockly',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: (
+      <>
+        <AiIcon />
+        AI
+      </>
+    ),
+    href: '/ai',
     children: [
       {
         title: (
@@ -27,28 +68,13 @@ const nav: NavItem[] = [
         children: [
           {
             title: 'Chatbot',
-            href: '/generative-ai/gemini/chatbot',
+            href: '/ai/gemini/chatbot',
           },
           {
             title: 'Multimodal',
-            href: '/generative-ai/gemini/multimodal',
+            href: '/ai/gemini/multimodal',
           },
         ],
-      },
-    ],
-  },
-  {
-    title: (
-      <>
-        <DiagramIcon />
-        Visual Scripting
-      </>
-    ),
-    href: '/visual-scripting',
-    children: [
-      {
-        title: 'Blockly',
-        href: '/visual-scripting/blockly',
       },
     ],
   },

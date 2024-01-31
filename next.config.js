@@ -3,13 +3,18 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/generative-ai',
-        destination: '/generative-ai/gemini/chatbot',
+        source: '/game',
+        destination: '/game/game-dev',
         permanent: false,
       },
       {
-        source: '/visual-scripting',
-        destination: '/visual-scripting/blockly',
+        source: '/web',
+        destination: '/web/visual-scripting/blockly',
+        permanent: false,
+      },
+      {
+        source: '/ai',
+        destination: '/ai/gemini/chatbot',
         permanent: false,
       },
     ]
