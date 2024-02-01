@@ -10,6 +10,7 @@
     "kysely-codegen": "kysely-codegen --env-file .env.local --out-file src/db/schema.d.ts"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.2.0",
     "@hookform/resolvers": "^3.3.4",
     "@lucia-auth/adapter-mysql": "^2.1.0",
     "@lucia-auth/oauth": "^3.5.1",
@@ -28,6 +29,7 @@
     "@trpc/react-query": "^10.45.0",
     "@trpc/server": "^10.45.0",
     "@vercel/analytics": "^1.1.2",
+    "ai": "^2.2.33",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.2",
