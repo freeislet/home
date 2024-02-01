@@ -4,7 +4,7 @@ import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
 
 const handler = (req: Request) =>
   fetchRequestHandler({
-    endpoint: '/api/trpc',
+    endpoint: '/trpc',
     req,
     router: appRouter,
     // This line of code will create the context asynchronously whenever you call a tRPC endpoint.

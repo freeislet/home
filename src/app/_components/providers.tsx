@@ -21,7 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `${url}/api/trpc`,
+          url: `${url}/trpc`,
         }),
       ],
     })
