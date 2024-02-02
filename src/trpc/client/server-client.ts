@@ -1,8 +1,9 @@
+// TBD
 // define a tRPC instance that works for your server-side components.
 
-import { appRouter } from '@/server'
-import { createCallerFactory } from '@/server/trpc'
-import { createContext } from '@/server/context'
+import { appRouter } from '@/trpc/server'
+import { createCallerFactory } from '@/trpc/server/trpc'
+import { createContext } from '@/trpc/server/context'
 
 const createCaller = createCallerFactory(appRouter)
 

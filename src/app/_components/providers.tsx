@@ -9,10 +9,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { httpBatchLink } from '@trpc/client'
 import superjson from 'superjson'
 
-// import { url } from '@/config'
 import { trpc } from '@/trpc/client'
-
-const url = process.env.NODE_ENV === 'production' ? 'https://freeislet.vercel.com' : 'http://localhost:3000'
+import { getBaseUrl } from '@/lib/env'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({}))
@@ -21,7 +19,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `${url}/trpc`,
+          url: `${getBaseUrl()}/trpc`,
+
+          // You can pass any HTTP headers you wish here
+          // async headers() {
+          //   return {
+          //     authorization: getAuthCookie(),
+          //   }
+          // },
         }),
       ],
     })

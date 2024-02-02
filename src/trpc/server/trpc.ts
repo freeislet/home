@@ -18,6 +18,7 @@ const t = initTRPC.context<Context>().create({
    * @link https://trpc.io/docs/v11/data-transformers
    */
   transformer,
+
   /**
    * @link https://trpc.io/docs/v11/error-formatting
    */
@@ -36,7 +37,7 @@ export const router = t.router
  * Create an unprotected procedure
  * @link https://trpc.io/docs/v11/procedures
  **/
-export const publicProcedure = t.procedure
+export const procedure = t.procedure
 
 /**
  * Merge multiple routers together
