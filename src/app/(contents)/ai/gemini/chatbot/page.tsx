@@ -7,7 +7,7 @@ import { useChat } from 'ai/react'
 // import { trpc } from '@/trpc/client'
 
 export default function GeminiChatbotPage() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat()
+  const { messages, input, handleInputChange, handleSubmit } = useChat({ api: '/api/gemini/chat' })
 
   // tRPC test
   // const products = trpc.products.useQuery()
