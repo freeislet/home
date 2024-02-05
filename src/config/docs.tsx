@@ -73,6 +73,7 @@ const nav: NavItem[] = [
           {
             title: 'Multimodal',
             href: '/ai/gemini/multimodal',
+            disabled: true,
           },
         ],
       },
