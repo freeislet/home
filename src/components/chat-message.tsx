@@ -9,10 +9,10 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
 import { cn } from '@/lib/utils'
-import { MemoizedReactMarkdown } from '@/components/markdown'
-import { CodeBlock } from '@/components/codeblock'
-import { ChatMessageActions } from '@/components/chat-message-actions'
-import { OpenAiIcon, UserIcon } from '@/components/icons'
+import { MemoizedReactMarkdown } from './markdown'
+import { CodeBlock } from './codeblock'
+import { ChatMessageActions } from './chat-message-actions'
+import { OpenAiIcon, UserIcon } from './icons'
 
 export interface ChatMessageProps {
   message: Message
