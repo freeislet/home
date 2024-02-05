@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { docsConfig, type CatalogItem } from '@/config/docs'
 import { cn } from '@/lib/utils'
-import { useElementSize } from '@/components/element'
+import { useElementSize } from '@/lib/element'
 import { CatalogPathAnimation } from './catalog-path-animation'
 
 interface CatalogSectionProps extends React.HTMLAttributes<HTMLDivElement> {}
