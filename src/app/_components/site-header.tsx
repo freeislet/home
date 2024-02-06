@@ -20,7 +20,7 @@ export async function SiteHeader() {
         </div>
 
         <Link href="/" className="my-flex-row mr-8">
-          <Logo className="size-8" />
+          <Logo className="size-8 mr-1" />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
 

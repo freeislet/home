@@ -2,7 +2,7 @@ import Image, { ImageProps } from 'next/image'
 
 import { cn } from '@/lib/utils'
 
-const DEFAULT_LAYOUT = 'size-6 mr-1'
+const DEFAULT_LAYOUT = 'size-6'
 
 interface IconProps extends PartialExcept<ImageProps, 'src'> {
   darkInvert?: boolean

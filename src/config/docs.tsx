@@ -9,12 +9,8 @@ import image4 from '~/public/spaceship4.jpeg'
 
 const nav: NavItem[] = [
   {
-    title: (
-      <>
-        <GameDevIcon />
-        Game
-      </>
-    ),
+    icon: <GameDevIcon />,
+    title: 'Game',
     href: '/game',
     children: [
       {
@@ -24,21 +20,13 @@ const nav: NavItem[] = [
     ],
   },
   {
-    title: (
-      <>
-        <WebDevIcon />
-        Web
-      </>
-    ),
+    icon: <WebDevIcon />,
+    title: 'Web',
     href: '/web',
     children: [
       {
-        title: (
-          <>
-            <DiagramIcon />
-            Visual Scripting
-          </>
-        ),
+        icon: <DiagramIcon />,
+        title: 'Visual Scripting',
         href: '/web/visual-scripting',
         children: [
           {
@@ -50,21 +38,13 @@ const nav: NavItem[] = [
     ],
   },
   {
-    title: (
-      <>
-        <AiIcon />
-        AI
-      </>
-    ),
+    icon: <AiIcon />,
+    title: 'AI',
     href: '/ai',
     children: [
       {
-        title: (
-          <>
-            <GeminiIcon />
-            Gemini
-          </>
-        ),
+        icon: <GeminiIcon />,
+        title: 'Gemini',
         children: [
           {
             title: 'Chatbot',

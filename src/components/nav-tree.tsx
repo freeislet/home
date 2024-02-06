@@ -25,10 +25,11 @@ export function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
           {item.href ? (
             <NavLink
               href={item.href}
-              className="my-flex-row text-foreground/60 hover:text-foreground/80 transition-colors"
+              className="my-flex-row space-x-1 text-foreground/60 hover:text-foreground/80 transition-colors"
               activeClassName="text-foreground underline"
             >
-              {item.title}
+              {item.icon}
+              <span>{item.title}</span>
             </NavLink>
           ) : (
             <div className="my-flex-row text-muted-foreground">{item.title}</div>
