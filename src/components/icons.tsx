@@ -138,3 +138,27 @@ export const DownloadIcon = ({ className, ...props }: SvgIconProps) => (
     <path d="M224 152v56a16 16 0 0 1-16 16H48a16 16 0 0 1-16-16v-56a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0Zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 132.69V40a8 8 0 0 0-16 0v92.69l-26.34-26.35a8 8 0 0 0-11.32 11.32Z" />
   </SvgIcon>
 )
+
+export const StopIcon = ({ className, ...props }: SvgIconProps) => (
+  <SvgIcon
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    fill="currentColor"
+    className={cn('size-4', className)}
+    {...props}
+  >
+    <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88 88.1 88.1 0 0 1-88 88Zm24-120h-48a8 8 0 0 0-8 8v48a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8v-48a8 8 0 0 0-8-8Zm-8 48h-32v-32h32Z" />
+  </SvgIcon>
+)
+
+export const ArrowElbowIcon = ({ className, ...props }: SvgIconProps) => (
+  <SvgIcon
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    fill="currentColor"
+    className={cn('size-4', className)}
+    {...props}
+  >
+    <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z" />
+  </SvgIcon>
+)
