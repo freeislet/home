@@ -8,12 +8,12 @@ export default function GeminiChatbotPage() {
   const id = nanoid()
 
   return (
-    <div className="my-flex-col">
+    <div className="my-flex-col min-h-full">
       <div className="my-container my-flex-row justify-between py-4 h-16">
-        <h5 className="">Gemini Chatbot Playground</h5>
+        <h5 className="">Gemini Chatbot API 테스트</h5>
       </div>
       <Separator />
-      <div className="my-container">
+      <div className="my-container sm:px-12 my-flex-col flex-1">
         <Chat id={id} />
       </div>
       {/* <div className="my-container grid items-stretch py-6 gap-6 grid-cols-[1fr_200px]">

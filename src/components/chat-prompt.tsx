@@ -34,7 +34,7 @@ export function ChatPrompt({ onSubmit, input, setInput, isLoading }: PromptProps
       }}
       ref={formRef}
     >
-      <div className="relative flex flex-col w-full px-8 overflow-hidden max-h-60 grow bg-background sm:rounded-md sm:border sm:px-12">
+      <div className="relative flex flex-col w-full pr-8 sm:pr-12 overflow-hidden max-h-60 grow bg-background sm:rounded-md sm:border">
         <Textarea
           ref={inputRef}
           tabIndex={0}
@@ -46,7 +46,7 @@ export function ChatPrompt({ onSubmit, input, setInput, isLoading }: PromptProps
           spellCheck={false}
           className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
         />
-        <div className="absolute right-0 top-4 sm:right-4">
+        <div className="absolute top-4 right-0 sm:right-4">
           <Button type="submit" size="icon" disabled={isLoading || input === ''}>
             <ArrowElbowIcon />
             <span className="sr-only">Send message</span>
