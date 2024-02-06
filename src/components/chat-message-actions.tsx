@@ -3,7 +3,7 @@
 import { type Message } from 'ai'
 
 import { cn } from '@/lib/utils'
-import { useCopyToClipboard } from '@/lib/clipboard'
+import { useCopyToClipboard } from '@/hooks/clipboard'
 import { CheckIcon, CopyIcon } from './icons'
 import { Button } from './ui/button'
 

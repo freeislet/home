@@ -10,7 +10,7 @@ import { FC, memo } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { coldarkDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
-import { useCopyToClipboard } from '@/lib/clipboard'
+import { useCopyToClipboard } from '@/hooks/clipboard'
 import { CheckIcon, CopyIcon, DownloadIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 
