@@ -1,6 +1,6 @@
 // 참고: https://dev.to/murashow/how-to-use-resize-observer-with-react-5ff5
 
-import { MutableRefObject, useLayoutEffect, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 
 export interface Size {
@@ -31,4 +31,23 @@ export function useElementSize<T extends HTMLElement = HTMLDivElement>(
   })
 
   return [target, size]
+}
+
+export function useAtBottom(offset = 0) {
+  const [isAtBottom, setIsAtBottom] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtBottom(window.innerHeight + window.scrollY >= document.body.offsetHeight - offset)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [offset])
+
+  return isAtBottom
 }
