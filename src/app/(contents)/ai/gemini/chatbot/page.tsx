@@ -1,12 +1,11 @@
 'use client'
 
-import { customAlphabet } from 'nanoid'
-
+import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
 import { Separator } from '@/components/ui/separator'
 
 export default function GeminiChatbotPage() {
-  const id = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 7)() // 7-character random string
+  const id = nanoid()
 
   return (
     <div className="my-flex-col">
