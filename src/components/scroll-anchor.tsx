@@ -1,20 +1,23 @@
 'use client'
 
-import { useEffect } from 'react'
+import { RefObject, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { useAtBottom } from '@/hooks/element'
 
-interface ChatScrollAnchorProps {
+interface ScrollAnchorProps {
   trackVisibility?: boolean
+  containerRef?: RefObject<HTMLElement>
+  rootMargin?: string
 }
 
-export function ScrollAnchor({ trackVisibility }: ChatScrollAnchorProps) {
+export function ScrollAnchor({ trackVisibility, containerRef, rootMargin }: ScrollAnchorProps) {
   const isAtBottom = useAtBottom()
   const { ref, entry, inView } = useInView({
     trackVisibility,
     delay: 100,
-    rootMargin: '0px 0px -150px 0px',
+    root: containerRef?.current,
+    rootMargin,
   })
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export function ScrollAnchor({ trackVisibility }: ChatScrollAnchorProps) {
         block: 'start',
       })
     }
-  }, [inView, entry, isAtBottom, trackVisibility])
+  }, [inView, entry, isAtBottom, trackVisibility, containerRef, rootMargin])
 
   return <div ref={ref} className="h-px w-full" />
 }

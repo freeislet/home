@@ -31,7 +31,7 @@ export function Chat({ id, initialMessages, className }: ChatProps) {
         {messages.length ? (
           <>
             <ChatList messages={messages} />
-            <ScrollAnchor trackVisibility={isLoading} />
+            <ScrollAnchor trackVisibility={isLoading} rootMargin="-56px 0px -175px 0px" />
           </>
         ) : (
           <div className="my-flex-row space-x-1 text-muted-foreground">
