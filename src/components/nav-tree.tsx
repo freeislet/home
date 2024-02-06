@@ -32,7 +32,10 @@ export function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
               <span>{item.title}</span>
             </NavLink>
           ) : (
-            <div className="my-flex-row text-muted-foreground">{item.title}</div>
+            <div className="my-flex-row space-x-1 text-muted-foreground">
+              {item.icon}
+              <span>{item.title}</span>
+            </div>
           )}
           {item.children?.length && <NavTree nav={item.children} depth={depth + 1} />}
         </div>

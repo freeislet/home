@@ -14,7 +14,10 @@ export function NavSidebar() {
 
   return (
     <aside className="flex-none hidden sm:flex flex-col min-w-32 space-y-2 bg-secondary border-r">
-      <div className="my-flex-row p-4 pb-2 font-medium text-foreground/80 border-b mb-2">{navItem.title}</div>
+      <div className="my-flex-row p-4 pb-2 space-x-1 font-medium text-foreground/80 border-b mb-2">
+        {navItem.icon}
+        <span>{navItem.title}</span>
+      </div>
       <nav>
         <NavTree nav={navItem.children} className="mx-4" />
       </nav>
