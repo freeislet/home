@@ -1,11 +1,12 @@
 'use client'
 
-import { nanoid } from '@/lib/utils'
+import { clogd, nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
 import { Separator } from '@/components/ui/separator'
 
 export default function GeminiChatbotPage() {
   const id = nanoid()
+  clogd('chat id: %s', id)
 
   return (
     <div className="my-flex-col min-h-full">

@@ -2,6 +2,8 @@ import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { customAlphabet } from 'nanoid'
 
+import { isDev } from './env'
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -21,3 +23,9 @@ export function isEmpty(obj: object) {
 }
 
 export const nanoid = customAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 7) // 7-character random string
+
+export function clog(...args: any[]) {
+  console.log(...args)
+}
+
+export const clogd = isDev() ? (...args: any[]) => clog(...args) : () => {}
