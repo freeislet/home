@@ -33,7 +33,7 @@ export function CatalogPathAnimation({
   const scrollRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
-    offset: ['100px end', `${containerHeight + 200}px end`],
+    offset: ['start 80%', `${containerHeight + 200}px end`],
   })
   const pathProgress = useSpring(scrollYProgress, {
     stiffness: 100,
