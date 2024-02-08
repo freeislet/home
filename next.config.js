@@ -11,7 +11,7 @@ const nextConfig = {
       },
       {
         source: '/web',
-        destination: '/web/visual-scripting/blockly',
+        destination: '/web/contentlayer',
         permanent: false,
       },
       {
