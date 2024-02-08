@@ -18,6 +18,8 @@ export function getBaseNavItem(nav: NavItem[], pathname: string): NavItem | unde
       for (const child of item.children) {
         if (matchPathname(child)) return true
       }
+    } else if (item.href) {
+      if (pathname.startsWith(item.href)) return true
     }
   }
 
