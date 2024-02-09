@@ -1,20 +1,19 @@
 import { format, parseISO } from 'date-fns'
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import { allPosts } from 'contentlayer/generated'
 
-export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
+import { allExamplePosts } from 'contentlayer/generated'
+import { MdxContent } from '@/components/mdx-content'
+
+export const generateStaticParams = async () => allExamplePosts.map((post) => ({ slug: post.slug }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  const post = allExamplePosts.find((post) => post.slug === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
   return { title: post.title }
 }
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  const post = allExamplePosts.find((post) => post.slug === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
-
-  const MdxContent = useMDXComponent(post.body.code)
 
   return (
     <article className="mx-auto max-w-xl py-8">
@@ -25,7 +24,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
         <h1 className="text-3xl font-bold">{post.title}</h1>
       </div>
       <div className="[&>*]:mb-3 [&>*:last-child]:mb-0">
-        <MdxContent />
+        <MdxContent mdx={post.body} />
       </div>
     </article>
   )
