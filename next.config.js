@@ -1,3 +1,5 @@
+const withMDX = require('@next/mdx')()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
@@ -19,6 +21,15 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.unsplash.com',
+      },
+    ],
+  },
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 }
 
-module.exports = nextConfig
+module.exports = withMDX(nextConfig)

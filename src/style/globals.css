@@ -100,16 +100,6 @@
   p {
     @apply text-sm md:text-base;
   }
-  .prose,
-  .my-prose {
-    ul,
-    ol {
-      @apply mt-1;
-    }
-    li {
-      @apply my-0.5;
-    }
-  }
 }
 
 @layer components {
@@ -128,7 +118,15 @@
   }
 
   .my-prose {
-    @apply prose max-w-none;
+    @apply prose max-w-3xl text-muted-foreground;
+
+    ul,
+    ol {
+      @apply mt-1;
+    }
+    li {
+      @apply my-0.5;
+    }
   }
 }
 
