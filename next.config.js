@@ -1,5 +1,3 @@
-const { withContentlayer } = require('next-contentlayer')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
@@ -11,7 +9,7 @@ const nextConfig = {
       },
       {
         source: '/web',
-        destination: '/web/contentlayer',
+        destination: '/web/visual-scripting/blockly',
         permanent: false,
       },
       {
@@ -23,4 +21,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withContentlayer(nextConfig)
+module.exports = nextConfig
