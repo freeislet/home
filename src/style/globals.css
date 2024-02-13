@@ -118,15 +118,7 @@
   }
 
   .my-prose {
-    @apply prose max-w-3xl text-muted-foreground;
-
-    ul,
-    ol {
-      @apply mt-1;
-    }
-    li {
-      @apply my-0.5;
-    }
+    @apply prose dark:prose-invert prose-ol:mt-1 prose-ul:mt-1 prose-li:my-0.5 max-w-3xl mx-auto;
   }
 }
 
