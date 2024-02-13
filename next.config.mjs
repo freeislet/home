@@ -1,4 +1,7 @@
-const withMDX = require('@next/mdx')()
+import createMDX from '@next/mdx'
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
+import rehypePrettyCode from 'rehype-pretty-code'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -32,4 +35,17 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
 }
 
-module.exports = withMDX(nextConfig)
+/** @type {import('rehype-pretty-code').Options} */
+const options = {
+  keepBackground: true,
+  theme: 'one-dark-pro',
+}
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [[rehypePrettyCode, options], rehypeSlug],
+  },
+})
+
+export default withMDX(nextConfig)

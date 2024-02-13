@@ -100,6 +100,41 @@
   p {
     @apply text-sm md:text-base;
   }
+
+  /* rehype-pretty-code */
+  code[data-line-numbers] {
+    /* line numbers */
+    counter-reset: line;
+
+    > [data-line]::before {
+      counter-increment: line;
+      content: counter(line);
+
+      @apply inline-block w-8 mr-6 text-right text-muted-foreground;
+    }
+    &[data-line-numbers-max-digits='3'] > [data-line]::before {
+      @apply w-10;
+    }
+
+    /* highlighted lines */
+    span[data-line] {
+      @apply border-l-4 border-transparent;
+    }
+    span[data-highlighted-line] {
+      @apply border-blue-500 bg-blue-500/20;
+    }
+
+    /* todo: highlighted chars */
+    /* span[data-highlighted-chars] {} https://rehype-pretty-code.netlify.app/#highlight-chars */
+  }
+
+  /* inline code */
+  :not(pre) > code {
+    @apply bg-foreground/20 border border-foreground/30;
+    /* border: 1px solid #bcbec0; */
+    border-radius: 5px;
+    padding: 2px;
+  }
 }
 
 @layer components {
@@ -118,7 +153,12 @@
   }
 
   .my-prose {
-    @apply prose dark:prose-invert prose-ol:mt-1 prose-ul:mt-1 prose-li:my-0.5 max-w-3xl mx-auto;
+    @apply prose dark:prose-invert
+      prose-ol:mt-1 prose-ul:mt-1 prose-li:my-0.5
+      prose-hr:my-8
+      prose-pre:px-0
+      prose-code:before:hidden prose-code:after:hidden prose-code:font-normal
+      max-w-3xl mx-auto;
   }
 }
 
