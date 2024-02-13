@@ -25,5 +25,9 @@ const mdxComponents: MDXComponents = {
 export const MdxContent = ({ mdx }: { mdx: MDX }) => {
   const MdxComponent = useMDXComponent(mdx.code)
 
-  return <MdxComponent components={mdxComponents} />
+  return (
+    <div className="my-prose">
+      <MdxComponent components={mdxComponents} />
+    </div>
+  )
 }

@@ -100,6 +100,16 @@
   p {
     @apply text-sm md:text-base;
   }
+  .prose,
+  .my-prose {
+    ul,
+    ol {
+      @apply mt-1;
+    }
+    li {
+      @apply my-0.5;
+    }
+  }
 }
 
 @layer components {

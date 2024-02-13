@@ -35,6 +35,7 @@
     "contentlayer": "^0.3.4",
     "date-fns": "^3.3.1",
     "framer-motion": "^11.0.2",
+    "hastscript": "^9.0.0",
     "kysely": "^0.27.2",
     "kysely-planetscale": "^1.4.0",
     "lucia": "^2.7.6",
@@ -52,10 +53,14 @@
     "react-markdown": "^9.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^8.5.3",
-    "remark-gfm": "^4.0.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.13.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^3.0.1",
     "remark-math": "^6.0.0",
     "server-only": "^0.0.1",
     "sharp": "^0.33.2",
+    "shiki": "^1.0.0",
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
@@ -81,6 +86,13 @@
   "overrides": {
     "next-contentlayer": {
       "next": "$next"
-    }
+    },
+    "@opentelemetry/api": "1.4.1",
+    "@opentelemetry/core": "1.13.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "0.39.1",
+    "@opentelemetry/resources": "1.13.0",
+    "@opentelemetry/sdk-trace-base": "1.13.0",
+    "@opentelemetry/sdk-trace-node": "1.13.0",
+    "@opentelemetry/semantic-conventions": "1.13.0"
   }
 }
