@@ -1,7 +1,7 @@
 import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
-import { GameDevIcon, WebDevIcon, ContentlayerIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
+import { GameDevIcon, WebDevIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
 import image1 from '~/public/spaceship1.jpeg'
 import image2 from '~/public/spaceship2.jpeg'
 import image3 from '~/public/spaceship3.jpeg'
@@ -25,15 +25,9 @@ const nav: NavItem[] = [
     href: '/web',
     children: [
       {
-        icon: <ContentlayerIcon />,
-        title: 'Contentlayer',
-        href: '/web/contentlayer',
-      },
-      {
         icon: <DiagramIcon />,
         title: 'Visual Scripting',
         href: '/web/visual-scripting',
-        disabled: true,
         children: [
           {
             title: 'Blockly',
