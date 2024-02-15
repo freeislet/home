@@ -1,7 +1,7 @@
-import '@/style/globals.css'
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
 
+import '@/style/globals.css'
 import { siteConfig } from '@/config/site'
 import { notoSansKr } from '@/lib/fonts'
 import { cn } from '@/lib/utils'

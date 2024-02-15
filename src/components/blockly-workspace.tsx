@@ -9,9 +9,10 @@
 import { useCallback, useEffect, useRef } from 'react'
 import Blockly, { type BlocklyOptions, WorkspaceSvg } from 'blockly/core'
 import { javascriptGenerator } from 'blockly/javascript'
-import locale from 'blockly/msg/ko'
+import locale from 'blockly/msg/en'
 import 'blockly/blocks'
 
+import '@/style/blockly.css'
 import { clogd, cn } from '@/lib/utils'
 
 Blockly.setLocale(locale)
@@ -71,7 +72,7 @@ function BlocklyWorkspace({
   return (
     <>
       {/* <button onClick={generateCode}>Convert</button> */}
-      <div ref={workspaceDivRef} className={cn('h-[500px]', className)} {...props} />
+      <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
     </>
   )
 }
