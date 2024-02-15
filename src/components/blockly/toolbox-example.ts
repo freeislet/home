@@ -7,60 +7,32 @@ const toolbox = {
       categorystyle: 'logic_category',
       contents: [
         {
-          kind: 'category',
-          name: 'If',
-          contents: [
-            {
-              kind: 'block',
-              type: 'controls_if',
-            },
-            {
-              kind: 'block',
-              type: 'controls_if',
-              extraState: {
-                hasElse: 'true',
-              },
-            },
-            {
-              kind: 'block',
-              type: 'controls_if',
-              extraState: {
-                hasElse: 'true',
-                elseIfCount: 1,
-              },
-            },
-          ],
+          kind: 'block',
+          type: 'controls_if',
         },
         {
-          kind: 'category',
-          name: 'Boolean',
-          categorystyle: 'logic_category',
-          contents: [
-            {
-              kind: 'block',
-              type: 'logic_compare',
-            },
-            {
-              kind: 'block',
-              type: 'logic_operation',
-            },
-            {
-              kind: 'block',
-              type: 'logic_negate',
-            },
-            {
-              kind: 'block',
-              type: 'logic_boolean',
-            },
-            {
-              kind: 'block',
-              type: 'logic_null',
-            },
-            {
-              kind: 'block',
-              type: 'logic_ternary',
-            },
-          ],
+          kind: 'block',
+          type: 'logic_compare',
+        },
+        {
+          kind: 'block',
+          type: 'logic_operation',
+        },
+        {
+          kind: 'block',
+          type: 'logic_negate',
+        },
+        {
+          kind: 'block',
+          type: 'logic_boolean',
+        },
+        {
+          kind: 'block',
+          type: 'logic_null',
+        },
+        {
+          kind: 'block',
+          type: 'logic_ternary',
         },
       ],
     },
@@ -74,10 +46,10 @@ const toolbox = {
           type: 'controls_repeat_ext',
           inputs: {
             TIMES: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 10,
+                  NUM: '10',
                 },
               },
             },
@@ -90,31 +62,28 @@ const toolbox = {
         {
           kind: 'block',
           type: 'controls_for',
-          fields: {
-            VAR: 'i',
-          },
           inputs: {
             FROM: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 1,
+                  NUM: '1',
                 },
               },
             },
             TO: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 10,
+                  NUM: '10',
                 },
               },
             },
             BY: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 1,
+                  NUM: '1',
                 },
               },
             },
@@ -139,81 +108,142 @@ const toolbox = {
           kind: 'block',
           type: 'math_number',
           fields: {
-            NUM: 123,
+            NUM: '123',
           },
         },
         {
           kind: 'block',
           type: 'math_arithmetic',
-          fields: {
-            OP: 'ADD',
+          inputs: {
+            A: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '1',
+                },
+              },
+            },
+            B: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '1',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_single',
-          fields: {
-            OP: 'ROOT',
+          inputs: {
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '9',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_trig',
-          fields: {
-            OP: 'SIN',
+          inputs: {
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '45',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_constant',
-          fields: {
-            CONSTANT: 'PI',
-          },
         },
         {
           kind: 'block',
           type: 'math_number_property',
-          extraState: '<mutation divisor_input="false"></mutation>',
-          fields: {
-            PROPERTY: 'EVEN',
+          inputs: {
+            NUMBER_TO_CHECK: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '0',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_round',
-          fields: {
-            OP: 'ROUND',
+          inputs: {
+            NUM: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '3.1',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'math_on_list',
-          extraState: '<mutation op="SUM"></mutation>',
-          fields: {
-            OP: 'SUM',
-          },
         },
         {
           kind: 'block',
           type: 'math_modulo',
+          inputs: {
+            DIVIDEND: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '64',
+                },
+              },
+            },
+            DIVISOR: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '10',
+                },
+              },
+            },
+          },
         },
         {
           kind: 'block',
           type: 'math_constrain',
           inputs: {
-            LOW: {
-              block: {
+            VALUE: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 1,
+                  NUM: '50',
+                },
+              },
+            },
+            LOW: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '1',
                 },
               },
             },
             HIGH: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 100,
+                  NUM: '100',
                 },
               },
             },
@@ -224,18 +254,18 @@ const toolbox = {
           type: 'math_random_int',
           inputs: {
             FROM: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 1,
+                  NUM: '1',
                 },
               },
             },
             TO: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 100,
+                  NUM: '100',
                 },
               },
             },
@@ -248,6 +278,184 @@ const toolbox = {
         {
           kind: 'block',
           type: 'math_atan2',
+          inputs: {
+            X: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '1',
+                },
+              },
+            },
+            Y: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '1',
+                },
+              },
+            },
+          },
+        },
+      ],
+    },
+    {
+      kind: 'category',
+      name: 'Text',
+      categorystyle: 'text_category',
+      contents: [
+        {
+          kind: 'block',
+          type: 'text',
+        },
+        {
+          kind: 'block',
+          type: 'text_join',
+        },
+        {
+          kind: 'block',
+          type: 'text_append',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_length',
+          inputs: {
+            VALUE: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_isEmpty',
+          inputs: {
+            VALUE: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: null,
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_indexOf',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{textVariable}',
+                },
+              },
+            },
+            FIND: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_charAt',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{textVariable}',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_getSubstring',
+          inputs: {
+            STRING: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{textVariable}',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_changeCase',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_trim',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_print',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'text_prompt_ext',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'abc',
+                },
+              },
+            },
+          },
         },
       ],
     },
@@ -258,24 +466,24 @@ const toolbox = {
       contents: [
         {
           kind: 'block',
-          type: 'lists_create_empty',
+          type: 'lists_create_with',
+          extraState: {
+            itemCount: '0',
+          },
         },
         {
           kind: 'block',
           type: 'lists_create_with',
-          extraState: {
-            itemCount: 3,
-          },
         },
         {
           kind: 'block',
           type: 'lists_repeat',
           inputs: {
             NUM: {
-              block: {
+              shadow: {
                 type: 'math_number',
                 fields: {
-                  NUM: 5,
+                  NUM: '5',
                 },
               },
             },
@@ -292,24 +500,150 @@ const toolbox = {
         {
           kind: 'block',
           type: 'lists_indexOf',
-          fields: {
-            END: 'FIRST',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{listVariable}',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'lists_getIndex',
-          fields: {
-            MODE: 'GET',
-            WHERE: 'FROM_START',
+          inputs: {
+            VALUE: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{listVariable}',
+                },
+              },
+            },
           },
         },
         {
           kind: 'block',
           type: 'lists_setIndex',
-          fields: {
-            MODE: 'SET',
-            WHERE: 'FROM_START',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{listVariable}',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_getSublist',
+          inputs: {
+            LIST: {
+              block: {
+                type: 'variables_get',
+                fields: {
+                  VAR: '{listVariable}',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_split',
+          inputs: {
+            DELIM: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: ',',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'lists_sort',
+        },
+      ],
+    },
+    {
+      kind: 'category',
+      name: 'Colour',
+      categorystyle: 'colour_category',
+      contents: [
+        {
+          kind: 'block',
+          type: 'colour_picker',
+        },
+        {
+          kind: 'block',
+          type: 'colour_random',
+        },
+        {
+          kind: 'block',
+          type: 'colour_rgb',
+          inputs: {
+            RED: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '100',
+                },
+              },
+            },
+            GREEN: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '50',
+                },
+              },
+            },
+            BLUE: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '0',
+                },
+              },
+            },
+          },
+        },
+        {
+          kind: 'block',
+          type: 'colour_blend',
+          inputs: {
+            COLOUR1: {
+              shadow: {
+                type: 'colour_picker',
+                fields: {
+                  COLOUR: '#ff0000',
+                },
+              },
+            },
+            COLOUR2: {
+              shadow: {
+                type: 'colour_picker',
+                fields: {
+                  COLOUR: '#3333ff',
+                },
+              },
+            },
+            RATIO: {
+              shadow: {
+                type: 'math_number',
+                fields: {
+                  NUM: '0.5',
+                },
+              },
+            },
           },
         },
       ],
@@ -321,13 +655,18 @@ const toolbox = {
       kind: 'category',
       name: 'Variables',
       categorystyle: 'variable_category',
+      contents: [],
       custom: 'VARIABLE',
     },
     {
       kind: 'category',
       name: 'Functions',
       categorystyle: 'procedure_category',
+      contents: [],
       custom: 'PROCEDURE',
+    },
+    {
+      kind: 'sep',
     },
     {
       kind: 'category',
