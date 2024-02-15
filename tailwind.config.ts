@@ -52,6 +52,10 @@ const config: Config = {
         'gradient-space': 'linear-gradient(99.9deg, rgba(27,24,31,1) 21.2%, rgba(50,4,89,1) 84.8%)',
         'gradient-purp-vader': 'linear-gradient(316deg, #310e68 0%, #5f0f40 74%)',
       },
+      spacing: {
+        'header-height': 'var(--header-height)',
+        'main-height': 'calc(100vh - var(--header-height))',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

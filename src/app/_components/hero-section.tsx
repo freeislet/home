@@ -32,7 +32,7 @@ export function HeroSection({ className, ...props }: HeroSectionProps) {
   }
 
   return (
-    <div className={cn('relative min-h-96 max-h-[calc(100vh-3.5rem)] h-[50rem]', className)} {...props}>
+    <div className={cn('relative min-h-96 max-h-main-height h-[50rem]', className)} {...props}>
       <Image
         alt="space boy"
         src={heroImage}

@@ -13,8 +13,8 @@ export async function SiteHeader() {
   const session = await getPageSession()
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background-blur">
-      <div className="my-container my-flex-row h-14">
+    <header className="sticky top-0 z-50 w-full h-header-height border-b border-border/40 bg-background-blur">
+      <div className="my-container my-flex-row h-full">
         <div className="md:hidden">
           <NavMobile />
         </div>
