@@ -6,7 +6,7 @@
 
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react'
 import Blockly, { type BlocklyOptions, WorkspaceSvg } from 'blockly/core'
 import { javascriptGenerator } from 'blockly/javascript'
 import locale from 'blockly/msg/en'
@@ -30,52 +30,65 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
   onDispose?: (workspace: WorkspaceSvg) => void
 }
 
-function BlocklyWorkspace({
-  options,
-  initialXml,
-  initialJson,
-  onWorkspaceChange,
-  onImportError,
-  onXmlChange,
-  onJsonChange,
-  onInject,
-  onDispose,
-  className,
-  ...props
-}: BlocklyWorkspaceProps) {
-  const workspaceRef = useRef<WorkspaceSvg>()
-  const workspaceDivRef = useCallback(
-    (node: HTMLDivElement) => {
-      workspaceRef.current?.dispose()
+const BlocklyWorkspace = forwardRef(
+  (
+    {
+      options,
+      initialXml,
+      initialJson,
+      onWorkspaceChange,
+      onImportError,
+      onXmlChange,
+      onJsonChange,
+      onInject,
+      onDispose,
+      className,
+      ...props
+    }: BlocklyWorkspaceProps,
+    ref
+  ) => {
+    const workspaceRef = useRef<WorkspaceSvg>()
+    const workspaceDivRef = useCallback(
+      (node: HTMLDivElement) => {
+        workspaceRef.current?.dispose()
 
-      if (!node) {
-        workspaceRef.current = undefined
-        return
-      }
+        if (!node) {
+          workspaceRef.current = undefined
+          return
+        }
 
-      workspaceRef.current = Blockly.inject(node, options)
+        workspaceRef.current = Blockly.inject(node, options)
 
-      // if (initialXml) {
-      //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
-      //   Blockly.Xml.domToWorkspace(initialDom, curWorkspaceRef.current)
-      // }
-    },
-    [options]
-  )
+        // if (initialXml) {
+        //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
+        //   Blockly.Xml.domToWorkspace(initialDom, curWorkspaceRef.current)
+        // }
+      },
+      [options]
+    )
 
-  const generateCode = useCallback(() => {
-    const code = javascriptGenerator.workspaceToCode(workspaceRef.current)
-    clogd(code)
-    return code
-  }, [workspaceDivRef])
+    useImperativeHandle(ref, () => ({
+      run() {
+        try {
+          const code = javascriptGenerator.workspaceToCode(workspaceRef.current)
+          eval(code)
+        } catch (e) {
+          alert(e)
+        }
+      },
+      clear() {
+        workspaceRef.current?.clear()
+      },
+      generateCode() {
+        const code = workspaceRef.current && javascriptGenerator.workspaceToCode(workspaceRef.current)
+        clogd(code)
+        return code
+      },
+    }))
 
-  return (
-    <>
-      {/* <button onClick={generateCode}>Convert</button> */}
-      <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
-    </>
-  )
-}
+    return <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
+  }
+)
 
 export default BlocklyWorkspace
 export type { BlocklyOptions } from 'blockly/core'
