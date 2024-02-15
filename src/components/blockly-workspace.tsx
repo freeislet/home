@@ -89,6 +89,7 @@ const BlocklyWorkspace = forwardRef(
     return <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
   }
 )
+BlocklyWorkspace.displayName = 'BlocklyWorkspace'
 
 export default BlocklyWorkspace
 export type { BlocklyOptions } from 'blockly/core'
