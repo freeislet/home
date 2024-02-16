@@ -28,4 +28,9 @@ export function clog(...args: any[]) {
   console.log(...args)
 }
 
+export function cerror(...args: any[]) {
+  console.error(...args)
+}
+
 export const clogd = isDev() ? (...args: any[]) => clog(...args) : () => {}
+export const cerrord = isDev() ? (...args: any[]) => cerror(...args) : () => {}

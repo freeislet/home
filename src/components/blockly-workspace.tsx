@@ -1,6 +1,7 @@
 /**
  * 다음 프로젝트 참고
  * - blockly-react-sample (https://github.com/google/blockly-samples/tree/master/examples/blockly-react)
+ * - blockly code demo (https://github.com/google/blockly/tree/develop/demos/code)
  * - react-blockly (https://github.com/nbudin/react-blockly)
  */
 
@@ -8,17 +9,18 @@
 
 import { forwardRef, useCallback, useImperativeHandle, useRef } from 'react'
 import Blockly, { type BlocklyOptions, WorkspaceSvg } from 'blockly/core'
-import { javascriptGenerator } from 'blockly/javascript'
 import locale from 'blockly/msg/en'
 import 'blockly/blocks'
 
 import '@/style/blockly.css'
-import { clogd, cn } from '@/lib/utils'
+import * as Utils from './blockly/utils'
+import { cn } from '@/lib/utils'
 
 Blockly.setLocale(locale)
 
 export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivElement> {
   options: BlocklyOptions
+  toolbox: Blockly.utils.toolbox.ToolboxDefinition
   // todo
   initialXml?: string
   initialJson?: object
@@ -33,6 +35,7 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
 const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
   {
     options,
+    toolbox,
     initialXml,
     initialJson,
     onWorkspaceChange,
@@ -56,7 +59,7 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
         return
       }
 
-      workspaceRef.current = Blockly.inject(node, options)
+      workspaceRef.current = Blockly.inject(node, { ...options, toolbox })
 
       // if (initialXml) {
       //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
@@ -66,24 +69,15 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
     [options]
   )
 
-  useImperativeHandle(ref, () => ({
-    run() {
-      try {
-        const code = javascriptGenerator.workspaceToCode(workspaceRef.current)
-        eval(code)
-      } catch (e) {
-        alert(e)
-      }
-    },
-    clear() {
-      workspaceRef.current?.clear()
-    },
-    generateCode() {
-      const code = workspaceRef.current && javascriptGenerator.workspaceToCode(workspaceRef.current)
-      clogd(code)
-      return code
-    },
-  }))
+  useImperativeHandle(ref, () => {
+    const workspace = workspaceRef.current
+
+    return {
+      clear: () => Utils.clear(workspace),
+      run: () => Utils.run(workspace),
+      generateCode: () => Utils.generateCode(workspace),
+    }
+  })
 
   return <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
 })
