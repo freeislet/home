@@ -11,12 +11,7 @@ import { Button } from '@/components/ui/button'
 export default function BlocklyPage() {
   const blocklyRef = useRef<any>()
   const workspaceOptions: BlocklyWorkspaceOptions = {
-    onCreate(workspace) {
-      BlocklyUtils.loadWorkspaceFromLocalStorage(workspace)
-    },
-    onDispose(workspace) {
-      BlocklyUtils.saveWorkspaceToLocalStorage(workspace)
-    },
+    backupOnUnload: true,
   }
 
   const handleRun = () => {

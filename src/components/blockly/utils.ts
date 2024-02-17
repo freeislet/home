@@ -48,6 +48,20 @@ export function loadWorkspaceFromLocalStorage(workspace?: Workspace, key = LOCAL
   }
 }
 
+export function backup(workspace?: Workspace) {
+  saveWorkspaceToLocalStorage(workspace)
+}
+
+export function restoreBackup(workspace?: Workspace) {
+  loadWorkspaceFromLocalStorage(workspace)
+}
+
+export function setBackupOnUnload(backupOnUnload: boolean, workspace?: Workspace) {
+  const handleUnload = () => saveWorkspaceToLocalStorage(workspace)
+  window.removeEventListener('unload', handleUnload)
+  if (backupOnUnload) window.addEventListener('unload', handleUnload)
+}
+
 export function clear(workspace?: Workspace) {
   coalesceWorkspace(workspace)?.clear()
 }

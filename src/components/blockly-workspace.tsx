@@ -25,7 +25,7 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
 }
 
 export interface BlocklyWorkspaceOptions {
-  // backupOnUnload?: boolean
+  backupOnUnload?: boolean
   onCreate?: (workspace: WorkspaceSvg) => void
   onDispose?: (workspace: WorkspaceSvg) => void
   // todo
@@ -44,9 +44,15 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
   const workspaceRef = useRef<WorkspaceSvg>()
   const workspaceDivRef = useCallback(
     (node: HTMLDivElement) => {
-      if (workspaceRef.current) {
-        workspaceOptions?.onDispose?.(workspaceRef.current)
-        workspaceRef.current?.dispose()
+      const prevWorkspace = workspaceRef.current
+      if (prevWorkspace) {
+        if (workspaceOptions?.backupOnUnload) {
+          Utils.setBackupOnUnload(false, prevWorkspace)
+          Utils.backup(prevWorkspace)
+        }
+        workspaceOptions?.onDispose?.(prevWorkspace)
+
+        prevWorkspace.dispose()
       }
 
       if (!node) {
@@ -54,8 +60,14 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
         return
       }
 
-      workspaceRef.current = Blockly.inject(node, { ...options, toolbox })
-      workspaceOptions?.onCreate?.(workspaceRef.current)
+      const newWorkspace = Blockly.inject(node, { ...options, toolbox })
+      workspaceRef.current = newWorkspace
+
+      if (workspaceOptions?.backupOnUnload) {
+        Utils.setBackupOnUnload(true, newWorkspace)
+        Utils.restoreBackup(newWorkspace)
+      }
+      workspaceOptions?.onCreate?.(newWorkspace)
 
       // if (initialXml) {
       //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
