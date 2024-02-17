@@ -4,7 +4,7 @@ const options: BlocklyOptions = {
   renderer: 'geras', // <geras> | thrasos | zelos(scratch-like renderer)
   theme: Blockly.Themes.Zelos, // https://developers.google.com/blockly/guides/configure/web/appearance/themes
   horizontalLayout: false, // <false>
-  toolboxPosition: 'end', // <start> | end
+  toolboxPosition: 'start', // <start> | end
   trashcan: true, // <true>
   maxTrashcanContents: 32, // <32>
   grid: { spacing: 25, length: 3, colour: '#ccc', snap: true },
