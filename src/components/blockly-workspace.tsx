@@ -21,6 +21,8 @@ Blockly.setLocale(locale)
 export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivElement> {
   options: BlocklyOptions
   toolbox: Blockly.utils.toolbox.ToolboxDefinition
+  onCreate?: (workspace: WorkspaceSvg) => void
+  onDispose?: (workspace: WorkspaceSvg) => void
   // todo
   initialXml?: string
   initialJson?: object
@@ -28,22 +30,20 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
   onImportError?: (error: any) => void
   onXmlChange?: (xml: string) => void
   onJsonChange?: (worksapceJson: object) => void
-  onInject?: (newWorkspace: WorkspaceSvg) => void
-  onDispose?: (workspace: WorkspaceSvg) => void
 }
 
 const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
   {
     options,
     toolbox,
+    onCreate,
+    onDispose,
     initialXml,
     initialJson,
     onWorkspaceChange,
     onImportError,
     onXmlChange,
     onJsonChange,
-    onInject,
-    onDispose,
     className,
     ...props
   }: BlocklyWorkspaceProps,
@@ -52,7 +52,10 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
   const workspaceRef = useRef<WorkspaceSvg>()
   const workspaceDivRef = useCallback(
     (node: HTMLDivElement) => {
-      workspaceRef.current?.dispose()
+      if (workspaceRef.current) {
+        onDispose?.(workspaceRef.current)
+        workspaceRef.current?.dispose()
+      }
 
       if (!node) {
         workspaceRef.current = undefined
@@ -60,13 +63,14 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
       }
 
       workspaceRef.current = Blockly.inject(node, { ...options, toolbox })
+      onCreate?.(workspaceRef.current)
 
       // if (initialXml) {
       //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
       //   Blockly.Xml.domToWorkspace(initialDom, curWorkspaceRef.current)
       // }
     },
-    [options]
+    [options, toolbox]
   )
 
   useImperativeHandle(ref, () => {
@@ -74,6 +78,8 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
 
     return {
       clear: () => Utils.clear(workspace),
+      loadTemp: () => Utils.loadWorkspaceFromLocalStorage(workspace),
+      saveTemp: () => Utils.saveWorkspaceToLocalStorage(workspace),
       run: () => Utils.run(workspace),
       generateCode: () => Utils.generateCode(workspace),
     }
