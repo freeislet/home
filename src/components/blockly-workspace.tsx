@@ -21,6 +21,11 @@ Blockly.setLocale(locale)
 export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivElement> {
   options: BlocklyOptions
   toolbox: Blockly.utils.toolbox.ToolboxDefinition
+  workspaceOptions?: BlocklyWorkspaceOptions
+}
+
+export interface BlocklyWorkspaceOptions {
+  // backupOnUnload?: boolean
   onCreate?: (workspace: WorkspaceSvg) => void
   onDispose?: (workspace: WorkspaceSvg) => void
   // todo
@@ -33,27 +38,14 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
 }
 
 const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
-  {
-    options,
-    toolbox,
-    onCreate,
-    onDispose,
-    initialXml,
-    initialJson,
-    onWorkspaceChange,
-    onImportError,
-    onXmlChange,
-    onJsonChange,
-    className,
-    ...props
-  }: BlocklyWorkspaceProps,
+  { options, toolbox, workspaceOptions, className, ...props }: BlocklyWorkspaceProps,
   ref
 ) {
   const workspaceRef = useRef<WorkspaceSvg>()
   const workspaceDivRef = useCallback(
     (node: HTMLDivElement) => {
       if (workspaceRef.current) {
-        onDispose?.(workspaceRef.current)
+        workspaceOptions?.onDispose?.(workspaceRef.current)
         workspaceRef.current?.dispose()
       }
 
@@ -63,7 +55,7 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
       }
 
       workspaceRef.current = Blockly.inject(node, { ...options, toolbox })
-      onCreate?.(workspaceRef.current)
+      workspaceOptions?.onCreate?.(workspaceRef.current)
 
       // if (initialXml) {
       //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
