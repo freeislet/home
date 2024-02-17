@@ -57,7 +57,7 @@ export function restoreBackup(workspace?: Workspace) {
 }
 
 export function setBackupOnUnload(backupOnUnload: boolean, workspace?: Workspace) {
-  const handleUnload = () => saveWorkspaceToLocalStorage(workspace)
+  const handleUnload = () => backup(workspace)
   window.removeEventListener('unload', handleUnload)
   if (backupOnUnload) window.addEventListener('unload', handleUnload)
 }
