@@ -70,8 +70,6 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
 
     return {
       clear: () => Utils.clear(workspace),
-      loadTemp: () => Utils.loadWorkspaceFromLocalStorage(workspace),
-      saveTemp: () => Utils.saveWorkspaceToLocalStorage(workspace),
       run: () => Utils.run(workspace),
       generateCode: () => Utils.generateCode(workspace),
     }

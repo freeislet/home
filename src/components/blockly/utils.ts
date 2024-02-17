@@ -24,25 +24,25 @@ export function loadWorkspace(state: WorkspaceState, workspace?: Workspace) {
 
 const LOCAL_STORAGE_WORKSPACE_STATE = 'blocklyWorkspaceState'
 
-export function saveWorkspaceToLocalStorage(workspace?: Workspace) {
+export function saveWorkspaceToLocalStorage(workspace?: Workspace, key = LOCAL_STORAGE_WORKSPACE_STATE) {
   try {
     const state = saveWorkspace(workspace)
     const stateStr = JSON.stringify(state)
-    window.sessionStorage.setItem(LOCAL_STORAGE_WORKSPACE_STATE, stateStr)
+    window.sessionStorage.setItem(key, stateStr)
   } catch (e) {
     cerror(e)
   }
 }
 
-export function loadWorkspaceFromLocalStorage(workspace?: Workspace) {
+export function loadWorkspaceFromLocalStorage(workspace?: Workspace, key = LOCAL_STORAGE_WORKSPACE_STATE) {
   try {
-    const stateStr = window.sessionStorage.getItem(LOCAL_STORAGE_WORKSPACE_STATE)
+    const stateStr = window.sessionStorage.getItem(key)
     if (stateStr) {
       const state = JSON.parse(stateStr)
       loadWorkspace(state, workspace)
     }
 
-    window.sessionStorage.removeItem(LOCAL_STORAGE_WORKSPACE_STATE)
+    window.sessionStorage.removeItem(key)
   } catch (e) {
     cerror(e)
   }
