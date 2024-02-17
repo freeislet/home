@@ -1,12 +1,12 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import BlocklyWorkspace, { BlocklyWorkspaceOptions } from '@/components/blockly-workspace'
-import * as BlocklyUtils from '@/components/blockly/utils'
 import options from '@/components/blockly/options-default'
 import toolbox from '@/components/blockly/toolbox-example'
 import { Button } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
 export default function BlocklyPage() {
   const blocklyRef = useRef<any>()
@@ -20,9 +20,12 @@ export default function BlocklyPage() {
   const handleClear = () => {
     blocklyRef.current?.clear()
   }
+
+  const [codeOpen, setCodeOpen] = useState(false)
+  const codeRef = useRef('')
   const handleGenerateCode = () => {
-    const code = blocklyRef.current?.generateCode()
-    code && window.alert(code)
+    codeRef.current = blocklyRef.current?.generateCode()
+    setCodeOpen(true)
   }
 
   return (
@@ -37,6 +40,14 @@ export default function BlocklyPage() {
         <Button onClick={handleGenerateCode} size="sm" variant="outline" className="!ml-4">
           View Code
         </Button>
+        <Dialog open={codeOpen} onOpenChange={setCodeOpen}>
+          <DialogContent className="max-w-6xl">
+            <DialogHeader>
+              <DialogTitle>Generated Code</DialogTitle>
+            </DialogHeader>
+            {!codeRef.current ? <span>생성된 코드가 없습니다.</span> : <div>{codeRef.current}</div>}
+          </DialogContent>
+        </Dialog>
       </div>
       <BlocklyWorkspace ref={blocklyRef} options={options} toolbox={toolbox} workspaceOptions={workspaceOptions} />
     </div>
