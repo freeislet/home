@@ -1,5 +1,4 @@
-import Blockly, { Workspace, utils } from 'blockly/core'
-import { javascriptGenerator } from 'blockly/javascript'
+import Blockly, { Workspace } from 'blockly/core'
 
 import { cerror } from '@/lib/utils'
 
@@ -64,14 +63,4 @@ export function setBackupOnUnload(backupOnUnload: boolean, workspace?: Workspace
 
 export function clear(workspace?: Workspace) {
   coalesceWorkspace(workspace)?.clear()
-}
-
-export function generateCode(workspace?: Workspace) {
-  const code = javascriptGenerator.workspaceToCode(coalesceWorkspace(workspace))
-  return code
-}
-
-export function run(workspace?: Workspace) {
-  const code = generateCode(workspace)
-  eval(code)
 }

@@ -13,7 +13,8 @@ import locale from 'blockly/msg/en'
 import 'blockly/blocks'
 
 import '@/style/blockly.css'
-import * as Utils from './blockly/utils'
+import * as WorkspaceUtils from './blockly/workspace-utils'
+import * as CodeUtils from './blockly/code-utils'
 import { cn } from '@/lib/utils'
 
 Blockly.setLocale(locale)
@@ -47,8 +48,8 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
       const prevWorkspace = workspaceRef.current
       if (prevWorkspace) {
         if (workspaceOptions?.backupOnUnload) {
-          Utils.setBackupOnUnload(false, prevWorkspace)
-          Utils.backup(prevWorkspace)
+          WorkspaceUtils.setBackupOnUnload(false, prevWorkspace)
+          WorkspaceUtils.backup(prevWorkspace)
         }
         workspaceOptions?.onDispose?.(prevWorkspace)
 
@@ -64,8 +65,8 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
       workspaceRef.current = newWorkspace
 
       if (workspaceOptions?.backupOnUnload) {
-        Utils.setBackupOnUnload(true, newWorkspace)
-        Utils.restoreBackup(newWorkspace)
+        WorkspaceUtils.setBackupOnUnload(true, newWorkspace)
+        WorkspaceUtils.restoreBackup(newWorkspace)
       }
       workspaceOptions?.onCreate?.(newWorkspace)
 
@@ -81,9 +82,9 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
     const workspace = workspaceRef.current
 
     return {
-      clear: () => Utils.clear(workspace),
-      run: () => Utils.run(workspace),
-      generateCode: () => Utils.generateCode(workspace),
+      clear: () => WorkspaceUtils.clear(workspace),
+      run: () => CodeUtils.run(workspace),
+      generateCode: () => CodeUtils.generateCode(workspace),
     }
   })
 
