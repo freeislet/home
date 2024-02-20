@@ -8,7 +8,7 @@ import config from './flume/config'
 import Homepage from './flume/homepage-example'
 import { exampleNodes } from './flume/node-example'
 
-export function FlumeEditor() {
+function FlumeEditor() {
   const [nodes, setNodes] = useState<NodeMap>(exampleNodes)
 
   const handleChange = useCallback((nodes: NodeMap) => {
@@ -22,3 +22,5 @@ export function FlumeEditor() {
     </div>
   )
 }
+
+export default FlumeEditor

@@ -1,6 +1,6 @@
 'use client'
 
-import { FlumeEditor } from '@/components/flume-editor'
+import FlumeEditor from '@/components/flume-editor'
 
 export default function FlumePage() {
   return (
