@@ -13,8 +13,8 @@ import locale from 'blockly/msg/en'
 import 'blockly/blocks'
 
 import '@/style/blockly.css'
-import WorkspaceInstance from './blockly/workspace-instance'
 import { cn } from '@/lib/utils'
+import WorkspaceInstance from './blockly/workspace-instance'
 
 Blockly.setLocale(locale)
 

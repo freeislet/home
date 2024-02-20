@@ -7,6 +7,7 @@ import options from '@/components/blockly/options-default'
 import toolbox from '@/components/blockly/toolbox-example'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { CodeBlock } from '@/components/codeblock'
 
 export default function BlocklyPage() {
   const blocklyRef = useRef<WorkspaceInstance>()
@@ -58,7 +59,11 @@ export default function BlocklyPage() {
             <DialogHeader>
               <DialogTitle>Generated Code</DialogTitle>
             </DialogHeader>
-            {!codeRef.current ? <span>생성된 코드가 없습니다.</span> : <pre>{codeRef.current}</pre>}
+            {!codeRef.current ? (
+              <span>생성된 코드가 없습니다.</span>
+            ) : (
+              <CodeBlock language="js" value={codeRef.current} />
+            )}
           </DialogContent>
         </Dialog>
         <Dialog open={outputOpen} onOpenChange={setOutputOpen}>
