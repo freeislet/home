@@ -2,11 +2,14 @@
 
 import { useCallback } from 'react'
 import ReactFlow, {
-  Connection,
-  MiniMap,
-  Controls,
   Background,
   BackgroundVariant,
+  MiniMap,
+  Controls,
+  Panel,
+  NodeToolbar,
+  NodeResizer,
+  Connection,
   useNodesState,
   useEdgesState,
   addEdge,
@@ -33,9 +36,14 @@ function ReactFlowView() {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
     >
-      <Controls />
-      <MiniMap />
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+      <MiniMap />
+      <Controls />
+      <Panel position="top-center">
+        <div className="border-border border-2 p-1 rounded-md bg-secondary">Panel test</div>
+      </Panel>
+      <NodeToolbar />
+      <NodeResizer />
     </ReactFlow>
   )
 }
