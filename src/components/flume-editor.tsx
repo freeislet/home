@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useCallback } from 'react'
 import { NodeEditor, NodeMap } from 'flume'
 
