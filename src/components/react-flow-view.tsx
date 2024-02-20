@@ -10,37 +10,62 @@ import ReactFlow, {
   NodeToolbar,
   NodeResizer,
   Connection,
+  SelectionMode,
   useNodesState,
   useEdgesState,
   addEdge,
 } from 'reactflow'
 import 'reactflow/dist/style.css'
 
-const initialNodes = [
-  { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
-  { id: '2', position: { x: 0, y: 100 }, data: { label: '2' } },
-]
-const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }]
+import { initialNodes, initialEdges } from './reactflow/example'
+
+const nodeColor = (node: any) => {
+  switch (node.type) {
+    case 'input':
+      return '#6ede87'
+    case 'output':
+      return '#6865A5'
+    default:
+      return '#ff0072'
+  }
+}
 
 function ReactFlowView() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
+  // const [nodes, setNodes] = useState(initialNodes)
+  // const [edges, setEdges] = useState(initialEdges)
+  //
+  // const onNodesChange = useCallback((changes) => setNodes((nds) => applyNodeChanges(changes, nds)), [setNodes])
+  // const onEdgesChange = useCallback((changes) => setEdges((eds) => applyEdgeChanges(changes, eds)), [setEdges])
+
   const onConnect = useCallback((connection: Connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges])
 
+  const options = {
+    nodes,
+    edges,
+    onNodesChange,
+    onEdgesChange,
+    onConnect,
+    // figma-like viewport controls
+    selectionMode: SelectionMode.Partial,
+    selectionOnDrag: true,
+    panOnDrag: [1, 2],
+    panOnScroll: true,
+    // fit to initialNodes bounds (test)
+    fitView: true,
+  }
+
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-    >
+    <ReactFlow {...options}>
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-      <MiniMap />
+      <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
       <Controls />
-      <Panel position="top-center">
-        <div className="border-border border-2 p-1 rounded-md bg-secondary">Panel test</div>
+      <Panel position="top-center" className="p-2 rounded-md shadow bg-secondary">
+        {/* <div className="border-border border-2 p-1 rounded-md bg-secondary"> */}
+        Panel test
+        {/* </div> */}
       </Panel>
       <NodeToolbar />
       <NodeResizer />
