@@ -9,29 +9,36 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
 export default function BlocklyPage() {
-  const blocklyRef = useRef<any>()
+  const blocklyRef = useRef<WorkspaceInstance>()
+  const [codeOpen, setCodeOpen] = useState(false)
+  const codeRef = useRef('')
+  const [outputOpen, setOutputOpen] = useState(false)
+  const outputMessagesRef = useRef<string[]>([])
+
   const workspaceOptions: BlocklyWorkspaceOptions = {
     backupOnUnload: true,
     onCreate: (workspace: WorkspaceInstance) => {
       initCodeGen()
     },
     onDispose: (workspace: WorkspaceInstance) => {
-      WorkspaceInstance.uninitCodeGen()
+      uninitCodeGen()
     },
   }
 
-  const handleRun = () => {
-    blocklyRef.current?.run()
-  }
   const handleClear = () => {
     blocklyRef.current?.clear()
   }
 
-  const [codeOpen, setCodeOpen] = useState(false)
-  const codeRef = useRef('')
-  const handleGenerateCode = () => {
+  const handleViewCode = () => {
     codeRef.current = blocklyRef.current?.generateCode()
     setCodeOpen(true)
+  }
+
+  const handleRun = () => {
+    window.blClear()
+    blocklyRef.current?.run()
+    outputMessagesRef.current = window.blOutputMessages
+    setOutputOpen(true)
   }
 
   return (
@@ -43,15 +50,27 @@ export default function BlocklyPage() {
         <Button onClick={handleClear} size="sm" variant="destructive">
           Clear
         </Button>
-        <Button onClick={handleGenerateCode} size="sm" variant="outline" className="!ml-4">
+        <Button onClick={handleViewCode} size="sm" variant="outline" className="!ml-4">
           View Code
         </Button>
         <Dialog open={codeOpen} onOpenChange={setCodeOpen}>
-          <DialogContent className="max-w-6xl">
+          <DialogContent className="max-w-3xl">
             <DialogHeader>
               <DialogTitle>Generated Code</DialogTitle>
             </DialogHeader>
-            {!codeRef.current ? <span>생성된 코드가 없습니다.</span> : <div>{codeRef.current}</div>}
+            {!codeRef.current ? <span>생성된 코드가 없습니다.</span> : <pre>{codeRef.current}</pre>}
+          </DialogContent>
+        </Dialog>
+        <Dialog open={outputOpen} onOpenChange={setOutputOpen}>
+          <DialogContent className="max-w-3xl">
+            <DialogHeader>
+              <DialogTitle>Output</DialogTitle>
+            </DialogHeader>
+            <div>
+              {outputMessagesRef.current.map((message, index) => (
+                <div key={index}>{message}</div>
+              ))}
+            </div>
           </DialogContent>
         </Dialog>
       </div>
@@ -66,14 +85,22 @@ export default function BlocklyPage() {
 
 declare global {
   interface Window {
+    blOutputMessages: string[]
     blPrint: (text: string) => void
+    blClear: () => void
   }
 }
 
 function initCodeGen() {
-  window.blPrint = (text: string) => console.log(text)
+  window.blOutputMessages = []
+  window.blPrint = (text: string) => window.blOutputMessages.push(text)
+  window.blClear = () => (window.blOutputMessages.length = 0)
 
   WorkspaceInstance.initCodeGen({
     customPrint: 'blPrint',
   })
+}
+
+function uninitCodeGen() {
+  WorkspaceInstance.uninitCodeGen()
 }
