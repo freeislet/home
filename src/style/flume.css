@@ -1,0 +1,9 @@
+@tailwind base;
+
+@layer base {
+  .flume {
+    h2 {
+      @apply leading-tight font-semibold;
+    }
+  }
+}

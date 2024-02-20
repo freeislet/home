@@ -30,6 +30,10 @@ const nav: NavItem[] = [
         href: '/web/visual-scripting',
         children: [
           {
+            title: 'Flume',
+            href: '/web/visual-scripting/flume',
+          },
+          {
             title: 'Blockly',
             href: '/web/visual-scripting/blockly',
           },
