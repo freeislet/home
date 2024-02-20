@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 
-import BlocklyWorkspace, { BlocklyWorkspaceOptions } from '@/components/blockly-workspace'
+import BlocklyWorkspace, { BlocklyWorkspaceOptions, WorkspaceInstance } from '@/components/blockly-workspace'
 import options from '@/components/blockly/options-default'
 import toolbox from '@/components/blockly/toolbox-example'
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,12 @@ export default function BlocklyPage() {
   const blocklyRef = useRef<any>()
   const workspaceOptions: BlocklyWorkspaceOptions = {
     backupOnUnload: true,
+    onCreate: (workspace: WorkspaceInstance) => {
+      initCodeGen()
+    },
+    onDispose: (workspace: WorkspaceInstance) => {
+      WorkspaceInstance.uninitCodeGen()
+    },
   }
 
   const handleRun = () => {
@@ -52,4 +58,22 @@ export default function BlocklyPage() {
       <BlocklyWorkspace ref={blocklyRef} options={options} toolbox={toolbox} workspaceOptions={workspaceOptions} />
     </div>
   )
+}
+
+/**
+ * 코드생성 초기화
+ */
+
+declare global {
+  interface Window {
+    blPrint: (text: string) => void
+  }
+}
+
+function initCodeGen() {
+  window.blPrint = (text: string) => console.log(text)
+
+  WorkspaceInstance.initCodeGen({
+    customPrint: 'blPrint',
+  })
 }

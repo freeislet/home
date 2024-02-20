@@ -1,4 +1,5 @@
 import Blockly, { Workspace } from 'blockly/core'
+import { javascriptGenerator } from 'blockly/javascript'
 
 import { cerror } from '@/lib/utils'
 
@@ -10,6 +11,10 @@ export function coalesceWorkspace(workspace?: Workspace): Workspace {
   workspace = workspace ?? Blockly.getMainWorkspace()
   if (workspace == null) throw 'Blockly workspace not found.'
   return workspace
+}
+
+export function clearWorkspace(workspace?: Workspace) {
+  coalesceWorkspace(workspace)?.clear()
 }
 
 export function saveWorkspace(workspace?: Workspace): WorkspaceState {
@@ -47,20 +52,18 @@ export function loadWorkspaceFromLocalStorage(workspace?: Workspace, key = LOCAL
   }
 }
 
-export function backup(workspace?: Workspace) {
-  saveWorkspaceToLocalStorage(workspace)
-}
-
-export function restoreBackup(workspace?: Workspace) {
-  loadWorkspaceFromLocalStorage(workspace)
-}
-
 export function setBackupOnUnload(backupOnUnload: boolean, workspace?: Workspace) {
-  const handleUnload = () => backup(workspace)
+  const handleUnload = () => saveWorkspaceToLocalStorage(workspace)
   window.removeEventListener('unload', handleUnload)
   if (backupOnUnload) window.addEventListener('unload', handleUnload)
 }
 
-export function clear(workspace?: Workspace) {
-  coalesceWorkspace(workspace)?.clear()
+export function generateCode(workspace?: Workspace) {
+  const code = javascriptGenerator.workspaceToCode(coalesceWorkspace(workspace))
+  return code
+}
+
+export function run(workspace?: Workspace) {
+  const code = generateCode(workspace)
+  eval(code)
 }

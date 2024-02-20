@@ -13,8 +13,7 @@ import locale from 'blockly/msg/en'
 import 'blockly/blocks'
 
 import '@/style/blockly.css'
-import * as WorkspaceUtils from './blockly/workspace-utils'
-import * as CodeUtils from './blockly/code-utils'
+import WorkspaceInstance from './blockly/workspace-instance'
 import { cn } from '@/lib/utils'
 
 Blockly.setLocale(locale)
@@ -27,8 +26,8 @@ export interface BlocklyWorkspaceProps extends React.HTMLAttributes<HTMLDivEleme
 
 export interface BlocklyWorkspaceOptions {
   backupOnUnload?: boolean
-  onCreate?: (workspace: WorkspaceSvg) => void
-  onDispose?: (workspace: WorkspaceSvg) => void
+  onCreate?: (workspace: WorkspaceInstance) => void
+  onDispose?: (workspace: WorkspaceInstance) => void
   // todo
   initialXml?: string
   initialJson?: object
@@ -42,54 +41,59 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
   { options, toolbox, workspaceOptions, className, ...props }: BlocklyWorkspaceProps,
   ref
 ) {
-  const workspaceRef = useRef<WorkspaceSvg>()
+  const workspaceInstanceRef = useRef<WorkspaceInstance>()
   const workspaceDivRef = useCallback(
     (node: HTMLDivElement) => {
-      const prevWorkspace = workspaceRef.current
+      const prevWorkspace = workspaceInstanceRef.current
       if (prevWorkspace) {
-        if (workspaceOptions?.backupOnUnload) {
-          WorkspaceUtils.setBackupOnUnload(false, prevWorkspace)
-          WorkspaceUtils.backup(prevWorkspace)
-        }
-        workspaceOptions?.onDispose?.(prevWorkspace)
-
-        prevWorkspace.dispose()
+        uninitWorkspace(prevWorkspace, workspaceOptions)
       }
 
-      if (!node) {
-        workspaceRef.current = undefined
-        return
+      if (node) {
+        const newWorkspaceRaw = Blockly.inject(node, { ...options, toolbox })
+        const newWorkspace = new WorkspaceInstance(newWorkspaceRaw)
+        workspaceInstanceRef.current = newWorkspace
+        initWorkspace(newWorkspace, workspaceOptions)
+
+        // if (initialXml) {
+        //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
+        //   Blockly.Xml.domToWorkspace(initialDom, curWorkspaceRef.current)
+        // }
+      } else {
+        workspaceInstanceRef.current = undefined
       }
-
-      const newWorkspace = Blockly.inject(node, { ...options, toolbox })
-      workspaceRef.current = newWorkspace
-
-      if (workspaceOptions?.backupOnUnload) {
-        WorkspaceUtils.setBackupOnUnload(true, newWorkspace)
-        WorkspaceUtils.restoreBackup(newWorkspace)
-      }
-      workspaceOptions?.onCreate?.(newWorkspace)
-
-      // if (initialXml) {
-      //   const initialDom = Blockly.utils.xml.textToDom(initialXml)
-      //   Blockly.Xml.domToWorkspace(initialDom, curWorkspaceRef.current)
-      // }
     },
     [options, toolbox]
   )
 
-  useImperativeHandle(ref, () => {
-    const workspace = workspaceRef.current
-
-    return {
-      clear: () => WorkspaceUtils.clear(workspace),
-      run: () => CodeUtils.run(workspace),
-      generateCode: () => CodeUtils.generateCode(workspace),
-    }
-  })
+  useImperativeHandle(ref, () => workspaceInstanceRef.current, [workspaceInstanceRef])
 
   return <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
 })
 
+/**
+ * Workspace 초기화
+ */
+
+function initWorkspace(workspace: WorkspaceInstance, options?: BlocklyWorkspaceOptions) {
+  if (options?.backupOnUnload) {
+    workspace.restoreBackup()
+    workspace.setBackupOnUnload(true)
+  }
+
+  options?.onCreate?.(workspace)
+}
+
+function uninitWorkspace(workspace: WorkspaceInstance, options?: BlocklyWorkspaceOptions) {
+  if (options?.backupOnUnload) {
+    workspace.backup()
+    workspace.setBackupOnUnload(false)
+  }
+
+  options?.onDispose?.(workspace)
+  workspace.workspace.dispose()
+}
+
 export default BlocklyWorkspace
+export { default as WorkspaceInstance, type CodeGenConfig } from './blockly/workspace-instance'
 export { default as Blockly, type BlocklyOptions } from 'blockly/core'
