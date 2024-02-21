@@ -14,7 +14,7 @@ const nextConfig = {
       },
       {
         source: '/web',
-        destination: '/web/visual-scripting/flume',
+        destination: '/web/visual-scripting/react-flow',
         permanent: false,
       },
       {

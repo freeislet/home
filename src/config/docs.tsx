@@ -12,6 +12,7 @@ const nav: NavItem[] = [
     icon: <GameDevIcon />,
     title: 'Game',
     href: '/game',
+    disabled: true,
     children: [
       {
         title: 'Game Dev',
