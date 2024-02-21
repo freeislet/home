@@ -18,6 +18,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 import { initialNodes, initialEdges } from './reactflow/example'
+import { Button } from './ui/button'
 
 const nodeColor = (node: any) => {
   switch (node.type) {
@@ -62,10 +63,11 @@ function ReactFlowView() {
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       <MiniMap nodeColor={nodeColor} nodeStrokeWidth={3} zoomable pannable />
       <Controls />
-      <Panel position="top-center" className="p-2 rounded-md shadow bg-secondary">
-        {/* <div className="border-border border-2 p-1 rounded-md bg-secondary"> */}
-        Panel test
-        {/* </div> */}
+      <Panel position="top-left" className="p-2 space-x-2 rounded-md shadow bg-secondary">
+        <span>Panel 테스트</span>
+        <Button size="sm" onClick={() => window.alert('클릭!')}>
+          버튼
+        </Button>
       </Panel>
       <NodeToolbar />
       <NodeResizer />
