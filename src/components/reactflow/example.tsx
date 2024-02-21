@@ -17,12 +17,12 @@ export const styleOptions = {
   },
 }
 
-// figma-like viewport controls
 export const viewportControlOptions = {
   selectionMode: SelectionMode.Partial,
-  selectionOnDrag: true,
-  panOnDrag: [1, 2],
-  panOnScroll: true,
+  // figma-like viewport controls
+  // selectionOnDrag: true,
+  // panOnDrag: [1, 2],
+  // panOnScroll: true,
 }
 
 export const getNodeColor = (node: Node) => {
