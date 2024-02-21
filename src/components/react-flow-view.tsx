@@ -18,7 +18,14 @@ import ReactFlow, {
 import 'reactflow/dist/style.css'
 
 import './reactflow/reactflow.css'
-import { nodeTypes, initialNodes, initialEdges, reactflowStyle, minimapNodeColor } from './reactflow/example'
+import {
+  nodeTypes,
+  initialNodes,
+  initialEdges,
+  styleOptions,
+  viewportControlOptions,
+  getNodeColor,
+} from './reactflow/example'
 import { Button } from './ui/button'
 
 export interface ReactFlowViewProps {
@@ -44,20 +51,15 @@ function ReactFlowView({ className }: ReactFlowViewProps) {
     onNodesChange,
     onEdgesChange,
     onConnect,
-    style: reactflowStyle,
-    // fit to initialNodes bounds (test)
     fitView: true,
-    // figma-like viewport controls
-    selectionMode: SelectionMode.Partial,
-    selectionOnDrag: true,
-    panOnDrag: [1, 2],
-    panOnScroll: true,
+    ...styleOptions,
+    ...viewportControlOptions,
   }
 
   return (
     <ReactFlow className={className} {...options}>
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
-      <MiniMap nodeColor={minimapNodeColor} nodeStrokeWidth={3} zoomable pannable />
+      <MiniMap nodeColor={getNodeColor} nodeStrokeWidth={3} zoomable pannable />
       <Controls />
       <Panel position="top-left" className="p-2 space-x-2 rounded-md shadow bg-secondary">
         <span>Panel 테스트</span>

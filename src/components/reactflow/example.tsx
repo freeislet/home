@@ -1,8 +1,44 @@
-import { NodeTypes, Node, Edge, Position } from 'reactflow'
+import { SelectionMode, NodeTypes, Node, Edge, Position } from 'reactflow'
 
 import TextUpdaterNode from './nodes/text-updater'
 
-export const nodeTypes: NodeTypes = { textUpdater: TextUpdaterNode }
+export const styleOptions = {
+  style: {
+    backgroundColor: '#B8CEFF',
+  },
+  defaultEdgeOptions: {
+    animated: true,
+    style: {
+      stroke: 'white',
+    },
+  },
+  connectionLineStyle: {
+    stroke: 'white',
+  },
+}
+
+// figma-like viewport controls
+export const viewportControlOptions = {
+  selectionMode: SelectionMode.Partial,
+  selectionOnDrag: true,
+  panOnDrag: [1, 2],
+  panOnScroll: true,
+}
+
+export const getNodeColor = (node: Node) => {
+  switch (node.type) {
+    case 'input':
+      return '#6ede87'
+    case 'output':
+      return '#6865A5'
+    default:
+      return '#ff0072'
+  }
+}
+
+export const nodeTypes: NodeTypes = {
+  textUpdater: TextUpdaterNode,
+}
 
 export const initialNodes: Node[] = [
   {
@@ -51,22 +87,7 @@ export const initialNodes: Node[] = [
 
 export const initialEdges: Edge[] = [
   { id: 'e1-2', source: '1', target: '2' },
-  { id: 'e2-3', source: '2', target: '3', animated: true },
+  { id: 'e2-3', source: '2', target: '3' },
   { id: 'edge-1', source: 'node-1', target: 'node-2', sourceHandle: 'a' },
   { id: 'edge-2', source: 'node-1', target: 'node-3', sourceHandle: 'b' },
 ]
-
-export const reactflowStyle = {
-  backgroundColor: '#B8CEFF',
-}
-
-export const minimapNodeColor = (node: Node) => {
-  switch (node.type) {
-    case 'input':
-      return '#6ede87'
-    case 'output':
-      return '#6865A5'
-    default:
-      return '#ff0072'
-  }
-}
