@@ -19,7 +19,6 @@ import 'reactflow/dist/style.css'
 
 import './reactflow/reactflow.css'
 import { nodeTypes, initialNodes, initialEdges, reactflowStyle, minimapNodeColor } from './reactflow/example'
-import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
 
 export interface ReactFlowViewProps {
@@ -56,7 +55,7 @@ function ReactFlowView({ className }: ReactFlowViewProps) {
   }
 
   return (
-    <ReactFlow className={cn(className, 'reactflow')} {...options}>
+    <ReactFlow className={className} {...options}>
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
       <MiniMap nodeColor={minimapNodeColor} nodeStrokeWidth={3} zoomable pannable />
       <Controls />

@@ -1,23 +1,19 @@
-@tailwind base;
-
-@layer base {
-  .reactflow {
-    input {
-      @apply border-2 rounded-md text-sm;
-    }
+.react-flow {
+  input {
+    @apply border-2 rounded-md text-sm;
   }
+}
 
-  .text-updater-node {
-    height: 56px;
-    border: 1px solid #eee;
-    padding: 5px;
-    border-radius: 5px;
-    background: white;
-  }
+.text-updater-node {
+  height: 56px;
+  border: 1px solid #eee;
+  padding: 5px;
+  border-radius: 5px;
+  background: white;
+}
 
-  .text-updater-node label {
-    display: block;
-    color: #777;
-    font-size: 12px;
-  }
+.text-updater-node label {
+  display: block;
+  color: #777;
+  font-size: 12px;
 }
