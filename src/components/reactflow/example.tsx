@@ -1,8 +1,8 @@
-import { Node, Edge, Position } from 'reactflow'
+import { NodeTypes, Node, Edge, Position } from 'reactflow'
 
 import TextUpdaterNode from './nodes/text-updater'
 
-export const nodeTypes = { textUpdater: TextUpdaterNode }
+export const nodeTypes: NodeTypes = { textUpdater: TextUpdaterNode }
 
 export const initialNodes: Node[] = [
   {
