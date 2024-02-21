@@ -1,4 +1,10 @@
-import ReactFlowView from '@/components/react-flow-view'
+'use client'
+
+import dynamic from 'next/dynamic'
+
+import Loading from '../../_components/loading'
+
+const ReactFlowView = dynamic(() => import('@/components/react-flow-view'), { ssr: false, loading: () => <Loading /> })
 
 export default function ReactFlowPage() {
   return (
