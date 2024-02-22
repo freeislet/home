@@ -125,8 +125,10 @@
       @apply border-blue-500 bg-blue-500/20;
     }
 
-    /* todo: highlighted chars */
-    /* span[data-highlighted-chars] {} https://rehype-pretty-code.netlify.app/#highlight-chars */
+    /* highlighted chars */
+    [data-highlighted-chars] {
+      @apply p-[2px] rounded-sm bg-blue-500/50;
+    }
   }
   pre > code:not([data-line-numbers]) {
     @apply pl-4;
