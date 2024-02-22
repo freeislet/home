@@ -84,6 +84,7 @@ const config: Config = {
       },
     },
   },
+  safeList: ['text-2xl', 'sm:text-3xl', 'md:text-4xl'],
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 }
 export default config
