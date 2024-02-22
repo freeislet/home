@@ -80,10 +80,6 @@
     @apply bg-background text-foreground;
   }
 
-  a {
-    @apply text-blue-600;
-  }
-
   h1 {
     @apply text-4xl sm:text-5xl md:text-6xl font-extrabold;
   }
