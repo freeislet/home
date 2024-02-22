@@ -1,0 +1,90 @@
+# React Flow
+
+[React Flow](https://reactflow.dev/)는 node-based 에디터를 만들기 위한 리액트 컴포넌트이다.
+
+![](/contents/reactflow/reactflow.png)
+
+## React Flow 설치
+
+> React Flow [Installation](https://reactflow.dev/learn/getting-started/installation-and-requirements) 문서 참고
+
+reactflow 패키지를 설치한다:
+
+```bash
+npm install reactflow
+```
+
+이제 다음과 같이 React Flow 컴포넌트를 `import`할 수 있다:
+
+```ts showLineNumbers
+import ReactFlow from 'reactflow'
+import 'reactflow/dist/style.css'
+```
+
+## React Flow 기본 셋업
+
+> React Flow [Building a Flow](https://reactflow.dev/learn/getting-started/building-a-flow) 문서 참고
+
+`ReactFlow` 컴포넌트를 추가하여 빈 flow를 생성할 수 있다.\
+다음은 `Controls`, `Background`를 포함하여 빈 React Flow를 생성하는 코드이다:
+
+```ts showLineNumbers
+import ReactFlow, { Controls, Background } from 'reactflow';
+import 'reactflow/dist/style.css';
+
+function Flow() {
+  return (
+    <div style={{ height: '100%' }}>
+      <ReactFlow>
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </div>
+  );
+}
+
+export default Flow;
+```
+
+`nodes`, `edges` 속성을 통해 노드와 엣지를 추가할 수 있다:
+
+```ts {4-17,22} "nodes={nodes}" "edges={edges}" showLineNumbers
+import ReactFlow, { Controls, Background } from 'reactflow';
+import 'reactflow/dist/style.css';
+
+const nodes = [
+  {
+    id: '1',
+    data: { label: 'Hello' },
+    position: { x: 0, y: 0 },
+    type: 'input',
+  },
+  {
+    id: '2',
+    data: { label: 'World' },
+    position: { x: 100, y: 100 },
+  },
+];
+const edges = [{ id: '1-2', source: '1', target: '2' }];
+
+function Flow() {
+  return (
+    <div style={{ height: '100%' }}>
+      <ReactFlow nodes={nodes} edges={edges} fitView>
+        <Background />
+        <Controls />
+      </ReactFlow>
+    </div>
+  );
+}
+
+export default Flow;
+```
+
+<Image src="/contents/reactflow/setup2.png" className="h-80 mx-auto" />
+
+> 더 자세한 내용은 [Adding Interactivity](https://reactflow.dev/learn/getting-started/adding-interactivity) 등 공식 문서를 참고하시길 바랍니다.
+
+## 기타 링크
+
+- [React Flow Showcase](https://reactflow.dev/showcase)
