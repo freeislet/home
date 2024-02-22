@@ -31,6 +31,10 @@ const nav: NavItem[] = [
         href: '/web/visual-scripting',
         children: [
           {
+            title: 'Rete',
+            href: '/web/visual-scripting/rete',
+          },
+          {
             title: 'React Flow',
             href: '/web/visual-scripting/react-flow',
           },
