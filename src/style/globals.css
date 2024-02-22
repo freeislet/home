@@ -128,10 +128,13 @@
     /* todo: highlighted chars */
     /* span[data-highlighted-chars] {} https://rehype-pretty-code.netlify.app/#highlight-chars */
   }
+  pre > code:not([data-line-numbers]) {
+    @apply pl-4;
+  }
 
   /* inline code */
   :not(pre) > code {
-    @apply bg-foreground/20 border border-foreground/30;
+    @apply bg-background border border-orange-300;
     /* border: 1px solid #bcbec0; */
     border-radius: 5px;
     padding: 2px;
