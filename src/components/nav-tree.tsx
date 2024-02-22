@@ -26,7 +26,7 @@ export function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
             <NavLink
               href={item.href}
               className="my-flex-row space-x-1 text-foreground/60 hover:text-foreground/80 transition-colors"
-              activeClassName="text-foreground underline"
+              activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
               allowPartialMatch
               partialActiveClassName="text-foreground/70"
             >
