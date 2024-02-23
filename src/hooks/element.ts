@@ -1,8 +1,7 @@
-// 참고: https://dev.to/murashow/how-to-use-resize-observer-with-react-5ff5
-
-import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { MutableRefObject, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 
+// useElementSize: https://dev.to/murashow/how-to-use-resize-observer-with-react-5ff5 참고
 export interface Size {
   width: number
   height: number
@@ -31,6 +30,21 @@ export function useElementSize<T extends HTMLElement = HTMLDivElement>(
   })
 
   return [target, size]
+}
+
+export function useScrollTo<T extends HTMLElement = HTMLElement>(targetRef: RefObject<T>): () => void {
+  const scrollTo = useCallback(() => {
+    targetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+  }, [targetRef])
+
+  return scrollTo
+}
+
+export function useScrollToTarget<T extends HTMLElement = HTMLElement>(): [MutableRefObject<T | null>, () => void] {
+  const targetRef = useRef<T | null>(null)
+  const scrollTo = useScrollTo(targetRef)
+
+  return [targetRef, scrollTo]
 }
 
 export function useAtBottom(offset = 0) {
