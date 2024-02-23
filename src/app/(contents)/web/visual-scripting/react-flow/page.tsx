@@ -17,7 +17,7 @@ export default function ReactFlowPage() {
         </div>
         <ReactFlowView />
       </div>
-      <ProseLayout>
+      <ProseLayout container>
         <ReactFlowMdx />
       </ProseLayout>
     </>

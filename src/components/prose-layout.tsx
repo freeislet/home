@@ -7,10 +7,10 @@ interface ProseLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function ProseLayout({
-  container = true,
+  container = false,
   containerClassName = 'my-container',
-  className,
   children,
+  className,
   ...props
 }: ProseLayoutProps) {
   const article = (
