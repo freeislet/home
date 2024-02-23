@@ -2,7 +2,7 @@
 
 import { RefObject, forwardRef } from 'react'
 
-import { useScrollTo } from '@/hooks/element'
+import { useScrollToTarget } from '@/hooks/element'
 import { cn } from '@/lib/utils'
 
 interface ScrollTriggerProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -11,7 +11,7 @@ interface ScrollTriggerProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export function ScrollTrigger({ targetRef, children, ...props }: ScrollTriggerProps) {
-  const scrollTo = useScrollTo(targetRef)
+  const scrollTo = useScrollToTarget(targetRef)
 
   return (
     <button onClick={scrollTo} {...props}>

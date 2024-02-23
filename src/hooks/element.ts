@@ -32,7 +32,7 @@ export function useElementSize<T extends HTMLElement = HTMLDivElement>(
   return [target, size]
 }
 
-export function useScrollTo<T extends HTMLElement = HTMLElement>(targetRef: RefObject<T>): () => void {
+export function useScrollToTarget<T extends HTMLElement = HTMLElement>(targetRef: RefObject<T>): () => void {
   const scrollTo = useCallback(() => {
     targetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
   }, [targetRef])
@@ -40,9 +40,9 @@ export function useScrollTo<T extends HTMLElement = HTMLElement>(targetRef: RefO
   return scrollTo
 }
 
-export function useScrollToTarget<T extends HTMLElement = HTMLElement>(): [MutableRefObject<T | null>, () => void] {
+export function useScrollToTarget2<T extends HTMLElement = HTMLElement>(): [MutableRefObject<T | null>, () => void] {
   const targetRef = useRef<T | null>(null)
-  const scrollTo = useScrollTo(targetRef)
+  const scrollTo = useScrollToTarget(targetRef)
 
   return [targetRef, scrollTo]
 }
