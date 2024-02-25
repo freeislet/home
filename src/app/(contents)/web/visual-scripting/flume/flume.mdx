@@ -1,0 +1,36 @@
+# Flume
+
+[Flume](https://flume.dev/)은 React-powered node editor and runtime engine으로 소개되고 있다.
+
+![](/contents/flume/flume.png)
+
+## Flume 설치 및 기본 사용법
+
+> Flume [Quick Start] 문서 참고
+
+다음 명령으로 Flume을 설치할 수 있다:
+
+```bash
+npm install flume
+```
+
+다음과 같이 node editor를 import 및 render하면 간단하게 빈 editor를 추가할 수 있다:
+
+```ts showLineNumbers
+import React from 'react'
+import { NodeEditor } from "flume";
+
+const App = () => {
+  return (
+    <div style={{width: 800, height: 600}}>
+      <NodeEditor />
+    </div>
+  )
+}
+```
+
+> 자세한 내용은 [Basic Configuration](https://flume.dev/docs/basic-config) 등 공식 문서를 참고하시길 바랍니다.
+
+## 기타 링크
+
+- [Flume Overview](https://flume.dev/docs/)
