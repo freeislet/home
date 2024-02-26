@@ -1,5 +1,9 @@
 @tailwind base;
 
+.blocklyToolboxDiv {
+  z-index: 40;
+}
+
 @layer base {
   /* toolbox 스크롤바 이슈 fix https://github.com/google/blockly/issues/5840 */
   svg[display='none'] {
