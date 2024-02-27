@@ -33,6 +33,8 @@ export const Logo = (props: IconPresetProps) => <Icon src="/cloud.svg" darkInver
 
 export const GameDevIcon = (props: IconPresetProps) => <Icon src="/game-card.svg" {...props} />
 
+export const CubeIcon = (props: IconPresetProps) => <Icon src="/cube.svg" {...props} />
+
 export const WebDevIcon = (props: IconPresetProps) => <Icon src="/coding-web.svg" {...props} />
 
 export const DiagramIcon = (props: IconPresetProps) => <Icon src="/diagram.svg" {...props} />

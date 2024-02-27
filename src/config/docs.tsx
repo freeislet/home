@@ -1,7 +1,7 @@
 import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
-import { GameDevIcon, WebDevIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
+import { GameDevIcon, CubeIcon, WebDevIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
 import image1 from '~/public/spaceship1.jpeg'
 import image2 from '~/public/spaceship2.jpeg'
 import image3 from '~/public/spaceship3.jpeg'
@@ -10,13 +10,23 @@ import image4 from '~/public/spaceship4.jpeg'
 const nav: NavItem[] = [
   {
     icon: <GameDevIcon />,
-    title: 'Game',
+    title: 'Game/3D',
     href: '/game',
-    disabled: true,
     children: [
       {
         title: 'Game Dev',
         href: '/game/game-dev',
+        disabled: true,
+      },
+      {
+        icon: <CubeIcon />,
+        title: '3D',
+        children: [
+          {
+            title: 'React Three Fiber',
+            href: '/game/3d/react-three-fiber',
+          },
+        ],
       },
     ],
   },
@@ -28,7 +38,6 @@ const nav: NavItem[] = [
       {
         icon: <DiagramIcon />,
         title: 'Visual Scripting',
-        href: '/web/visual-scripting',
         children: [
           {
             title: 'React Flow',
