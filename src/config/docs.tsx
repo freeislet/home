@@ -25,6 +25,17 @@ const nav: NavItem[] = [
           {
             title: 'React Three Fiber',
             href: '/game/3d/react-three-fiber',
+            children: [
+              {
+                title: 'Basic demo',
+                href: '/game/3d/react-three-fiber/basic-demo',
+              },
+              {
+                title: 'HTML 삽입',
+                href: '/game/3d/react-three-fiber/html',
+                disabled: true,
+              },
+            ],
           },
         ],
       },

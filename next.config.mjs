@@ -33,6 +33,7 @@ const nextConfig = {
     ],
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  transpilePackages: ['three'],
 }
 
 /** @type {import('rehype-pretty-code').Options} */

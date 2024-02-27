@@ -1,7 +1,10 @@
+import ReactThreeFiberMdx from './react-three-fiber.mdx'
+import ProseLayout from '@/components/prose-layout'
+
 export default function ReactThreeFiberPage() {
   return (
-    <div className="my-container">
-      <span>TBD: React Three Fiber</span>
-    </div>
+    <ProseLayout container>
+      <ReactThreeFiberMdx />
+    </ProseLayout>
   )
 }
