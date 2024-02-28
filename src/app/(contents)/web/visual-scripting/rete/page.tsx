@@ -16,8 +16,8 @@ export default function RetePage() {
 
   return (
     <>
-      <div className="grid grid-rows-[auto_1fr] min-h-main-height">
-        <div className="m-2 my-flex-row">
+      <div className="my-grid-main">
+        <div className="my-flex-row m-2">
           <DiagramIcon className="mr-1" />
           Rete.js 테스트
           <ScrollTrigger targetRef={docRef} className="ml-4">

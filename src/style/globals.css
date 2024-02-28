@@ -158,6 +158,13 @@
     @apply flex flex-col;
   }
 
+  .my-grid-2rows {
+    @apply grid grid-rows-[auto_1fr];
+  }
+  .my-grid-main {
+    @apply my-grid-2rows min-h-main-height;
+  }
+
   .my-prose {
     @apply prose dark:prose-invert
       prose-ol:mt-1 prose-ul:mt-1 prose-li:my-0.5

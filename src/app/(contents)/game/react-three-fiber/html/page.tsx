@@ -8,7 +8,7 @@ const ThreeCanvas = load(import('@/components/three-canvas'))
 
 export default function ReactThreeFiberHtmlPage() {
   return (
-    <div className="grid grid-rows-[auto_1fr] min-h-main-height">
+    <div className="my-grid-main">
       <div className="my-flex-row m-2">
         <ThreeJsIcon className="mr-1" />
         <span className="ring-1 rounded-sm px-1 text-sm text-muted-foreground mr-2">React Three Fiber</span>
