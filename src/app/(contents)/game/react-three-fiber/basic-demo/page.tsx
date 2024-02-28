@@ -10,8 +10,8 @@ export default function ReactThreeFiberBasicDemoPage() {
   return (
     <div className="my-grid-main">
       <div className="my-flex-row m-2">
-        <ThreeJsIcon className="mr-1" />
-        <span className="ring-1 rounded-sm px-1 text-sm text-muted-foreground mr-2">React Three Fiber</span>
+        <ThreeJsIcon />
+        <span className="badge mr-1">React Three Fiber</span>
         Basic demo
       </div>
       <ThreeCanvas orbitControls>

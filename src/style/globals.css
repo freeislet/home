@@ -173,6 +173,10 @@
       prose-code:before:hidden prose-code:after:hidden prose-code:font-normal
       max-w-3xl mx-auto;
   }
+
+  .badge {
+    @apply bg-blue-500 rounded-sm px-1 py-0.5 text-xs text-background;
+  }
 }
 
 @layer utilities {
