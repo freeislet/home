@@ -1,25 +1,21 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import dynamic from 'next/dynamic'
 
+import { load } from '@/components/loading'
 import { BlocklyWorkspaceOptions, WorkspaceInstance } from '@/components/blockly-workspace'
 import options from '@/components/blockly/options-default'
 import toolbox from '@/components/blockly/toolbox-example'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { CodeBlock } from '@/components/codeblock'
-import BlocklyMdx from './blockly.mdx'
-import ProseLayout from '@/components/prose-layout'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
 import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
-import Loading from '@/app/(contents)/_components/loading'
+import ProseLayout from '@/components/prose-layout'
+import BlocklyMdx from './blockly.mdx'
 
-const BlocklyWorkspace = dynamic(() => import('@/components/blockly-workspace'), {
-  ssr: false,
-  loading: () => <Loading />,
-})
+const BlocklyWorkspace = load(import('@/components/blockly-workspace'))
 
 export default function BlocklyPage() {
   const blocklyRef = useRef<WorkspaceInstance>()

@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-export default function Loading() {
+export default function DefaultLoading() {
   return (
     <div className="h-full w-full p-4 flex flex-col space-y-3">
       <Skeleton className="h-4 w-full" />

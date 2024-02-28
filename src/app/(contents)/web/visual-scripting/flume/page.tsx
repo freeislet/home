@@ -1,16 +1,15 @@
 'use client'
 
 import { useRef } from 'react'
-import dynamic from 'next/dynamic'
 
-import FlumeMdx from './flume.mdx'
-import ProseLayout from '@/components/prose-layout'
+import { load } from '@/components/loading'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
 import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
-import Loading from '@/app/(contents)/_components/loading'
+import ProseLayout from '@/components/prose-layout'
+import FlumeMdx from './flume.mdx'
 
-const FlumeEditor = dynamic(() => import('@/components/flume-editor'), { ssr: false, loading: () => <Loading /> })
+const FlumeEditor = load(import('@/components/flume-editor'))
 
 export default function FlumePage() {
   const docRef = useRef(null)

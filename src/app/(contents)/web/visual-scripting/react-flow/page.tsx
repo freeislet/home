@@ -1,16 +1,15 @@
 'use client'
 
 import { useRef } from 'react'
-import dynamic from 'next/dynamic'
 
-import ReactFlowMdx from './reactflow.mdx'
-import ProseLayout from '@/components/prose-layout'
+import { load } from '@/components/loading'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
 import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
-import Loading from '@/app/(contents)/_components/loading'
+import ProseLayout from '@/components/prose-layout'
+import ReactFlowMdx from './reactflow.mdx'
 
-const ReactFlowView = dynamic(() => import('@/components/react-flow-view'), { ssr: false, loading: () => <Loading /> })
+const ReactFlowView = load(import('@/components/react-flow-view'))
 
 export default function ReactFlowPage() {
   const docRef = useRef(null)

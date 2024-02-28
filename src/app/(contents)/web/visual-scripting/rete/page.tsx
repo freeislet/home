@@ -1,16 +1,15 @@
 'use client'
 
 import { useRef } from 'react'
-import dynamic from 'next/dynamic'
 
-import ReteMdx from './rete.mdx'
-import ProseLayout from '@/components/prose-layout'
+import { load } from '@/components/loading'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
 import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
-import Loading from '@/app/(contents)/_components/loading'
+import ProseLayout from '@/components/prose-layout'
+import ReteMdx from './rete.mdx'
 
-const ReteEditor = dynamic(() => import('@/components/rete-editor'), { ssr: false, loading: () => <Loading /> })
+const ReteEditor = load(import('@/components/rete-editor'))
 
 export default function RetePage() {
   const docRef = useRef(null)
