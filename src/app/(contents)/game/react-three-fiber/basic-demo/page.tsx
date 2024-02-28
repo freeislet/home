@@ -14,7 +14,7 @@ export default function ReactThreeFiberBasicDemoPage() {
       <div className="my-flex-row m-2">
         <CubeIcon className="mr-1" />
         <span className="ring-1 rounded-sm px-1 text-sm text-muted-foreground mr-2">React Three Fiber</span>
-        Basic Demo
+        Basic demo
       </div>
       <ThreeCanvas orbitControls>
         <ambientLight intensity={Math.PI / 2} />

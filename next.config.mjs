@@ -9,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: '/game',
-        destination: '/game/3d/react-three-fiber',
+        destination: '/game/react-three-fiber',
         permanent: false,
       },
       {
