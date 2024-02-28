@@ -12,7 +12,7 @@ export default function HtmlBox() {
     <mesh scale={size * 2}>
       <boxGeometry />
       <meshStandardMaterial />
-      <Html distanceFactor={1.5} position={[0, 0, 0.51]} transform>
+      <Html occlude distanceFactor={1.5} position={[0, 0, 0.51]} transform>
         <span>Size</span>
         <Slider
           style={{ width: 100 }}
