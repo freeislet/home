@@ -1,5 +1,5 @@
 import { useRef, useMemo } from 'react'
-import { Object3D, InstancedMesh, PointLight, Vector2 } from 'three'
+import { Object3D, InstancedMesh, PointLight } from 'three'
 import { extend, Object3DNode, useFrame, useLoader } from '@react-three/fiber'
 import { Effects } from '@react-three/drei'
 import { FilmPass, WaterPass, UnrealBloomPass, LUTPass, LUTCubeLoader } from 'three-stdlib'
