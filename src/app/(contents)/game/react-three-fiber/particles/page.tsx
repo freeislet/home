@@ -6,7 +6,7 @@ import { Swarm, Postpro } from '@/components/react-three-fiber/particles-example
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 
-export default function ReactThreeFiberBasicDemoPage() {
+export default function ReactThreeFiberParticlesPage() {
   return (
     <div className="my-grid-main">
       <div className="my-flex-row m-2">
