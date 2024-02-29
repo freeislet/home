@@ -12,7 +12,7 @@ export default function ReactThreeFiberBasicDemoPage() {
       <div className="my-flex-row m-2">
         <ThreeJsIcon />
         <span className="badge mr-1">React Three Fiber</span>
-        Particles & Effects
+        Particles & Effects 예제
       </div>
       <ThreeCanvas
         linear

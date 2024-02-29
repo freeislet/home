@@ -12,7 +12,7 @@ export default function ReactThreeFiberHtmlPage() {
       <div className="my-flex-row m-2">
         <ThreeJsIcon />
         <span className="badge mr-1">React Three Fiber</span>
-        HTML 테스트
+        HTML 예제
       </div>
       <ThreeCanvas camera={{ position: [2, 1, 5], fov: 25 }} orbitControls>
         <ambientLight intensity={Math.PI / 2} />
