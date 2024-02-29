@@ -36,6 +36,10 @@ const nav: NavItem[] = [
             title: 'HTML',
             href: '/game/react-three-fiber/html',
           },
+          {
+            title: 'Particles & Effects',
+            href: '/game/react-three-fiber/particles',
+          },
         ],
       },
     ],
