@@ -2,7 +2,7 @@
 
 import { load } from '@/components/loading'
 import { ThreeJsIcon } from '@/components/icons'
-import HtmlBox from '@/components/react-three-fiber/html-box-example'
+import HtmlBox from '@/components/react-three-fiber/examples/html-box'
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 

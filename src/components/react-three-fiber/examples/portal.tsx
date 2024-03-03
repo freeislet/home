@@ -5,7 +5,7 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 // import glsl from 'babel-plugin-glsl/macro'
 
-import { shaderMaterial } from './utils'
+import { shaderMaterial } from '../utils'
 
 type GLTFResult = GLTF & {
   nodes: {

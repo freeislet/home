@@ -2,8 +2,8 @@
 
 import { load } from '@/components/loading'
 import { ThreeJsIcon } from '@/components/icons'
-import BasicBox from '@/components/react-three-fiber/basic-box-example'
-import Shiba from '@/components/react-three-fiber/shiba-example'
+import BasicBox from '@/components/react-three-fiber/examples/basic-box'
+import Shiba from '@/components/react-three-fiber/examples/shiba'
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 

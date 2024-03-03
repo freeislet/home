@@ -2,7 +2,7 @@
 
 import { load } from '@/components/loading'
 import { ThreeJsIcon } from '@/components/icons'
-import { Swarm, Postpro } from '@/components/react-three-fiber/particles-example'
+import { Swarm, Postpro } from '@/components/react-three-fiber/examples/particles'
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 

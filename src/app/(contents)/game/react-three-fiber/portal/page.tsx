@@ -3,7 +3,7 @@
 import { load } from '@/components/loading'
 import { ThreeJsIcon } from '@/components/icons'
 import { Sparkles } from '@react-three/drei'
-import Portal from '@/components/react-three-fiber/portal-example'
+import Portal from '@/components/react-three-fiber/examples/portal'
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 
