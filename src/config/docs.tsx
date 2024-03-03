@@ -37,6 +37,10 @@ const nav: NavItem[] = [
             href: '/game/react-three-fiber/html',
           },
           {
+            title: 'Portal shader',
+            href: '/game/react-three-fiber/portal',
+          },
+          {
             title: 'Particles & Effects',
             href: '/game/react-three-fiber/particles',
           },

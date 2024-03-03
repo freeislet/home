@@ -34,6 +34,14 @@ const nextConfig = {
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   transpilePackages: ['three'],
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      use: ['raw-loader', 'glslify-loader'],
+    })
+
+    return config
+  },
 }
 
 /** @type {import('rehype-pretty-code').Options} */
