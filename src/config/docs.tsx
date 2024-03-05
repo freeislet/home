@@ -37,6 +37,10 @@ const nav: NavItem[] = [
             href: '/game/react-three-fiber/html',
           },
           {
+            title: 'Shoe configurator',
+            href: '/game/react-three-fiber/shoe',
+          },
+          {
             title: 'Portal shader',
             href: '/game/react-three-fiber/portal',
           },
