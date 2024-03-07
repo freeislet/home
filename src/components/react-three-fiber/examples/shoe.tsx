@@ -90,9 +90,11 @@ export default function Shoe() {
     if (hovered) {
       document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(cursor)}'), auto`
       return () => {
-        document.body.style.cursor = `url('data:image/svg+xml;base64,${btoa(auto)}'), auto`
+        document.body.style.cursor = 'auto' //`url('data:image/svg+xml;base64,${btoa(auto)}'), auto`
       }
     }
+
+    return () => (document.body.style.cursor = 'auto')
   }, [hovered])
 
   return (
