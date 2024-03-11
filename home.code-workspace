@@ -1,10 +1,10 @@
 {
   "folders": [
     {
-      "path": "."
+      "path": ".",
     },
     {
-      "path": "apps/home"
-    }
-  ]
+      "path": "apps/main",
+    },
+  ],
 }
