@@ -1,0 +1,16 @@
+# Environments
+*.db
+*.log
+*.py[cod]
+*.pyc
+.env
+.venv
+.vercel
+.web
+ENV/
+__pycache__
+__pycache__/
+env.bak/
+env/
+venv.bak/
+venv/

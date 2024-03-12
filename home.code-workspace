@@ -6,5 +6,8 @@
     {
       "path": "apps/main",
     },
+    {
+      "path": "apps/reflex-app",
+    },
   ],
 }

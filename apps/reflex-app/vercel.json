@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "reflexapp/reflexapp.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "reflexapp/reflexapp.py"
+    }
+  ]
+}
