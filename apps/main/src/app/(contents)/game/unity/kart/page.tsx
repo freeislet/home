@@ -8,10 +8,10 @@ import { cn } from '@/lib/utils'
 export default function UnityKartPage() {
   const buildUrl = '/unity/Kart/Build'
   const unityConfig: UnityConfig = {
-    loaderUrl: buildUrl + '/KartWeb.loader.js',
-    dataUrl: buildUrl + '/KartWeb.data.unityweb',
-    frameworkUrl: buildUrl + '/KartWeb.framework.js.unityweb',
-    codeUrl: buildUrl + '/KartWeb.wasm.unityweb',
+    loaderUrl: buildUrl + '/Kart.loader.js',
+    dataUrl: buildUrl + '/Kart.data.unityweb',
+    frameworkUrl: buildUrl + '/Kart.framework.js.unityweb',
+    codeUrl: buildUrl + '/Kart.wasm.unityweb',
     // streamingAssetsUrl: 'StreamingAssets',
     // readonly memoryUrl?: string;
     // readonly symbolsUrl?: string;
