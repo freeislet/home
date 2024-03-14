@@ -1,0 +1,24 @@
+// // Middleware (https://nextjs.org/docs/app/building-your-application/routing/middleware)
+// // How to serve .gz files (https://github.com/vercel/next.js/discussions/36759)
+
+// import { NextResponse } from 'next/server'
+// import type { NextRequest } from 'next/server'
+
+// // This function can be marked `async` if using `await` inside
+// export function middleware(request: NextRequest) {
+//   const response = NextResponse.next()
+
+//   if (request.url.indexOf('.gz') > -1) {
+//     response.headers.set('content-encoding', 'gzip')
+//   }
+//   if (request.url.indexOf('.wasm') > -1) {
+//     response.headers.set('content-type', 'application/wasm')
+//   }
+
+//   return response
+// }
+
+// export const config = {
+//   matcher: '/Build/:path*', // Unity build
+// }
+// -> 동작 안 함 (matcher 경로 /:path*로 바꿔서 Content-Encoding 설정해도)
