@@ -68,6 +68,10 @@ const nav: NavItem[] = [
             title: 'Kart',
             href: '/game/unity/kart',
           },
+          {
+            title: '3D Game Kit',
+            href: '/game/unity/3d-game-kit',
+          },
         ],
       },
     ],
