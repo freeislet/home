@@ -1,7 +1,16 @@
 import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
-import { GameDevIcon, CubeIcon, ThreeJsIcon, WebDevIcon, DiagramIcon, AiIcon, GeminiIcon } from '@/components/icons'
+import {
+  GameDevIcon,
+  CubeIcon,
+  ThreeJsIcon,
+  UnityIcon,
+  WebDevIcon,
+  DiagramIcon,
+  AiIcon,
+  GeminiIcon,
+} from '@/components/icons'
 import image1 from '~/public/spaceship1.jpeg'
 import image2 from '~/public/spaceship2.jpeg'
 import image3 from '~/public/spaceship3.jpeg'
@@ -47,6 +56,17 @@ const nav: NavItem[] = [
           {
             title: 'Particles & Effects',
             href: '/game/react-three-fiber/particles',
+          },
+        ],
+      },
+      {
+        icon: <UnityIcon />,
+        title: 'Unity',
+        href: '/game/unity',
+        children: [
+          {
+            title: 'Kart',
+            href: '/game/unity/kart',
           },
         ],
       },
