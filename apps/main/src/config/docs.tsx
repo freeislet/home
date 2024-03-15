@@ -6,6 +6,7 @@ import {
   CubeIcon,
   ThreeJsIcon,
   UnityIcon,
+  MediaPipeIcon,
   WebDevIcon,
   DiagramIcon,
   AiIcon,
@@ -71,6 +72,22 @@ const nav: NavItem[] = [
           {
             title: '3D Game Kit',
             href: '/game/unity/3d-game-kit',
+          },
+        ],
+      },
+      {
+        icon: <MediaPipeIcon />,
+        title: 'MediaPipe',
+        href: '/game/mediapipe',
+        children: [
+          {
+            title: 'Face Tracking',
+            href: '/game/mediapipe/face-tracking',
+          },
+          {
+            title: 'Pose Tracking',
+            href: '/game/mediapipe/pose-tracking',
+            disabled: true,
           },
         ],
       },
