@@ -1,22 +1,19 @@
 // https://css-tricks.com/using-requestanimationframe-with-react-hooks/ 참고
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, DependencyList } from 'react'
 
 export interface AnimationFrameCallback {
-  (time: DOMHighResTimeStamp, deltaTime: DOMHighResTimeStamp): void
+  (time: number, deltaTime: number): void | boolean
 }
 
-export function useAnimationFrame(callback: AnimationFrameCallback) {
-  // Use useRef for mutable variables that we want to persist
-  // without triggering a re-render on their change
+export function useAnimationFrame(callback: AnimationFrameCallback, deps?: DependencyList) {
   const requestRef = useRef<number>()
   const previousTimeRef = useRef<DOMHighResTimeStamp>()
 
   const animate = (time: DOMHighResTimeStamp) => {
-    if (previousTimeRef.current != undefined) {
-      const deltaTime = time - previousTimeRef.current
-      callback(time, deltaTime)
-    }
+    const deltaTime = previousTimeRef.current != undefined ? time - previousTimeRef.current : 0
+    if (callback(time, deltaTime) === false) return
+
     previousTimeRef.current = time
     requestRef.current = window.requestAnimationFrame(animate)
   }
@@ -24,5 +21,7 @@ export function useAnimationFrame(callback: AnimationFrameCallback) {
   useEffect(() => {
     requestRef.current = window.requestAnimationFrame(animate)
     return () => window.cancelAnimationFrame(requestRef.current!)
-  }, [])
+  }, deps ?? [])
+
+  // TODO: start, stop callback 추가
 }

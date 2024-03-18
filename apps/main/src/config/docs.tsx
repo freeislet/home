@@ -2,11 +2,11 @@ import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
 import {
-  GameDevIcon,
   CubeIcon,
   ThreeJsIcon,
   UnityIcon,
   MediaPipeIcon,
+  GameDevIcon,
   WebDevIcon,
   DiagramIcon,
   AiIcon,
@@ -19,18 +19,14 @@ import image4 from '~/public/spaceship4.jpeg'
 
 const nav: NavItem[] = [
   {
-    icon: <GameDevIcon />,
-    title: 'Game/3D',
+    icon: <CubeIcon />,
+    title: '3D/Game/XR',
     href: '/game',
     children: [
       {
+        icon: <GameDevIcon />,
         title: 'Game Dev',
         href: '/game/game-dev',
-        disabled: true,
-      },
-      {
-        icon: <CubeIcon />,
-        title: '3D',
         disabled: true,
       },
       {
@@ -77,7 +73,7 @@ const nav: NavItem[] = [
       },
       {
         icon: <MediaPipeIcon />,
-        title: 'MediaPipe',
+        title: 'MediaPipe (AR)',
         href: '/game/mediapipe',
         children: [
           {

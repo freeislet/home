@@ -19,6 +19,7 @@
     "@mediapipe/tasks-vision": "^0.10.12",
     "@next/mdx": "^14.1.0",
     "@planetscale/database": "^1.13.0",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
