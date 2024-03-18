@@ -83,6 +83,12 @@ export default function MediaPipeFaceTrackingPage() {
   useResizeObserver(canvasRef, resizeCanvas)
   useAnimationFrame(render, [faceLandmarker, drawingUtils, canvasContext])
 
+  const videoConstraints = {
+    width: 1280 / 2,
+    height: 720 / 2, // NOTE: 가로로 길어질 때 video 크기가 720 이하로 안 줄어드는 문제로 인해 /2 적용
+    facingMode: 'user',
+  }
+
   return (
     <div className="my-grid-main">
       <div className="my-flex-row m-2">
@@ -92,7 +98,13 @@ export default function MediaPipeFaceTrackingPage() {
       </div>
       <div className="grid grid-cols-[1fr_auto] mx-auto">
         <div className="relative">
-          <Webcam ref={webcamRef} className="h-full" mirrored onUserMedia={resizeCanvas} />
+          <Webcam
+            ref={webcamRef}
+            className="h-full"
+            videoConstraints={videoConstraints}
+            mirrored
+            onUserMedia={resizeCanvas}
+          />
           <canvas ref={canvasRef} className="absolute left-0 top-0 size-full object-contain scale-x-[-1]" />
         </div>
         <div></div>
