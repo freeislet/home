@@ -95,7 +95,7 @@ export default function MediaPipeFaceTrackingPage() {
           <Webcam ref={webcamRef} className="h-full" mirrored onUserMedia={resizeCanvas} />
           <canvas ref={canvasRef} className="absolute left-0 top-0 size-full object-contain scale-x-[-1]" />
         </div>
-        <div className="m-4">(TBD) Settings...</div>
+        <div></div>
       </div>
     </div>
   )
