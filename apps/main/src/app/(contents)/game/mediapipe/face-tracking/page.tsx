@@ -12,7 +12,7 @@ import Webcam from 'react-webcam'
 import useResizeObserver from '@react-hook/resize-observer'
 
 import { MediaPipeIcon } from '@/components/icons'
-import { useAnimationFrame } from '@/hooks/animation'
+import { useVideoFrame } from '@/hooks/video'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
@@ -20,7 +20,7 @@ export default function MediaPipeFaceTrackingPage() {
   const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D>()
   const [drawingUtils, setDrawingUtils] = useState<DrawingUtils>()
   const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker>()
-  const [lastVideoTime, setLastVideoTime] = useState(-1)
+  const { setVideo } = useVideoFrame(render, [faceLandmarker, drawingUtils, canvasContext])
 
   async function setup() {
     if (!webcamRef.current.video) return
@@ -44,6 +44,8 @@ export default function MediaPipeFaceTrackingPage() {
     const canvasCtx = canvasRef.current.getContext('2d')!
     setCanvasContext(canvasCtx)
     setDrawingUtils(new DrawingUtils(canvasCtx))
+
+    setVideo(webcamRef.current.video)
   }
 
   function resizeCanvas() {
@@ -66,22 +68,18 @@ export default function MediaPipeFaceTrackingPage() {
     if (!faceLandmarker || !drawingUtils || !canvasContext) return
 
     const video = webcamRef.current.video
-    if (!video) return
+    const videoReady = video && video.videoWidth && video.videoHeight
+    if (!videoReady) return
 
-    if (video.videoWidth && video.videoHeight && video.currentTime !== lastVideoTime) {
-      const result = faceLandmarker.detectForVideo(video, time)
-      clearCanvas(canvasContext)
-      drawFaceLandmark(result, drawingUtils)
-
-      setLastVideoTime(video.currentTime)
-    }
+    const result = faceLandmarker.detectForVideo(video, time)
+    clearCanvas(canvasContext)
+    drawFaceLandmark(result, drawingUtils)
   }
 
   useEffect(() => {
     setup()
   }, [])
   useResizeObserver(canvasRef, resizeCanvas)
-  useAnimationFrame(render, [faceLandmarker, drawingUtils, canvasContext])
 
   const videoConstraints = {
     width: 1280 / 2,
