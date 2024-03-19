@@ -6,8 +6,8 @@ export interface VideoFrameCallback {
 }
 
 export type VideoFrameHook = {
-  video: HTMLVideoElement | null
-  setVideo: RefCallback<HTMLVideoElement>
+  videoFrameSrc: HTMLVideoElement | null
+  setVideoFrameSrc: RefCallback<HTMLVideoElement>
 }
 
 export function useVideoFrame(callback: VideoFrameCallback, deps?: DependencyList): VideoFrameHook {
@@ -31,5 +31,5 @@ export function useVideoFrame(callback: VideoFrameCallback, deps?: DependencyLis
     return () => video.cancelVideoFrameCallback(requestRef.current!)
   }, [video, ...(deps ?? [])])
 
-  return { video, setVideo } // TODO: start, stop callback 추가
+  return { videoFrameSrc: video, setVideoFrameSrc: setVideo } // TODO: start, stop callback 추가
 }

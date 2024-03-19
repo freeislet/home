@@ -20,7 +20,7 @@ export default function MediaPipeFaceTrackingPage() {
   const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D>()
   const [drawingUtils, setDrawingUtils] = useState<DrawingUtils>()
   const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker>()
-  const { setVideo } = useVideoFrame(render, [faceLandmarker, drawingUtils, canvasContext])
+  const { setVideoFrameSrc } = useVideoFrame(render, [faceLandmarker, drawingUtils, canvasContext])
 
   async function setup() {
     if (!webcamRef.current.video) return
@@ -45,7 +45,7 @@ export default function MediaPipeFaceTrackingPage() {
     setCanvasContext(canvasCtx)
     setDrawingUtils(new DrawingUtils(canvasCtx))
 
-    setVideo(webcamRef.current.video)
+    setVideoFrameSrc(webcamRef.current.video)
   }
 
   function resizeCanvas() {
