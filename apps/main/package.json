@@ -76,6 +76,7 @@
     "rete-engine": "^2.0.1",
     "rete-react-plugin": "^2.0.5",
     "rete-render-utils": "^2.0.2",
+    "rvfc-polyfill": "^1.0.7",
     "server-only": "^0.0.1",
     "sharp": "^0.33.2",
     "shiki": "^1.0.0",
