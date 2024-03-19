@@ -3,7 +3,7 @@
 import { useRef, useEffect, DependencyList } from 'react'
 
 export interface AnimationFrameCallback {
-  (time: number, deltaTime: number): void | boolean
+  (time: number, timeDelta: number): void | boolean
 }
 
 export function useAnimationFrame(callback: AnimationFrameCallback, deps?: DependencyList) {
@@ -11,8 +11,8 @@ export function useAnimationFrame(callback: AnimationFrameCallback, deps?: Depen
   const previousTimeRef = useRef<DOMHighResTimeStamp>()
 
   const animate = (time: DOMHighResTimeStamp) => {
-    const deltaTime = previousTimeRef.current != undefined ? time - previousTimeRef.current : 0
-    if (callback(time, deltaTime) === false) return
+    const timeDelta = previousTimeRef.current != undefined ? time - previousTimeRef.current : 0
+    if (callback(time, timeDelta) === false) return
 
     previousTimeRef.current = time
     requestRef.current = window.requestAnimationFrame(animate)
