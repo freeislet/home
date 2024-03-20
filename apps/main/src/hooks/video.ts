@@ -19,7 +19,7 @@ export function useVideoFrame(callback: VideoFrameCallback, deps?: DependencyLis
     if (!video) return
 
     const animate = (now: DOMHighResTimeStamp, metadata: VideoFrameCallbackMetadata) => {
-      const time = metadata.mediaTime
+      const time = now //metadata.mediaTime
       const timeDelta = previousTimeRef.current != undefined ? time - previousTimeRef.current : 0
       if (callback(time, timeDelta, metadata) === false) return
 

@@ -1,0 +1,9 @@
+@tailwind base;
+
+@layer base {
+  .flip-canvas {
+    canvas {
+      transform: scaleX(-1);
+    }
+  }
+}

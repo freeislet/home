@@ -81,6 +81,10 @@ const nav: NavItem[] = [
             href: '/game/mediapipe/face-tracking',
           },
           {
+            title: 'Face Avatar',
+            href: '/game/mediapipe/face-avatar',
+          },
+          {
             title: 'Pose Tracking',
             href: '/game/mediapipe/pose-tracking',
             disabled: true,
