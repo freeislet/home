@@ -4,24 +4,20 @@ import { useRef, useState, useEffect } from 'react'
 import Webcam from 'react-webcam'
 
 import { MediaPipeIcon } from '@/components/icons'
-import { useFaceTracker, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
+import { useFaceTrackerForVideo, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
 import OverlayCanvas from '@/components/mediapipe/overlay-canvas'
-import { useVideoFrame } from '@/hooks/video'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
-  const [faceTracker, setupFaceTracker, faceTrackerInitialized] = useFaceTracker()
-  const { setVideoFrameSrc } = useVideoFrame(render)
+  const [faceTracker, setupFaceTracker] = useFaceTrackerForVideo()
 
   useEffect(() => {
-    setupFaceTracker()
-  }, [])
-  useEffect(() => {
-    if (faceTrackerInitialized && stream) {
-      setVideoFrameSrc(webcamRef.current.video)
+    const video = webcamRef.current.video
+    if (video && stream) {
+      setupFaceTracker(video, stream)
     }
-  }, [faceTrackerInitialized, stream])
+  }, [stream])
 
   function onInitializeCanvas(canvas: HTMLCanvasElement) {
     const canvasContext = canvas.getContext('2d')!
@@ -31,16 +27,6 @@ export default function MediaPipeFaceTrackingPage() {
 
   function onInitializeWebcam(stream: MediaStream) {
     setStream(stream) // == webcamRef.current.stream!
-  }
-
-  function render(time: number) {
-    if (!faceTrackerInitialized || !faceTracker.drawer) return
-
-    const video = webcamRef.current.video
-    const videoReady = video && video.videoWidth && video.videoHeight
-    if (!videoReady) return
-
-    faceTracker.detectForVideo(video, time)
   }
 
   const videoConstraints = {
@@ -58,7 +44,6 @@ export default function MediaPipeFaceTrackingPage() {
       </div>
       <div className="grid grid-cols-[1fr_auto] mx-auto">
         <div className="relative">
-          {!stream && <div className="m-4">Initializing Webcam...</div>}
           <Webcam
             ref={webcamRef}
             className="h-full"
@@ -67,6 +52,7 @@ export default function MediaPipeFaceTrackingPage() {
             onUserMedia={onInitializeWebcam}
           />
           <OverlayCanvas stream={stream} onInitialize={onInitializeCanvas} mirrored />
+          {!stream && <div className="absolute left-1/2 top-1/3 -translate-x-1/2">Initializing Webcam...</div>}
         </div>
         <div></div>
       </div>

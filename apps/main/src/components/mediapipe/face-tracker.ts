@@ -9,23 +9,63 @@ import {
 } from '@mediapipe/tasks-vision'
 import { merge } from 'lodash'
 
+import { useVideoFrame } from '@/hooks/video'
 import { clearCanvasContext } from '@/components/mediapipe/overlay-canvas'
 
-export type SetupFaceTracker = (optionOverrides?: FaceLandmarkerOptions) => FaceTracker
+export type SetupFaceTracker = (optionOverrides?: FaceLandmarkerOptions) => void
 
 export function useFaceTracker(): [FaceTracker, SetupFaceTracker, boolean] {
   const faceTrackerRef = useRef(new FaceTracker())
   const [initialized, setInitialized] = useState(false)
 
-  const setup = useCallback((optionOverrides?: FaceLandmarkerOptions): FaceTracker => {
-    const faceTracker = faceTrackerRef.current
-    faceTracker.setup(optionOverrides, (faceTracker) => {
+  const setup = useCallback((optionOverrides?: FaceLandmarkerOptions) => {
+    faceTrackerRef.current.setup(optionOverrides, () => {
       setInitialized(true)
     })
-    return faceTracker
   }, [])
 
   return [faceTrackerRef.current, setup, initialized]
+}
+
+export type SetupFaceTrackerForVideo = (
+  video: HTMLVideoElement,
+  stream: MediaStream,
+  optionOverrides?: FaceLandmarkerOptions
+) => void
+
+export function useFaceTrackerForVideo(): [FaceTracker, SetupFaceTrackerForVideo, boolean] {
+  const [faceTracker, setup, initialized] = useFaceTracker()
+  const videoRef = useRef<HTMLVideoElement>()
+  const streamRef = useRef<MediaStream>()
+  const { setVideoFrameSrc } = useVideoFrame(render)
+
+  const setupForVideo = useCallback(
+    (video: HTMLVideoElement, stream: MediaStream, optionOverrides?: FaceLandmarkerOptions) => {
+      videoRef.current = video
+      streamRef.current = stream
+      setup(optionOverrides)
+    },
+    []
+  )
+
+  useEffect(() => {
+    if (initialized && streamRef.current) {
+      setVideoFrameSrc(videoRef.current!)
+    }
+  }, [initialized, streamRef])
+
+  function render(time: number) {
+    if (!faceTracker.drawer) return // TODO: needRender 콜백 분리
+
+    const video = videoRef.current
+    const videoReady = video && video.videoWidth && video.videoHeight
+    if (!videoReady) return
+
+    faceTracker.detectForVideo(video, time)
+    // TODO: onDetect에 result 전달
+  }
+
+  return [faceTracker, setupForVideo, initialized]
 }
 
 export type CompleteHandler = (faceTracker: FaceTracker) => void
