@@ -11,6 +11,8 @@ export type VideoFrameHook = {
 }
 
 export function useVideoFrame(callback: VideoFrameCallback, deps?: DependencyList): VideoFrameHook {
+  // TODO: useEffectEvent 사용 검토 https://react.dev/learn/reusing-logic-with-custom-hooks
+
   const [video, setVideo] = useState<HTMLVideoElement | null>(null)
   const requestRef = useRef<number>()
   const previousTimeRef = useRef<DOMHighResTimeStamp>()
