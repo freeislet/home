@@ -9,22 +9,20 @@ import {
   DrawingUtils,
 } from '@mediapipe/tasks-vision'
 import Webcam from 'react-webcam'
-import useResizeObserver from '@react-hook/resize-observer'
 
 import { MediaPipeIcon } from '@/components/icons'
+import OverlayCanvas, { clearCanvasContext } from '@/components/mediapipe/overlay-canvas'
 import { useVideoFrame } from '@/hooks/video'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
-  const canvasRef = useRef<HTMLCanvasElement>(null!)
+  const [stream, setStream] = useState<MediaStream>()
   const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D>()
   const [drawingUtils, setDrawingUtils] = useState<DrawingUtils>()
   const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker>()
   const { setVideoFrameSrc } = useVideoFrame(render, [faceLandmarker, drawingUtils, canvasContext])
 
   async function setup() {
-    if (!webcamRef.current.video) return
-
     const wasmFileset = await FilesetResolver.forVisionTasks(
       'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
     )
@@ -40,28 +38,17 @@ export default function MediaPipeFaceTrackingPage() {
     }
     const faceLandmarker = await FaceLandmarker.createFromOptions(wasmFileset, faceLandmarkerOptions)
     setFaceLandmarker(faceLandmarker)
-
-    const canvasCtx = canvasRef.current.getContext('2d')!
-    setCanvasContext(canvasCtx)
-    setDrawingUtils(new DrawingUtils(canvasCtx))
-
-    setVideoFrameSrc(webcamRef.current.video)
   }
 
-  function resizeCanvas() {
-    const stream = webcamRef.current.stream
-    if (!stream) return
+  function onInitializeWebcam(stream: MediaStream) {
+    setVideoFrameSrc(webcamRef.current.video)
+    setStream(stream) // == webcamRef.current.stream!
+  }
 
-    const settings = stream.getVideoTracks()[0].getSettings()
-    const aspectRatio = settings.aspectRatio ?? settings.width! / settings.height!
-
-    const canvas = canvasRef.current
-    const canvasRect = canvas.getBoundingClientRect()
-    const [width, height] = calcContainSize(canvasRect.width, canvasRect.height, aspectRatio)
-
-    const dpr = 1 //window.devicePixelRatio
-    canvas.width = Math.round(width * dpr)
-    canvas.height = Math.round(height * dpr)
+  function onInitializeCanvas(canvas: HTMLCanvasElement) {
+    const canvasContext = canvas.getContext('2d')!
+    setCanvasContext(canvasContext)
+    setDrawingUtils(new DrawingUtils(canvasContext))
   }
 
   function render(time: number) {
@@ -72,14 +59,13 @@ export default function MediaPipeFaceTrackingPage() {
     if (!videoReady) return
 
     const result = faceLandmarker.detectForVideo(video, time)
-    clearCanvas(canvasContext)
+    clearCanvasContext(canvasContext)
     drawFaceLandmark(result, drawingUtils)
   }
 
   useEffect(() => {
     setup()
   }, [])
-  useResizeObserver(canvasRef, resizeCanvas)
 
   const videoConstraints = {
     width: 1280 / 2,
@@ -101,24 +87,14 @@ export default function MediaPipeFaceTrackingPage() {
             className="h-full"
             videoConstraints={videoConstraints}
             mirrored
-            onUserMedia={resizeCanvas}
+            onUserMedia={onInitializeWebcam}
           />
-          <canvas ref={canvasRef} className="absolute left-0 top-0 size-full object-contain scale-x-[-1]" />
+          <OverlayCanvas stream={stream} onInitialize={onInitializeCanvas} mirrored />
         </div>
         <div></div>
       </div>
     </div>
   )
-}
-
-function calcContainSize(width: number, height: number, ratio: number): [number, number] {
-  const fitWidth = height * ratio
-  if (fitWidth <= width) return [fitWidth, height]
-  else return [width, width / ratio]
-}
-
-function clearCanvas(ctx: CanvasRenderingContext2D) {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 }
 
 function drawFaceLandmark(result: FaceLandmarkerResult, drawingUtils: DrawingUtils) {
