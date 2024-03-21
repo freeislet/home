@@ -1,4 +1,5 @@
 // https://css-tricks.com/using-requestanimationframe-with-react-hooks/ 참고
+// TODO: https://react.dev/learn/reusing-logic-with-custom-hooks#there-is-more-than-one-way-to-do-it 참고해서 리팩토링
 
 import { useRef, useEffect, DependencyList } from 'react'
 
