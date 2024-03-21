@@ -1,71 +1,54 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import {
-  FilesetResolver,
-  FaceLandmarker,
-  type FaceLandmarkerOptions,
-  type FaceLandmarkerResult,
-  DrawingUtils,
-} from '@mediapipe/tasks-vision'
 import Webcam from 'react-webcam'
 
 import { MediaPipeIcon } from '@/components/icons'
-import OverlayCanvas, { clearCanvasContext } from '@/components/mediapipe/overlay-canvas'
+import { useFaceTracker, FaceTracker, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
+import OverlayCanvas from '@/components/mediapipe/overlay-canvas'
 import { useVideoFrame } from '@/hooks/video'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
-  const [canvasContext, setCanvasContext] = useState<CanvasRenderingContext2D>()
-  const [drawingUtils, setDrawingUtils] = useState<DrawingUtils>()
-  const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker>()
-  const { setVideoFrameSrc } = useVideoFrame(render, [faceLandmarker, drawingUtils, canvasContext])
+  const faceTrackerRef = useRef<FaceTracker>()
+  const [createFaceTracker, faceTrackerInitialized] = useFaceTracker()
+  const { setVideoFrameSrc } = useVideoFrame(render)
 
-  async function setup() {
-    const wasmFileset = await FilesetResolver.forVisionTasks(
-      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
-    )
-
-    const faceLandmarkerOptions: FaceLandmarkerOptions = {
-      baseOptions: {
-        modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
-        delegate: 'GPU',
-      },
-      // outputFaceBlendshapes: true,
-      runningMode: 'VIDEO', // "IMAGE" | "VIDEO"
-      numFaces: 3,
+  useEffect(() => {
+    if (!faceTrackerRef.current) {
+      faceTrackerRef.current = createFaceTracker()
     }
-    const faceLandmarker = await FaceLandmarker.createFromOptions(wasmFileset, faceLandmarkerOptions)
-    setFaceLandmarker(faceLandmarker)
+  }, [])
+  useEffect(() => {
+    if (faceTrackerInitialized && stream) {
+      setVideoFrameSrc(webcamRef.current.video)
+    }
+  }, [faceTrackerInitialized, stream])
+
+  function onInitializeCanvas(canvas: HTMLCanvasElement) {
+    const faceTracker = faceTrackerRef.current!
+    if (faceTracker && !faceTracker.drawer) {
+      const canvasContext = canvas.getContext('2d')!
+      const drawer = new FaceLandmarkDrawer(canvasContext)
+      faceTracker.setDrawer(drawer)
+    }
   }
 
   function onInitializeWebcam(stream: MediaStream) {
-    setVideoFrameSrc(webcamRef.current.video)
     setStream(stream) // == webcamRef.current.stream!
   }
 
-  function onInitializeCanvas(canvas: HTMLCanvasElement) {
-    const canvasContext = canvas.getContext('2d')!
-    setCanvasContext(canvasContext)
-    setDrawingUtils(new DrawingUtils(canvasContext))
-  }
-
   function render(time: number) {
-    if (!faceLandmarker || !drawingUtils || !canvasContext) return
+    const faceTracker = faceTrackerRef.current!
+    if (!faceTrackerInitialized || !faceTracker.drawer) return
 
     const video = webcamRef.current.video
     const videoReady = video && video.videoWidth && video.videoHeight
     if (!videoReady) return
 
-    const result = faceLandmarker.detectForVideo(video, time)
-    clearCanvasContext(canvasContext)
-    drawFaceLandmark(result, drawingUtils)
+    faceTracker.detectForVideo(video, time)
   }
-
-  useEffect(() => {
-    setup()
-  }, [])
 
   const videoConstraints = {
     width: 1280 / 2,
@@ -82,6 +65,7 @@ export default function MediaPipeFaceTrackingPage() {
       </div>
       <div className="grid grid-cols-[1fr_auto] mx-auto">
         <div className="relative">
+          {!stream && <div className="m-4">Initializing Webcam...</div>}
           <Webcam
             ref={webcamRef}
             className="h-full"
@@ -95,23 +79,4 @@ export default function MediaPipeFaceTrackingPage() {
       </div>
     </div>
   )
-}
-
-function drawFaceLandmark(result: FaceLandmarkerResult, drawingUtils: DrawingUtils) {
-  if (result.faceLandmarks) {
-    for (const landmarks of result.faceLandmarks) {
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_TESSELATION, {
-        color: '#C0C0C070',
-        lineWidth: 1,
-      })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_RIGHT_EYE, { color: '#FF3030' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_RIGHT_EYEBROW, { color: '#FF3030' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_LEFT_EYE, { color: '#30FF30' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_LEFT_EYEBROW, { color: '#30FF30' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_FACE_OVAL, { color: '#E0E0E0' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_LIPS, { color: '#E0E0E0' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_RIGHT_IRIS, { color: '#FF3030' })
-      drawingUtils.drawConnectors(landmarks, FaceLandmarker.FACE_LANDMARKS_LEFT_IRIS, { color: '#30FF30' })
-    }
-  }
 }
