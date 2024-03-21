@@ -4,21 +4,18 @@ import { useRef, useState, useEffect } from 'react'
 import Webcam from 'react-webcam'
 
 import { MediaPipeIcon } from '@/components/icons'
-import { useFaceTracker, FaceTracker, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
+import { useFaceTracker, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
 import OverlayCanvas from '@/components/mediapipe/overlay-canvas'
 import { useVideoFrame } from '@/hooks/video'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
-  const faceTrackerRef = useRef<FaceTracker>()
-  const [createFaceTracker, faceTrackerInitialized] = useFaceTracker()
+  const [faceTracker, setupFaceTracker, faceTrackerInitialized] = useFaceTracker()
   const { setVideoFrameSrc } = useVideoFrame(render)
 
   useEffect(() => {
-    if (!faceTrackerRef.current) {
-      faceTrackerRef.current = createFaceTracker()
-    }
+    setupFaceTracker()
   }, [])
   useEffect(() => {
     if (faceTrackerInitialized && stream) {
@@ -27,12 +24,9 @@ export default function MediaPipeFaceTrackingPage() {
   }, [faceTrackerInitialized, stream])
 
   function onInitializeCanvas(canvas: HTMLCanvasElement) {
-    const faceTracker = faceTrackerRef.current!
-    if (faceTracker && !faceTracker.drawer) {
-      const canvasContext = canvas.getContext('2d')!
-      const drawer = new FaceLandmarkDrawer(canvasContext)
-      faceTracker.setDrawer(drawer)
-    }
+    const canvasContext = canvas.getContext('2d')!
+    const drawer = new FaceLandmarkDrawer(canvasContext)
+    faceTracker.setDrawer(drawer)
   }
 
   function onInitializeWebcam(stream: MediaStream) {
@@ -40,7 +34,6 @@ export default function MediaPipeFaceTrackingPage() {
   }
 
   function render(time: number) {
-    const faceTracker = faceTrackerRef.current!
     if (!faceTrackerInitialized || !faceTracker.drawer) return
 
     const video = webcamRef.current.video

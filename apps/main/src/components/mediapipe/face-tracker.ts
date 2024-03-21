@@ -11,20 +11,21 @@ import { merge } from 'lodash'
 
 import { clearCanvasContext } from '@/components/mediapipe/overlay-canvas'
 
-export type CreateFaceTracker = (optionOverrides?: FaceLandmarkerOptions) => FaceTracker
+export type SetupFaceTracker = (optionOverrides?: FaceLandmarkerOptions) => FaceTracker
 
-export function useFaceTracker(): [CreateFaceTracker, boolean] {
+export function useFaceTracker(): [FaceTracker, SetupFaceTracker, boolean] {
+  const faceTrackerRef = useRef(new FaceTracker())
   const [initialized, setInitialized] = useState(false)
 
-  const create = useCallback((optionOverrides?: FaceLandmarkerOptions): FaceTracker => {
-    const faceTracker = new FaceTracker()
+  const setup = useCallback((optionOverrides?: FaceLandmarkerOptions): FaceTracker => {
+    const faceTracker = faceTrackerRef.current
     faceTracker.setup(optionOverrides, (faceTracker) => {
       setInitialized(true)
     })
     return faceTracker
   }, [])
 
-  return [create, initialized]
+  return [faceTrackerRef.current, setup, initialized]
 }
 
 export type CompleteHandler = (faceTracker: FaceTracker) => void
