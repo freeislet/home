@@ -11,7 +11,6 @@ export type CompleteHandler = (faceTracker: FaceTracker) => void
 
 export class FaceTracker {
   faceLandmarker?: FaceLandmarker
-  // drawer?: IFaceTrackingDrawer
 
   constructor() {}
 
@@ -37,15 +36,10 @@ export class FaceTracker {
     onComplete?.(this)
   }
 
-  // setDrawer(drawer: IFaceTrackingDrawer) {
-  //   this.drawer = drawer
-  // }
-
   detectForVideo(video: ImageSource, timestamp: number): FaceLandmarkerResult | undefined {
     if (!this.faceLandmarker) return
 
     const result = this.faceLandmarker.detectForVideo(video, timestamp)
-    // this.drawer?.draw(result)
     return result
   }
 }
