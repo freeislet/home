@@ -91,7 +91,6 @@ const nav: NavItem[] = [
           {
             title: 'Pose Tracking',
             href: '/game/mediapipe/pose-tracking',
-            disabled: true,
           },
         ],
       },
