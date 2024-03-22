@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react'
 import Webcam from 'react-webcam'
 
 import { MediaPipeIcon } from '@/components/icons'
-import { useFaceTrackerForVideo, FaceLandmarkDrawer } from '@/components/mediapipe/face-tracker'
+import { useFaceTrackerForVideo, FaceLandmarkDrawer } from '@/components/mediapipe/vision/face-tracker'
 import OverlayCanvas from '@/components/mediapipe/overlay-canvas'
 
 export default function MediaPipeFaceTrackingPage() {
