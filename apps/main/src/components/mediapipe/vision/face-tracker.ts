@@ -27,42 +27,36 @@ export function useFaceTracker(): [FaceTracker, SetupFaceTracker, boolean] {
   return [faceTrackerRef.current, setup, initialized]
 }
 
-export type SetupFaceTrackerForVideo = (
-  video: HTMLVideoElement,
-  stream: MediaStream,
-  optionOverrides?: FaceLandmarkerOptions
-) => void
+export type SetupFaceTrackerForVideo = (video: HTMLVideoElement, optionOverrides?: FaceLandmarkerOptions) => void
+export type DetectHandler = (result: FaceLandmarkerResult) => void
 
-export function useFaceTrackerForVideo(): [FaceTracker, SetupFaceTrackerForVideo, boolean] {
+export function useFaceTrackerForVideo(onDetect?: DetectHandler): [FaceTracker, SetupFaceTrackerForVideo, boolean] {
   const [faceTracker, setup, initialized] = useFaceTracker()
   const videoRef = useRef<HTMLVideoElement>()
-  const streamRef = useRef<MediaStream>()
-  const { setVideoFrameSrc } = useVideoFrame(render)
+  const { setVideoFrameSrc } = useVideoFrame(frameLoop)
 
-  const setupForVideo = useCallback(
-    (video: HTMLVideoElement, stream: MediaStream, optionOverrides?: FaceLandmarkerOptions) => {
-      videoRef.current = video
-      streamRef.current = stream
-      setup(optionOverrides)
-    },
-    []
-  )
+  const setupForVideo = useCallback((video: HTMLVideoElement, optionOverrides?: FaceLandmarkerOptions) => {
+    videoRef.current = video
+    setup(optionOverrides)
+  }, [])
 
   useEffect(() => {
-    if (initialized && streamRef.current) {
+    if (initialized && videoRef.current) {
       setVideoFrameSrc(videoRef.current!)
     }
-  }, [initialized, streamRef])
+  }, [initialized, videoRef])
 
-  function render(time: number) {
-    if (!faceTracker.drawer) return // TODO: needRender 콜백 분리
+  function frameLoop(time: number) {
+    // if (!faceTracker.drawer) return // TODO: needRender 콜백 분리
 
     const video = videoRef.current
     const videoReady = video && video.videoWidth && video.videoHeight
     if (!videoReady) return
 
-    faceTracker.detectForVideo(video, time)
-    // TODO: onDetect에 result 전달
+    const result = faceTracker.detectForVideo(video, time)
+    if (result) {
+      onDetect?.(result)
+    }
   }
 
   return [faceTracker, setupForVideo, initialized]
@@ -72,7 +66,7 @@ export type CompleteHandler = (faceTracker: FaceTracker) => void
 
 export class FaceTracker {
   faceLandmarker?: FaceLandmarker
-  drawer?: IFaceTrackingDrawer
+  // drawer?: IFaceTrackingDrawer
 
   constructor() {}
 
@@ -98,15 +92,15 @@ export class FaceTracker {
     onComplete?.(this)
   }
 
-  setDrawer(drawer: IFaceTrackingDrawer) {
-    this.drawer = drawer
-  }
+  // setDrawer(drawer: IFaceTrackingDrawer) {
+  //   this.drawer = drawer
+  // }
 
   detectForVideo(video: ImageSource, timestamp: number): FaceLandmarkerResult | undefined {
     if (!this.faceLandmarker) return
 
     const result = this.faceLandmarker.detectForVideo(video, timestamp)
-    this.drawer?.draw(result)
+    // this.drawer?.draw(result)
     return result
   }
 }

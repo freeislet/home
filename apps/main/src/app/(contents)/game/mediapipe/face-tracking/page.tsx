@@ -6,27 +6,35 @@ import Webcam from 'react-webcam'
 import { MediaPipeIcon } from '@/components/icons'
 import { useFaceTrackerForVideo, FaceLandmarkDrawer } from '@/components/mediapipe/vision/face-tracker'
 import OverlayCanvas from '@/components/mediapipe/overlay-canvas'
+import { FaceLandmarkerResult } from '@mediapipe/tasks-vision'
 
 export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
-  const [faceTracker, setupFaceTracker] = useFaceTrackerForVideo()
+  const [faceTracker, setupFaceTracker] = useFaceTrackerForVideo(render)
+  const [faceLandmarkDrawer, setFaceLandmarkDrawer] = useState<FaceLandmarkDrawer>()
 
   useEffect(() => {
     const video = webcamRef.current.video
-    if (video && stream) {
-      setupFaceTracker(video, stream)
+    if (video) {
+      setupFaceTracker(video)
     }
   }, [stream])
 
   function onInitializeCanvas(canvas: HTMLCanvasElement) {
     const canvasContext = canvas.getContext('2d')!
-    const drawer = new FaceLandmarkDrawer(canvasContext)
-    faceTracker.setDrawer(drawer)
+    setFaceLandmarkDrawer(new FaceLandmarkDrawer(canvasContext))
+    // faceTracker.setDrawer(drawer)
   }
 
   function onInitializeWebcam(stream: MediaStream) {
     setStream(stream) // == webcamRef.current.stream!
+  }
+
+  function render(result: FaceLandmarkerResult) {
+    if (faceLandmarkDrawer) {
+      faceLandmarkDrawer.draw(result)
+    }
   }
 
   const videoConstraints = {
