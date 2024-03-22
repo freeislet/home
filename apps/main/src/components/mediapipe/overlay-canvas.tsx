@@ -65,7 +65,3 @@ function calcContainedSize(width: number, height: number, ratio: number): Size {
   if (fitWidth <= width) return { width: fitWidth, height }
   else return { width, height: width / ratio }
 }
-
-export function clearCanvasContext(ctx: CanvasRenderingContext2D) {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-}
