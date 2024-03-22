@@ -13,7 +13,7 @@ export default function MediaPipeFaceTrackingPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
   const [faceDrawer, setFaceDrawer] = useState<FaceDrawer>()
-  const [setupFaceTracker, setFaceResultCallback, faceTracker] = useFaceTrackingForVideo()
+  const [setupFaceTracker, setFaceTrackingResultCallback, faceTrackingInitialized] = useFaceTrackingForVideo()
 
   useEffect(() => {
     const video = webcamRef.current.video
@@ -23,12 +23,12 @@ export default function MediaPipeFaceTrackingPage() {
   }, [stream])
 
   useEffect(() => {
-    if (faceTracker && faceDrawer) {
-      setFaceResultCallback(() => (result: FaceLandmarkerResult) => {
+    if (faceTrackingInitialized && faceDrawer) {
+      setFaceTrackingResultCallback(() => (result: FaceLandmarkerResult) => {
         faceDrawer.drawLandmark(result)
       })
     }
-  }, [faceTracker, faceDrawer])
+  }, [faceTrackingInitialized, faceDrawer])
 
   function onInitializeCanvas(canvas: HTMLCanvasElement) {
     const canvasContext = canvas.getContext('2d')!

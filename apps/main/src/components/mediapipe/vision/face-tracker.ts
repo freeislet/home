@@ -5,21 +5,18 @@ import {
   type FaceLandmarkerResult,
   type ImageSource,
 } from '@mediapipe/tasks-vision'
-import { merge } from 'lodash'
+
+import { TrackerBase } from './base'
 
 export type CompleteHandler = (faceTracker: FaceTracker) => void
 
-export class FaceTracker {
-  faceLandmarker?: FaceLandmarker
+export class FaceTracker extends TrackerBase<FaceLandmarker, FaceLandmarkerOptions, FaceLandmarkerResult> {
+  constructor() {
+    super()
+  }
 
-  constructor() {}
-
-  async setup(optionOverrides?: FaceLandmarkerOptions, onComplete?: CompleteHandler) {
-    const wasmFileset = await FilesetResolver.forVisionTasks(
-      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
-    )
-
-    const options: FaceLandmarkerOptions = {
+  getDefaultLandmarkerOptions(): FaceLandmarkerOptions {
+    return {
       baseOptions: {
         modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
         delegate: 'GPU',
@@ -29,17 +26,21 @@ export class FaceTracker {
       runningMode: 'VIDEO', // "IMAGE" | "VIDEO"
       numFaces: 1,
     }
-    merge(options, optionOverrides)
+  }
 
-    this.faceLandmarker = await FaceLandmarker.createFromOptions(wasmFileset, options)
+  async createLandmarker(options: FaceLandmarkerOptions): Promise<FaceLandmarker> {
+    const wasmFileset = await FilesetResolver.forVisionTasks(
+      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
+    )
 
-    onComplete?.(this)
+    const faceLandmarker = await FaceLandmarker.createFromOptions(wasmFileset, options)
+    return faceLandmarker
   }
 
   detectForVideo(video: ImageSource, timestamp: number): FaceLandmarkerResult | undefined {
-    if (!this.faceLandmarker) return
+    if (!this.landmarker) return
 
-    const result = this.faceLandmarker.detectForVideo(video, timestamp)
+    const result = this.landmarker.detectForVideo(video, timestamp)
     return result
   }
 }
