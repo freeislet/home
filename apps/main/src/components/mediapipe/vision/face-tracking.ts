@@ -1,29 +1,30 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useRef, useState, useEffect, useCallback, Dispatch } from 'react'
 import { type FaceLandmarkerOptions, type FaceLandmarkerResult } from '@mediapipe/tasks-vision'
 
 import { FaceTracker } from './face-tracker'
 import { useVideoFrame } from '@/hooks/video'
 
-export type SetupFaceTracker = (optionOverrides?: FaceLandmarkerOptions) => void
+export type SetupFn = (optionOverrides?: FaceLandmarkerOptions) => void
 
-export function useFaceTracker(): [FaceTracker, SetupFaceTracker, boolean] {
-  const faceTrackerRef = useRef(new FaceTracker())
-  const [initialized, setInitialized] = useState(false)
+export function useFaceTracking(): [SetupFn, FaceTracker | null] {
+  const [faceTracker, setFaceTracker] = useState<FaceTracker | null>(null)
 
   const setup = useCallback((optionOverrides?: FaceLandmarkerOptions) => {
-    faceTrackerRef.current.setup(optionOverrides, () => {
-      setInitialized(true)
+    const faceTracker = new FaceTracker()
+    faceTracker.setup(optionOverrides, () => {
+      setFaceTracker(faceTracker)
     })
   }, [])
 
-  return [faceTrackerRef.current, setup, initialized]
+  return [setup, faceTracker]
 }
 
-export type SetupFaceTrackerForVideo = (video: HTMLVideoElement, optionOverrides?: FaceLandmarkerOptions) => void
-export type DetectHandler = (result: FaceLandmarkerResult) => void
+export type SetupForVideoFn = (video: HTMLVideoElement, optionOverrides?: FaceLandmarkerOptions) => void
+export type ResultCallback = (result: FaceLandmarkerResult) => void
 
-export function useFaceTrackerForVideo(onDetect?: DetectHandler): [FaceTracker, SetupFaceTrackerForVideo, boolean] {
-  const [faceTracker, setup, initialized] = useFaceTracker()
+export function useFaceTrackingForVideo(): [SetupForVideoFn, Dispatch<ResultCallback>, FaceTracker | null] {
+  const [setup, faceTracker] = useFaceTracking()
+  const [resultCallback, setResultCallback] = useState<ResultCallback>()
   const videoRef = useRef<HTMLVideoElement>()
   const { setVideoFrameSrc } = useVideoFrame(frameLoop)
 
@@ -33,13 +34,13 @@ export function useFaceTrackerForVideo(onDetect?: DetectHandler): [FaceTracker, 
   }, [])
 
   useEffect(() => {
-    if (initialized && videoRef.current) {
+    if (faceTracker && videoRef.current) {
       setVideoFrameSrc(videoRef.current!)
     }
-  }, [initialized, videoRef])
+  }, [faceTracker, videoRef])
 
   function frameLoop(time: number) {
-    // if (!faceTracker.drawer) return // TODO: needRender 콜백 분리
+    if (!faceTracker || !resultCallback) return
 
     const video = videoRef.current
     const videoReady = video && video.videoWidth && video.videoHeight
@@ -47,9 +48,9 @@ export function useFaceTrackerForVideo(onDetect?: DetectHandler): [FaceTracker, 
 
     const result = faceTracker.detectForVideo(video, time)
     if (result) {
-      onDetect?.(result)
+      resultCallback(result)
     }
   }
 
-  return [faceTracker, setupForVideo, initialized]
+  return [setupForVideo, setResultCallback, faceTracker]
 }
