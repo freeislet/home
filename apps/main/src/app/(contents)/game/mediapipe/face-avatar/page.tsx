@@ -1,12 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react'
-import {
-  FilesetResolver,
-  FaceLandmarker,
-  type FaceLandmarkerOptions,
-  type Classifications,
-} from '@mediapipe/tasks-vision'
+import { type FaceLandmarkerResult, type Classifications } from '@mediapipe/tasks-vision'
 import Webcam from 'react-webcam'
 import * as THREE from 'three'
 import { type MeshProps } from '@react-three/fiber'
@@ -14,7 +9,7 @@ import { useAspect, useVideoTexture, useGLTF, Grid } from '@react-three/drei'
 
 import { load } from '@/components/loading'
 import { MediaPipeIcon } from '@/components/icons'
-import { useVideoFrame } from '@/hooks/video'
+import { useFaceTrackingForVideo } from '@/components/mediapipe/vision/face-tracking'
 import AvatarInstance from '@/components/mediapipe/avatar-instance'
 import '@/style/canvas.css'
 
@@ -34,42 +29,26 @@ const matrixRetargetOption = { scale: 40, z: 200 }
 export default function MediaPipeFaceAvatarPage() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
-  const [faceLandmarker, setFaceLandmarker] = useState<FaceLandmarker>()
-  const { setVideoFrameSrc } = useVideoFrame(render, [faceLandmarker])
+  const [setupFaceTracker, setFaceTrackingResultCallback, faceTrackingInitialized] = useFaceTrackingForVideo()
   const avatarRef = useRef<AvatarInstance>()
 
-  async function setup() {
-    if (!webcamRef.current.video) return
-
-    const wasmFileset = await FilesetResolver.forVisionTasks(
-      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
-    )
-
-    const faceLandmarkerOptions: FaceLandmarkerOptions = {
-      baseOptions: {
-        modelAssetPath: `https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task`,
-        delegate: 'GPU',
-      },
-      outputFaceBlendshapes: true,
-      outputFacialTransformationMatrixes: true,
-      runningMode: 'VIDEO', // "IMAGE" | "VIDEO"
-      numFaces: 1,
-    }
-    const faceLandmarker = await FaceLandmarker.createFromOptions(wasmFileset, faceLandmarkerOptions)
-    setFaceLandmarker(faceLandmarker)
-
-    setVideoFrameSrc(webcamRef.current.video)
-  }
-
-  function render(time: number) {
-    if (!faceLandmarker) return
-
+  useEffect(() => {
     const video = webcamRef.current.video
-    const videoReady = video && video.videoWidth && video.videoHeight
-    if (!videoReady) return
+    if (video) {
+      setupFaceTracker(video, {
+        outputFaceBlendshapes: true,
+        outputFacialTransformationMatrixes: true,
+      })
+    }
+  }, [stream])
 
-    const result = faceLandmarker.detectForVideo(video, time)
+  useEffect(() => {
+    if (faceTrackingInitialized) {
+      setFaceTrackingResultCallback(() => render)
+    }
+  }, [faceTrackingInitialized])
 
+  function render(result: FaceLandmarkerResult) {
     const avatar = avatarRef.current
     if (avatar) {
       // Apply transformation
@@ -127,9 +106,9 @@ export default function MediaPipeFaceAvatarPage() {
     return coefsMap
   }
 
-  useEffect(() => {
-    setup()
-  }, [])
+  function onInitializeWebcam(stream: MediaStream) {
+    setStream(stream) // == webcamRef.current.stream!
+  }
 
   return (
     <div className="my-grid-main grid-rows-[auto_auto_1fr]">
@@ -143,7 +122,7 @@ export default function MediaPipeFaceAvatarPage() {
         className="hidden- size-0"
         videoConstraints={videoConstraints}
         mirrored
-        onUserMedia={() => setStream(webcamRef.current.stream!)}
+        onUserMedia={onInitializeWebcam}
       />
       <div className="grid grid-cols-[1fr_auto]">
         <ThreeCanvas
