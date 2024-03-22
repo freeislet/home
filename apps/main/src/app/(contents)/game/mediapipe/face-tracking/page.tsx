@@ -40,8 +40,8 @@ export default function MediaPipeFaceTrackingPage() {
   }
 
   const videoConstraints = {
-    width: 1280 / 2,
-    height: 720 / 2, // NOTE: 가로로 길어질 때 video 크기가 720 이하로 안 줄어드는 문제로 인해 /2 적용
+    width: 640,
+    height: 480,
     facingMode: 'user',
   }
 

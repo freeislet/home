@@ -15,8 +15,8 @@ import '@/style/canvas.css'
 
 const ThreeCanvas = load(import('@/components/three-canvas'))
 
-const videoWidth = 1280
-const videoHeight = 720
+const videoWidth = 640
+const videoHeight = 480
 const videoConstraints = {
   width: videoWidth,
   height: videoHeight,
