@@ -5,6 +5,8 @@ import { MediaPipeIcon } from '@/components/icons'
 
 const components: PortfolioComponentMap = {
   'face-tracking': load(() => import('../_components/face-tracking')),
+  'hand-tracking': load(() => import('../_components/hand-tracking')),
+  'pose-tracking': load(() => import('../_components/pose-tracking')),
 }
 
 export default function MediaPipePortpolioPage({ params }: { params: { slug: string } }) {
