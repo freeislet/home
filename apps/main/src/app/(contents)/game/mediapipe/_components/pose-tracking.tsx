@@ -7,7 +7,7 @@ import { usePoseTrackingForVideo } from '@/components/mediapipe/vision/pose-trac
 import { PoseDrawer } from '@/components/mediapipe/vision/pose-drawer'
 import TrackingCam from '@/components/mediapipe/tracking-cam'
 
-export default function MediaPipePoseTrackingPage() {
+export default function PoseTracking() {
   const [poseDrawer, setPoseDrawer] = useState<PoseDrawer>()
   const [setupPoseTracker, setPoseTrackingResultCallback, poseTrackingInitialized] = usePoseTrackingForVideo()
 

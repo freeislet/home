@@ -5,6 +5,7 @@ import { MediaPipeIcon } from '@/components/icons'
 
 const components: PortfolioComponentMap = {
   'face-tracking': load(() => import('../_components/face-tracking')),
+  'face-avatar': load(() => import('../_components/face-avatar')),
   'hand-tracking': load(() => import('../_components/hand-tracking')),
   'pose-tracking': load(() => import('../_components/pose-tracking')),
 }

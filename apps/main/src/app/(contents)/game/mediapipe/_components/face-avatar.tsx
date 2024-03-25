@@ -7,13 +7,10 @@ import * as THREE from 'three'
 import { type MeshProps } from '@react-three/fiber'
 import { useAspect, useVideoTexture, useGLTF, Grid } from '@react-three/drei'
 
-import { load } from '@/components/loading'
-import { MediaPipeIcon } from '@/components/icons'
 import { useFaceTrackingForVideo } from '@/components/mediapipe/vision/face-tracking'
+import ThreeCanvas from '@/components/three-canvas'
 import AvatarInstance from '@/components/mediapipe/avatar-instance'
 import '@/style/canvas.css'
-
-const ThreeCanvas = load(() => import('@/components/three-canvas'))
 
 const videoWidth = 640
 const videoHeight = 480
@@ -26,13 +23,15 @@ const videoConstraints = {
 const camZ = 200
 const matrixRetargetOption = { scale: 40, z: 200 }
 
-export default function MediaPipeFaceAvatarPage() {
+export default function FaceAvatar() {
   const webcamRef = useRef<Webcam>(null!)
   const [stream, setStream] = useState<MediaStream>()
   const [setupFaceTracker, setFaceTrackingResultCallback, faceTrackingInitialized] = useFaceTrackingForVideo()
   const avatarRef = useRef<AvatarInstance>()
 
-  useEffect(() => {
+  function onInitializeWebcam(stream: MediaStream) {
+    setStream(stream) // == webcamRef.current.stream!
+
     const video = webcamRef.current.video
     if (video) {
       setupFaceTracker(video, {
@@ -40,7 +39,7 @@ export default function MediaPipeFaceAvatarPage() {
         outputFacialTransformationMatrixes: true,
       })
     }
-  }, [stream])
+  }
 
   useEffect(() => {
     if (faceTrackingInitialized) {
@@ -106,24 +105,8 @@ export default function MediaPipeFaceAvatarPage() {
     return coefsMap
   }
 
-  function onInitializeWebcam(stream: MediaStream) {
-    setStream(stream) // == webcamRef.current.stream!
-  }
-
   return (
-    <div className="my-grid-main grid-rows-[auto_auto_1fr]">
-      <div className="my-flex-row m-2">
-        <MediaPipeIcon />
-        <span className="badge mr-1 ml-0.5">MediaPipe</span>
-        Face Avatar 예제
-      </div>
-      <Webcam
-        ref={webcamRef}
-        className="hidden- size-0"
-        videoConstraints={videoConstraints}
-        mirrored
-        onUserMedia={onInitializeWebcam}
-      />
+    <>
       <div className="grid grid-cols-[1fr_auto]">
         <ThreeCanvas
           camera={{ fov: 60, position: [0, 0, camZ] }}
@@ -138,7 +121,14 @@ export default function MediaPipeFaceAvatarPage() {
         </ThreeCanvas>
         <div></div>
       </div>
-    </div>
+      <Webcam
+        ref={webcamRef}
+        className="size-0"
+        videoConstraints={videoConstraints}
+        mirrored
+        onUserMedia={onInitializeWebcam}
+      />
+    </>
   )
 }
 

@@ -7,7 +7,7 @@ import { useHandTrackingForVideo } from '@/components/mediapipe/vision/hand-trac
 import { HandDrawer } from '@/components/mediapipe/vision/hand-drawer'
 import TrackingCam from '@/components/mediapipe/tracking-cam'
 
-export default function MediaPipeHandTrackingPage() {
+export default function HandTracking() {
   const [handDrawer, setHandDrawer] = useState<HandDrawer>()
   const [setupHandTracker, setHandTrackingResultCallback, handTrackingInitialized] = useHandTrackingForVideo()
 
