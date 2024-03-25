@@ -240,7 +240,5 @@ export const mediaPipePortfolio: PortfolioItem[] = [
     thumbnail: '/contents/mediapipe/face-tracking.png',
     title: 'Face Tracking 예제',
     description: 'Face Landmarker를 이용한 실시간 face tracking.',
-    slug: 'face-tracking',
-    component: '@/components/portfolio/mediapipe/face-tracking',
   },
 ]
