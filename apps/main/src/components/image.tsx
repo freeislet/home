@@ -2,7 +2,7 @@ import NextImage, { ImageProps as NextImageProps } from 'next/image'
 
 import { cn } from '@/lib/utils'
 
-interface ImageProps extends PartialExcept<NextImageProps, 'src'> {}
+export interface ImageProps extends PartialExcept<NextImageProps, 'src'> {}
 
 export function Image({ alt, className, width, height, sizes, ...props }: ImageProps) {
   return (

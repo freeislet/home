@@ -36,7 +36,7 @@ function row(item: PortfolioItem, index: number) {
     <tr key={index}>
       <td className="w-72">{image(item.thumbnail, { className: 'w-full h-auto' })}</td>
       <td className="align-top">
-        <div className="text-lg text-bold">{item.title}</div>
+        <div className="text-lg text-bold text-foreground">{item.title}</div>
         <hr className="my-1"></hr>
         <span className="">{item.description}</span>
       </td>
