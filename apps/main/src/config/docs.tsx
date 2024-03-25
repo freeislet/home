@@ -1,6 +1,7 @@
 import { type ImageProps } from 'next/image'
 
 import { type NavItem } from '@/lib/nav'
+import { type PortfolioItem } from '@/lib/portfolio'
 import {
   CubeIcon,
   ThreeJsIcon,
@@ -228,3 +229,18 @@ export const docsConfig: DocsConfig = {
   nav,
   catalog,
 }
+
+/**
+ * Portfolio
+ */
+
+export const mediaPipePortfolio: PortfolioItem[] = [
+  {
+    href: '/game/mediapipe/face-tracking',
+    thumbnail: '/contents/mediapipe/face-tracking.png',
+    title: 'Face Tracking 예제',
+    description: 'Face Landmarker를 이용한 실시간 face tracking.',
+    slug: 'face-tracking',
+    component: '@/components/portfolio/mediapipe/face-tracking',
+  },
+]
