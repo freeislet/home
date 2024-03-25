@@ -5,7 +5,7 @@ import dynamic, { type LoaderComponent } from 'next/dynamic'
 
 /**
  * 컴포넌트 비동기 import
- * @param specifier 모듈 path
+ * @param importer import 문 (예: import(모듈 path))
  * @param loading 로딩 컴포넌트 모듈명
  * @returns
  */
