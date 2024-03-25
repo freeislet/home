@@ -15,7 +15,7 @@ import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll
 import ProseLayout from '@/components/prose-layout'
 import BlocklyMdx from './blockly.mdx'
 
-const BlocklyWorkspace = load(import('@/components/blockly-workspace'))
+const BlocklyWorkspace = load(() => import('@/components/blockly-workspace'))
 
 export default function BlocklyPage() {
   const blocklyRef = useRef<WorkspaceInstance>()

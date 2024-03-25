@@ -5,7 +5,7 @@ import { ThreeJsIcon } from '@/components/icons'
 import BasicBox from '@/components/react-three-fiber/examples/basic-box'
 import Shiba from '@/components/react-three-fiber/examples/shiba'
 
-const ThreeCanvas = load(import('@/components/three-canvas'))
+const ThreeCanvas = load(() => import('@/components/three-canvas'))
 
 export default function ReactThreeFiberBasicDemoPage() {
   return (

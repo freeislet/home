@@ -9,7 +9,7 @@ import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll
 import ProseLayout from '@/components/prose-layout'
 import ReactFlowMdx from './reactflow.mdx'
 
-const ReactFlowView = load(import('@/components/react-flow-view'))
+const ReactFlowView = load(() => import('@/components/react-flow-view'))
 
 export default function ReactFlowPage() {
   const docRef = useRef(null)

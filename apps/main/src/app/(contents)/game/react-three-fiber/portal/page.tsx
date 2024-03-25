@@ -5,7 +5,7 @@ import { ThreeJsIcon } from '@/components/icons'
 import { Sparkles } from '@react-three/drei'
 import Portal from '@/components/react-three-fiber/examples/portal'
 
-const ThreeCanvas = load(import('@/components/three-canvas'))
+const ThreeCanvas = load(() => import('@/components/three-canvas'))
 
 export default function ReactThreeFiberPortalPage() {
   const scale = Float32Array.from({ length: 50 }, () => 0.5 + Math.random() * 4)

@@ -9,7 +9,7 @@ import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll
 import ProseLayout from '@/components/prose-layout'
 import FlumeMdx from './flume.mdx'
 
-const FlumeEditor = load(import('@/components/flume-editor'))
+const FlumeEditor = load(() => import('@/components/flume-editor'))
 
 export default function FlumePage() {
   const docRef = useRef(null)

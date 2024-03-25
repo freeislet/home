@@ -13,7 +13,7 @@ import { useFaceTrackingForVideo } from '@/components/mediapipe/vision/face-trac
 import AvatarInstance from '@/components/mediapipe/avatar-instance'
 import '@/style/canvas.css'
 
-const ThreeCanvas = load(import('@/components/three-canvas'))
+const ThreeCanvas = load(() => import('@/components/three-canvas'))
 
 const videoWidth = 640
 const videoHeight = 480

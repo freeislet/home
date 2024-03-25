@@ -9,7 +9,7 @@ import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll
 import ProseLayout from '@/components/prose-layout'
 import ReteMdx from './rete.mdx'
 
-const ReteEditor = load(import('@/components/rete-editor'))
+const ReteEditor = load(() => import('@/components/rete-editor'))
 
 export default function RetePage() {
   const docRef = useRef(null)

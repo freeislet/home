@@ -6,7 +6,7 @@ import { load } from '@/components/loading'
 import { ThreeJsIcon } from '@/components/icons'
 import Shoe, { Picker } from '@/components/react-three-fiber/examples/shoe'
 
-const ThreeCanvas = load(import('@/components/three-canvas'))
+const ThreeCanvas = load(() => import('@/components/three-canvas'))
 
 export default function ReactThreeFiberBasicDemoPage() {
   return (
