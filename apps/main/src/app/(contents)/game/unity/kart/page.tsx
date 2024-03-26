@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { Unity, useUnityContext, type UnityConfig } from 'react-unity-webgl'
 
 import { UnityIcon } from '@/components/icons'
@@ -21,8 +22,14 @@ export default function UnityKartPage() {
     // readonly webglContextAttributes?: WebGLContextAttributes;
     // readonly cacheControl?: (url: string) => UnityCacheControlMode;
   }
-  const { unityProvider, isLoaded, loadingProgression } = useUnityContext(unityConfig)
+  const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext(unityConfig)
   const loadingPercentage = Math.round(loadingProgression * 100)
+
+  useEffect(() => {
+    return () => {
+      unload()
+    }
+  }, [])
 
   return (
     <div className="my-grid-main">
