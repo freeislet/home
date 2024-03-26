@@ -4,11 +4,11 @@ import { PortfolioItem, filterValidPortfolio } from '@/lib/portfolio'
 import { cn } from '@/lib/utils'
 import { Image, ImageProps } from '@/components/image'
 
-export interface PortfolioListProps extends React.ComponentProps<'div'> {
+export interface PortfolioProps extends React.ComponentProps<'div'> {
   portfolio: PortfolioItem[]
 }
 
-export default function PortfolioList({ portfolio, className, ...props }: PortfolioListProps) {
+export default function Portfolio({ portfolio, className, ...props }: PortfolioProps) {
   const validPortfolio = filterValidPortfolio(portfolio)
 
   return (
