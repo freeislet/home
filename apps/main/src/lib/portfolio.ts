@@ -1,5 +1,3 @@
-import { Loader } from 'next/dynamic'
-
 export interface PortfolioItem {
   href: string
   thumbnail: string | React.ReactNode
@@ -16,6 +14,6 @@ export function findPortfolioItem(portfolio: PortfolioItem[], slug: string): Por
   return portfolio.find((item) => item.href.endsWith(slug))
 }
 
-export interface PortfolioComponentMap {
-  [key: string]: React.ComponentType // slug: Component
+export interface PortfolioLoaderMap {
+  [slug: string]: () => React.ComponentType<any>
 }

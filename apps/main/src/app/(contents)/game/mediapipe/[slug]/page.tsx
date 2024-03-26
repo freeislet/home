@@ -1,18 +1,18 @@
 import { mediaPipePortfolio } from '@/config/docs'
-import { findPortfolioItem, PortfolioComponentMap } from '@/lib/portfolio'
+import { findPortfolioItem, PortfolioLoaderMap } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 import { MediaPipeIcon } from '@/components/icons'
 
-const components: PortfolioComponentMap = {
-  'face-tracking': load(() => import('../_components/face-tracking')),
-  'face-avatar': load(() => import('../_components/face-avatar')),
-  'hand-tracking': load(() => import('../_components/hand-tracking')),
-  'pose-tracking': load(() => import('../_components/pose-tracking')),
+const components: PortfolioLoaderMap = {
+  'face-tracking': () => load(() => import('../_components/face-tracking')),
+  'face-avatar': () => load(() => import('../_components/face-avatar')),
+  'hand-tracking': () => load(() => import('../_components/hand-tracking')),
+  'pose-tracking': () => load(() => import('../_components/pose-tracking')),
 }
 
 export default function MediaPipePortpolioPage({ params }: { params: { slug: string } }) {
   const portfolioItem = findPortfolioItem(mediaPipePortfolio, params.slug)
-  const PortfolioComponent = components[params.slug]
+  const PortfolioComponent = components[params.slug]?.()
 
   return (
     <div className="my-grid-main">
