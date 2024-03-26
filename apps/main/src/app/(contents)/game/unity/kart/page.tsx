@@ -25,11 +25,12 @@ export default function UnityKartPage() {
   const { unityProvider, isLoaded, loadingProgression, unload } = useUnityContext(unityConfig)
   const loadingPercentage = Math.round(loadingProgression * 100)
 
-  useEffect(() => {
-    return () => {
-      unload()
-    }
-  }, [])
+  // useEffect(() => {
+  //   return () => {
+  //     unload()
+  //   }
+  // }, [])
+  // unload 버그 존재 (https://react-unity-webgl.dev/docs/api/unload)
 
   return (
     <div className="my-grid-main">
@@ -44,6 +45,9 @@ export default function UnityKartPage() {
         </div>
       )}
       <Unity unityProvider={unityProvider} className={cn('w-[960px] h-[600px] m-auto', { hidden: !isLoaded })} />
+      <button className="mt-4 p-1 bg-destructive text-destructive-foreground" onClick={async () => await unload()}>
+        Unload
+      </button>
     </div>
   )
 }
