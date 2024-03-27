@@ -66,7 +66,7 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
     [options, toolbox]
   )
 
-  useImperativeHandle(ref, () => workspaceInstanceRef.current, [workspaceInstanceRef])
+  useImperativeHandle(ref, () => workspaceInstanceRef.current, [workspaceInstanceRef]) // TODO: ref deps 정리
 
   return <div ref={workspaceDivRef} className={cn('h-full', className)} {...props} />
 })

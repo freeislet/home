@@ -88,7 +88,7 @@ export function useTrackingForVideo<T extends ITracker<OptionsT, ResultT>, Optio
     if (initialized && videoRef.current) {
       setVideoFrameSrc(videoRef.current!)
     }
-  }, [initialized, videoRef])
+  }, [initialized, videoRef]) // TODO: ref deps 정리
 
   function frameLoop(time: number) {
     if (!initialized || !resultCallback) return

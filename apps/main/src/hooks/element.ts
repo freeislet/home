@@ -35,7 +35,7 @@ export function useElementSize<T extends HTMLElement = HTMLDivElement>(
 export function useScrollToTarget<T extends HTMLElement = HTMLElement>(targetRef: RefObject<T>): () => void {
   const scrollTo = useCallback(() => {
     targetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
-  }, [targetRef])
+  }, [targetRef]) // TODO: ref deps 정리
 
   return scrollTo
 }
