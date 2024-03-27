@@ -11,7 +11,7 @@ import {
   GeminiIcon,
 } from '@/components/icons'
 
-const nav: NavItem[] = [
+export const nav: NavItem[] = [
   {
     icon: <CubeIcon />,
     title: '3D/Game/XR',
@@ -150,13 +150,3 @@ const nav: NavItem[] = [
     href: '/about',
   },
 ]
-
-export interface DocsConfig {
-  nav: NavItem[]
-  // catalog: CatalogItem[]
-}
-
-export const docsConfig: DocsConfig = {
-  nav,
-  // catalog,
-}

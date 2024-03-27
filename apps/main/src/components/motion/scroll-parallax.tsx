@@ -8,7 +8,7 @@ import React, { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll } from 'framer-motion'
 
-import { docsConfig, type CatalogItem } from '@/config/docs'
+import { catalog, type CatalogItem } from '@/config/docs/catalog'
 import { cn } from '@/lib/utils'
 import { useParallax } from '@/components/motion'
 
@@ -17,7 +17,7 @@ interface CatalogSectionProps extends React.HTMLAttributes<HTMLDivElement> {}
 export function CatalogSection({ className, ...props }: CatalogSectionProps) {
   return (
     <div className={cn('pb-[100px]', className)} {...props}>
-      {docsConfig.catalog.map((item, index) => (
+      {catalog.map((item, index) => (
         <ParallaxImage key={index} item={item} />
       ))}
     </div>

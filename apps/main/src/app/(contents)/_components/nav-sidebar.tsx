@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-import { docsConfig } from '@/config/docs'
+import { nav } from '@/config/docs/nav'
 import { cn } from '@/lib/utils'
 import { getBaseNavItem } from '@/lib/nav'
 import NavTree from '@/components/nav-tree'
@@ -10,7 +10,7 @@ import NavTree from '@/components/nav-tree'
 export function NavSidebar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const pathname = usePathname()
 
-  const navItem = getBaseNavItem(docsConfig.nav, pathname)
+  const navItem = getBaseNavItem(nav, pathname)
   if (!navItem?.children?.length) return
 
   return (

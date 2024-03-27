@@ -1,11 +1,11 @@
 'use client'
 
-import { docsConfig } from '@/config/docs'
+import { nav } from '@/config/docs/nav'
 import { filterValidNav } from '@/lib/nav'
 import NavLink from '@/components/nav-link'
 
 export function NavMain() {
-  const validNav = filterValidNav(docsConfig.nav)
+  const validNav = filterValidNav(nav)
 
   return (
     <nav className="my-flex-row gap-4 text-sm">
