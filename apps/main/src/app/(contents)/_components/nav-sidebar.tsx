@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { docsConfig } from '@/config/docs'
 import { cn } from '@/lib/utils'
 import { getBaseNavItem } from '@/lib/nav'
-import { NavTree } from '@/components/nav-tree'
+import NavTree from '@/components/nav-tree'
 
 export function NavSidebar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const pathname = usePathname()
