@@ -77,5 +77,6 @@ const NavLink = memo(
     )
   }
 )
+NavLink.displayName = 'NavLink'
 
 export default NavLink
