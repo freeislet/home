@@ -56,23 +56,20 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
   return (
     <>
       <div className={cn('my-flex-row', className)} {...props}>
-        {navItem.href ? (
-          <NavLink
-            href={navItem.href}
-            className="my-flex-row space-x-1 text-foreground/60 hover:text-foreground/80 transition-colors"
-            activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
-            allowPartialMatch
-            partialActiveClassName="text-foreground/70"
-          >
-            {navItem.icon}
-            <span>{navItem.title}</span>
-          </NavLink>
-        ) : (
-          <div className="my-flex-row space-x-1 text-muted-foreground">
-            {navItem.icon}
-            <span>{navItem.title}</span>
-          </div>
-        )}
+        <NavLink
+          href={navItem.href}
+          nonlink={navItem.nonlink}
+          className="my-flex-row space-x-1 text-foreground/60 hover:text-foreground/80 transition-colors"
+          activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
+          allowPartialMatch
+          partialActiveClassName="text-foreground/70"
+          handleActiveState={(active, partialActive) => {
+            if (active || partialActive) setExpanded(true)
+          }}
+        >
+          {navItem.icon}
+          <span>{navItem.title}</span>
+        </NavLink>
         {hasChildren && <ExpandToggle expanded={expanded} onChange={setExpanded} />}
       </div>
       {hasChildren && (

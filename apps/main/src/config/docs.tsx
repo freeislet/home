@@ -105,6 +105,8 @@ const nav: NavItem[] = [
       {
         icon: <DiagramIcon />,
         title: 'Visual Scripting',
+        href: '/web/visual-scripting',
+        nonlink: true,
         children: [
           {
             title: 'React Flow',
@@ -134,6 +136,8 @@ const nav: NavItem[] = [
       {
         icon: <GeminiIcon />,
         title: 'Gemini',
+        href: '/ai/gemini',
+        nonlink: true,
         children: [
           {
             title: 'Chatbot',

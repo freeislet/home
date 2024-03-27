@@ -1,7 +1,8 @@
 export interface NavItem {
   title: React.ReactNode
   icon?: React.ReactNode
-  href?: string
+  href: string
+  nonlink?: boolean
   disabled?: boolean
 
   children?: NavItem[]

@@ -11,6 +11,8 @@ type NavLinkProps = LinkProps & {
   activeClassName: string
   allowPartialMatch?: boolean
   partialActiveClassName?: string
+  handleActiveState?: (active: boolean, partialActive: boolean) => void
+  nonlink?: boolean
 }
 
 export function NavLink({
@@ -18,22 +20,30 @@ export function NavLink({
   activeClassName,
   allowPartialMatch,
   partialActiveClassName,
-  ...linkProps
+  handleActiveState,
+  nonlink,
+  className,
+  ...props
 }: { children: React.ReactNode } & NavLinkProps) {
-  const href = hrefAsString(linkProps.href)
+  const href = hrefAsString(props.href)
   const pathname = usePathname()
+  const isActive = pathname === href
+  const isPartialActive = !isActive && pathname.startsWith(href)
+
+  handleActiveState?.(isActive, isPartialActive)
 
   const getClassName = () => {
-    const isActive = pathname === href
     if (isActive) return activeClassName
-
-    if (!allowPartialMatch) return
-
-    const isPartialActive = pathname.startsWith(href)
-    if (isPartialActive) return partialActiveClassName || activeClassName
+    if (allowPartialMatch && isPartialActive) return partialActiveClassName || activeClassName
   }
 
-  linkProps.className = cn(linkProps.className, getClassName())
+  className = cn(className, getClassName())
 
-  return <Link {...linkProps}>{children}</Link>
+  return nonlink ? (
+    <div className={className}>{children}</div>
+  ) : (
+    <Link className={className} {...props}>
+      {children}
+    </Link>
+  )
 }
