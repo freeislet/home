@@ -1,4 +1,4 @@
-import { mediaPipePortfolio } from '@/config/docs'
+import { mediaPipePortfolio } from '@/config/docs/portfolio'
 import { findPortfolioItem, PortfolioLoaderMap } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 import { MediaPipeIcon } from '@/components/icons'
