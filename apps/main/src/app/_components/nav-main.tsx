@@ -2,7 +2,7 @@
 
 import { docsConfig } from '@/config/docs'
 import { filterValidNav } from '@/lib/nav'
-import { NavLink } from '@/components/nav-link'
+import NavLink from '@/components/nav-link'
 
 export function NavMain() {
   const validNav = filterValidNav(docsConfig.nav)

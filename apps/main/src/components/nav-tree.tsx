@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 
 import { type NavItem, filterValidNav } from '@/lib/nav'
 import { cn } from '@/lib/utils'
-import { NavLink } from '@/components/nav-link'
+import NavLink from '@/components/nav-link'
 
 interface NavTreeProps extends React.ComponentProps<'div'> {
   nav: NavItem[]

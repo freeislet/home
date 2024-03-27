@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
 import { getPageSession } from '@/auth/lucia'
-import { NavLink } from '@/components/nav-link'
+import NavLink from '@/components/nav-link'
 
 const nav = [
   ['/user/profile', 'Profile'],

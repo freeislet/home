@@ -15,7 +15,7 @@ type NavLinkProps = LinkProps & {
   nonlink?: boolean
 }
 
-export function NavLink({
+export default function NavLink({
   children,
   activeClassName,
   allowPartialMatch,
