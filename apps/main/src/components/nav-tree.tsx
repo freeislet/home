@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect, forwardRef, memo } from 'react'
+import { useState, useRef, useLayoutEffect, useCallback, forwardRef, memo } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 import { type NavItem, filterValidNav } from '@/lib/nav'
@@ -50,7 +50,11 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
     if (subtree) {
       setSubtreeHeight(expanded ? `${subtree.clientHeight}px` : '0')
     }
-  }, [subtreeRef, expanded])
+  }, [expanded])
+
+  const onActiveStateChange = useCallback((active: boolean, partialActive: boolean) => {
+    if (active || partialActive) setExpanded(true)
+  }, [])
 
   const hasChildren = !!navItem.children?.length
   return (
@@ -63,9 +67,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
           activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
           allowPartialMatch
           partialActiveClassName="text-foreground/70"
-          handleActiveState={(active, partialActive) => {
-            if (active || partialActive) setExpanded(true)
-          }}
+          onActiveStateChange={onActiveStateChange}
         >
           {navItem.icon}
           <span>{navItem.title}</span>

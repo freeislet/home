@@ -1,5 +1,6 @@
 'use client'
 
+import { useReducer, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
@@ -7,11 +8,34 @@ import { hrefAsString } from '@/lib/url'
 import { cn } from '@/lib/utils'
 
 type LinkProps = React.ComponentProps<typeof Link>
+type Url = LinkProps['href']
+
+interface ActiveState {
+  active: boolean
+  partialActive: boolean
+}
+
+interface ActiveStateAction {
+  href: Url
+  pathname: string
+}
+
+function getActiveState(href: Url, pathname: string): ActiveState {
+  const hrefStr = hrefAsString(href)
+  const active = href == pathname
+  const partialActive = !active && pathname.startsWith(hrefStr)
+  return { active, partialActive }
+}
+
+function activeStateReducer(state: ActiveState, action: ActiveStateAction): ActiveState {
+  return getActiveState(action.href, action.pathname)
+}
+
 type NavLinkProps = LinkProps & {
   activeClassName: string
   allowPartialMatch?: boolean
   partialActiveClassName?: string
-  handleActiveState?: (active: boolean, partialActive: boolean) => void
+  onActiveStateChange?: (active: boolean, partialActive: boolean) => void
   nonlink?: boolean
 }
 
@@ -20,21 +44,25 @@ export default function NavLink({
   activeClassName,
   allowPartialMatch,
   partialActiveClassName,
-  handleActiveState,
+  onActiveStateChange,
   nonlink,
   className,
   ...props
 }: { children: React.ReactNode } & NavLinkProps) {
-  const href = hrefAsString(props.href)
   const pathname = usePathname()
-  const isActive = pathname === href
-  const isPartialActive = !isActive && pathname.startsWith(href)
+  const [activeState, dispatchActiveState] = useReducer(activeStateReducer, getActiveState(props.href, pathname))
 
-  handleActiveState?.(isActive, isPartialActive)
+  useEffect(() => {
+    dispatchActiveState({ href: props.href, pathname })
+  }, [pathname])
+
+  useEffect(() => {
+    onActiveStateChange?.(activeState.active, activeState.partialActive)
+  }, [activeState.active, activeState.partialActive])
 
   const getClassName = () => {
-    if (isActive) return activeClassName
-    if (allowPartialMatch && isPartialActive) return partialActiveClassName || activeClassName
+    if (activeState.active) return activeClassName
+    if (allowPartialMatch && activeState.partialActive) return partialActiveClassName || activeClassName
   }
 
   className = cn(className, getClassName())
