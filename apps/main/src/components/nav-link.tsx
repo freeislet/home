@@ -1,6 +1,6 @@
 'use client'
 
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, memo } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
@@ -39,39 +39,43 @@ type NavLinkProps = LinkProps & {
   nonlink?: boolean
 }
 
-export default function NavLink({
-  children,
-  activeClassName,
-  allowPartialMatch,
-  partialActiveClassName,
-  onActiveStateChange,
-  nonlink,
-  className,
-  ...props
-}: { children: React.ReactNode } & NavLinkProps) {
-  const pathname = usePathname()
-  const [activeState, dispatchActiveState] = useReducer(activeStateReducer, getActiveState(props.href, pathname))
+const NavLink = memo(
+  ({
+    children,
+    activeClassName,
+    allowPartialMatch,
+    partialActiveClassName,
+    onActiveStateChange,
+    nonlink,
+    className,
+    ...props
+  }: { children: React.ReactNode } & NavLinkProps) => {
+    const pathname = usePathname()
+    const [activeState, dispatchActiveState] = useReducer(activeStateReducer, getActiveState(props.href, pathname))
 
-  useEffect(() => {
-    dispatchActiveState({ href: props.href, pathname })
-  }, [pathname])
+    useEffect(() => {
+      dispatchActiveState({ href: props.href, pathname })
+    }, [pathname])
 
-  useEffect(() => {
-    onActiveStateChange?.(activeState.active, activeState.partialActive)
-  }, [activeState.active, activeState.partialActive])
+    useEffect(() => {
+      onActiveStateChange?.(activeState.active, activeState.partialActive)
+    }, [activeState.active, activeState.partialActive])
 
-  const getClassName = () => {
-    if (activeState.active) return activeClassName
-    if (allowPartialMatch && activeState.partialActive) return partialActiveClassName || activeClassName
+    const getClassName = () => {
+      if (activeState.active) return activeClassName
+      if (allowPartialMatch && activeState.partialActive) return partialActiveClassName || activeClassName
+    }
+
+    className = cn(className, getClassName())
+
+    return nonlink ? (
+      <div className={className}>{children}</div>
+    ) : (
+      <Link className={className} {...props}>
+        {children}
+      </Link>
+    )
   }
+)
 
-  className = cn(className, getClassName())
-
-  return nonlink ? (
-    <div className={className}>{children}</div>
-  ) : (
-    <Link className={className} {...props}>
-      {children}
-    </Link>
-  )
-}
+export default NavLink
