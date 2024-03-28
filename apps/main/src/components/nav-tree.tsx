@@ -7,20 +7,34 @@ import NavLink from '@/components/nav-link'
 
 interface NavTreeProps extends React.ComponentProps<'div'> {
   nav: NavItem[]
-  depth?: number
 }
 
-export default function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
+interface NavInnerTreeProps {
+  nav: NavItem[]
+  depth: number
+}
+
+interface NavTreeItemProps {
+  navItem: NavItem
+  depth: number
+  initialCollapse?: boolean
+}
+
+export default function NavTree({ nav, className, ...props }: NavTreeProps) {
   return (
-    <div
-      className={cn(
-        'my-flex-col',
-        depth === 0 ? 'space-y-2 text-[15px]' : 'ml-3 py-3 space-y-2 text-sm',
-        depth > 1 && 'py-2',
-        className
-      )}
-      {...props}
-    >
+    <div className={cn('my-flex-col space-y-2 text-[15px]', className)} {...props}>
+      {nav.map((item, index) => (
+        <div key={index}>
+          <NavTreeItem navItem={item} depth={0} initialCollapse />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+const NavInnerTree = memo(({ nav, depth }: NavInnerTreeProps) => {
+  return (
+    <div className={cn('my-flex-col space-y-2 text-sm ml-3', depth <= 1 ? 'py-3' : 'py-2')}>
       {nav.map((item, index) => (
         <div key={index}>
           <NavTreeItem navItem={item} depth={depth} initialCollapse />
@@ -28,15 +42,10 @@ export default function NavTree({ nav, depth = 0, className, ...props }: NavTree
       ))}
     </div>
   )
-}
+})
+NavInnerTree.displayName = 'NavInnerTree'
 
-interface NavTreeItemProps extends React.ComponentProps<'div'> {
-  navItem: NavItem
-  depth: number
-  initialCollapse?: boolean
-}
-
-const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, ...props }: NavTreeItemProps) => {
+const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeItemProps) => {
   const [expanded, setExpanded] = useState(!initialCollapse)
 
   const onActiveStateChange = useCallback((active: boolean, partialActive: boolean) => {
@@ -46,7 +55,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
   const hasChildren = !!navItem.children?.length
   return (
     <>
-      <div className={cn('my-flex-row', className)} {...props}>
+      <div className="my-flex-row">
         <NavLink
           href={navItem.href}
           nonlink={navItem.nonlink}
@@ -63,7 +72,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
       </div>
       {hasChildren && expanded && (
         <div className="overflow-hidden">
-          <NavTree nav={navItem.children!} depth={depth + 1} />
+          <NavInnerTree nav={navItem.children!} depth={depth + 1} />
         </div>
       )}
     </>
