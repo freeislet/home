@@ -9,7 +9,13 @@ export interface NavItem {
 }
 
 export function buildValidNav(nav: NavItem[]): NavItem[] {
-  const validNav = nav?.filter((item) => !item.disabled) ?? []
+  function filterFn(item: NavItem) {
+    if (item.disabled) return false
+    item.children = item.children?.filter(filterFn)
+    return true
+  }
+
+  const validNav = nav.filter(filterFn)
   return validNav
 }
 
