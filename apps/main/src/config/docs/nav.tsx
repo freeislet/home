@@ -17,6 +17,7 @@ const navConfig: NavItem[] = [
     icon: <CubeIcon />,
     title: '3D/Game/XR',
     href: '/game',
+    nonlink: true,
     children: [
       {
         icon: <GameDevIcon />,
@@ -78,6 +79,7 @@ const navConfig: NavItem[] = [
     icon: <WebDevIcon />,
     title: 'Web',
     href: '/web',
+    nonlink: true,
     children: [
       {
         icon: <DiagramIcon />,
@@ -109,6 +111,7 @@ const navConfig: NavItem[] = [
     icon: <AiIcon />,
     title: 'AI',
     href: '/ai',
+    nonlink: true,
     children: [
       {
         icon: <GeminiIcon />,
