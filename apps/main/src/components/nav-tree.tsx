@@ -1,4 +1,5 @@
 import { useState, useCallback, memo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 import { type NavItem } from '@/lib/nav'
@@ -53,6 +54,20 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
   }, [])
 
   const hasChildren = !!navItem.children?.length
+  const expandMotionProps = {
+    initial: {
+      height: 0,
+      opacity: 0,
+    },
+    animate: {
+      height: 'auto',
+      opacity: 1,
+    },
+    exit: {
+      height: 0,
+      opacity: 0,
+    },
+  }
   return (
     <>
       <div className="my-flex-row">
@@ -70,11 +85,13 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
         </NavLink>
         {hasChildren && <ExpandToggle expanded={expanded} onChange={setExpanded} />}
       </div>
-      {hasChildren && expanded && (
-        <div className="overflow-hidden">
-          <NavInnerTree nav={navItem.children!} depth={depth + 1} />
-        </div>
-      )}
+      <AnimatePresence>
+        {hasChildren && expanded && (
+          <motion.div {...expandMotionProps} key={navItem.href} className="overflow-hidden">
+            <NavInnerTree nav={navItem.children!} depth={depth + 1} key={navItem.href} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 })
@@ -97,6 +114,9 @@ const ExpandToggle = memo(({ expanded, onChange }: ExpandToggleProps) => {
       })}
       onClick={(e) => {
         onChange?.(!expanded)
+      }}
+      onMouseDown={(e) => {
+        e.preventDefault() // 텍스트 선택 방지
       }}
     />
   )
