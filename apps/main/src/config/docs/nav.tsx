@@ -10,6 +10,7 @@ import {
   AiIcon,
   GeminiIcon,
 } from '@/components/icons'
+import * as allPortfolios from './portfolio'
 
 const navConfig: NavItem[] = [
   {
@@ -69,24 +70,7 @@ const navConfig: NavItem[] = [
         icon: <MediaPipeIcon />,
         title: 'MediaPipe (AR)',
         href: '/game/mediapipe',
-        children: [
-          {
-            title: 'Face Tracking',
-            href: '/game/mediapipe/face-tracking',
-          },
-          {
-            title: 'Face Avatar',
-            href: '/game/mediapipe/face-avatar',
-          },
-          {
-            title: 'Hand Tracking',
-            href: '/game/mediapipe/hand-tracking',
-          },
-          {
-            title: 'Pose Tracking',
-            href: '/game/mediapipe/pose-tracking',
-          },
-        ],
+        portfolio: allPortfolios.mediaPipePortfolio,
       },
     ],
   },

@@ -1,3 +1,5 @@
+import { PortfolioItem } from './portfolio'
+
 export interface NavItem {
   title: React.ReactNode
   icon?: React.ReactNode
@@ -6,16 +8,20 @@ export interface NavItem {
   disabled?: boolean
 
   children?: NavItem[]
+  portfolio?: PortfolioItem[]
 }
 
 export function buildValidNav(nav: NavItem[]): NavItem[] {
-  function filterFn(item: NavItem) {
+  function build(item: NavItem) {
     if (item.disabled) return false
-    item.children = item.children?.filter(filterFn)
+
+    const children = item.children?.filter(build)
+    const portfolioNav = item.portfolio?.map((item) => ({ title: item.title, href: item.href }))
+    item.children = children || portfolioNav ? [...(children || []), ...(portfolioNav || [])] : undefined
     return true
   }
 
-  const validNav = nav.filter(filterFn)
+  const validNav = nav.filter(build)
   return validNav
 }
 
