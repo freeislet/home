@@ -1,12 +1,12 @@
 'use client'
 
-import { validNav } from '@/config/docs/nav'
+import { nav } from '@/config/docs/nav'
 import NavLink from '@/components/nav-link'
 
 export function NavMain() {
   return (
     <nav className="my-flex-row gap-4 text-sm">
-      {validNav.map((item, index) => (
+      {nav.map((item, index) => (
         <NavLink
           key={index}
           href={item.href}

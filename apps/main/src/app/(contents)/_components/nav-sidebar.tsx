@@ -2,15 +2,14 @@
 
 import { usePathname } from 'next/navigation'
 
-import { validNav } from '@/config/docs/nav'
+import { getBaseNavItem } from '@/config/docs/nav'
 import { cn } from '@/lib/utils'
-import { getBaseNavItem } from '@/lib/nav'
 import NavTree from '@/components/nav-tree'
 
 export function NavSidebar({ className, ...props }: React.ComponentProps<'div'>) {
   const pathname = usePathname()
 
-  const baseNavItem = getBaseNavItem(validNav, pathname)
+  const baseNavItem = getBaseNavItem(pathname)
   if (!baseNavItem?.children?.length) return
 
   return (
