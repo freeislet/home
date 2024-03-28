@@ -20,7 +20,7 @@ import * as allPortfolios from './portfolio'
 const navConfig: NavItem[] = [
   {
     icon: <CubeIcon />,
-    title: '3D/Game/XR',
+    title: '3D/Game',
     href: '/game',
     nonlink: true,
     children: [
@@ -72,12 +72,6 @@ const navConfig: NavItem[] = [
           },
         ],
       },
-      {
-        icon: <MediaPipeIcon />,
-        title: 'MediaPipe (AR)',
-        href: '/game/mediapipe',
-        portfolio: allPortfolios.mediaPipePortfolio,
-      },
     ],
   },
   {
@@ -114,10 +108,16 @@ const navConfig: NavItem[] = [
   },
   {
     icon: <AiIcon />,
-    title: 'AI',
+    title: 'AI/ML',
     href: '/ai',
     nonlink: true,
     children: [
+      {
+        icon: <MediaPipeIcon />,
+        title: 'MediaPipe',
+        href: '/ai/mediapipe',
+        portfolio: allPortfolios.mediaPipePortfolio,
+      },
       {
         icon: <GeminiIcon />,
         title: 'Gemini',
