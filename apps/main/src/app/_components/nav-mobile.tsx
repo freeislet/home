@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { BsList } from 'react-icons/bs'
 
-import { nav } from '@/config/docs/nav'
+import { validNav } from '@/config/docs/nav'
 import { siteConfig } from '@/config/site'
 import { Logo } from '@/components/icons'
 import NavTree from '@/components/nav-tree'
@@ -36,7 +36,7 @@ export function NavMobile() {
         </Link>
         <ScrollArea className="my-8 h-[calc(100vh-8rem)] pl-4">
           <nav>
-            <NavTree nav={nav} className="pb-10" />
+            <NavTree nav={validNav} className="pb-10" />
           </nav>
         </ScrollArea>
       </SheetContent>

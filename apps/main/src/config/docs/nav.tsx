@@ -1,4 +1,4 @@
-import { type NavItem } from '@/lib/nav'
+import { type NavItem, buildValidNav } from '@/lib/nav'
 import {
   CubeIcon,
   ThreeJsIcon,
@@ -11,7 +11,7 @@ import {
   GeminiIcon,
 } from '@/components/icons'
 
-export const nav: NavItem[] = [
+const nav: NavItem[] = [
   {
     icon: <CubeIcon />,
     title: '3D/Game/XR',
@@ -150,3 +150,5 @@ export const nav: NavItem[] = [
     href: '/about',
   },
 ]
+
+export const validNav = buildValidNav(nav)

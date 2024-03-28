@@ -2,16 +2,16 @@
 
 import { usePathname } from 'next/navigation'
 
-import { nav } from '@/config/docs/nav'
+import { validNav } from '@/config/docs/nav'
 import { cn } from '@/lib/utils'
 import { getBaseNavItem } from '@/lib/nav'
 import NavTree from '@/components/nav-tree'
 
-export function NavSidebar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export function NavSidebar({ className, ...props }: React.ComponentProps<'div'>) {
   const pathname = usePathname()
 
-  const navItem = getBaseNavItem(nav, pathname)
-  if (!navItem?.children?.length) return
+  const baseNavItem = getBaseNavItem(validNav, pathname)
+  if (!baseNavItem?.children?.length) return
 
   return (
     <aside
@@ -19,11 +19,11 @@ export function NavSidebar({ className, ...props }: React.HTMLAttributes<HTMLDiv
       {...props}
     >
       <div className="my-flex-row p-4 pb-2 space-x-1 font-medium text-foreground/80 border-b mb-2">
-        {navItem.icon}
-        <span>{navItem.title}</span>
+        {baseNavItem.icon}
+        <span>{baseNavItem.title}</span>
       </div>
       <nav>
-        <NavTree nav={navItem.children} className="mx-4" />
+        <NavTree nav={baseNavItem.children} className="mx-4" />
       </nav>
     </aside>
   )

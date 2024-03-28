@@ -8,8 +8,9 @@ export interface NavItem {
   children?: NavItem[]
 }
 
-export function filterValidNav(navItems: NavItem[]): NavItem[] {
-  return navItems?.filter((item) => !item.disabled) ?? []
+export function buildValidNav(nav: NavItem[]): NavItem[] {
+  const validNav = nav?.filter((item) => !item.disabled) ?? []
+  return validNav
 }
 
 export function getBaseNavItem(nav: NavItem[], pathname: string): NavItem | undefined {

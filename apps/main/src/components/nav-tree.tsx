@@ -1,7 +1,7 @@
 import { useState, useRef, useLayoutEffect, useCallback, forwardRef, memo } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-import { type NavItem, filterValidNav } from '@/lib/nav'
+import { type NavItem } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import NavLink from '@/components/nav-link'
 
@@ -11,8 +11,6 @@ interface NavTreeProps extends React.ComponentProps<'div'> {
 }
 
 const NavTree = forwardRef<HTMLDivElement, NavTreeProps>(({ nav, depth = 0, className, ...props }, ref) => {
-  const validNav = filterValidNav(nav)
-
   return (
     <div
       ref={ref}
@@ -24,7 +22,7 @@ const NavTree = forwardRef<HTMLDivElement, NavTreeProps>(({ nav, depth = 0, clas
       )}
       {...props}
     >
-      {validNav.map((item, index) => (
+      {nav.map((item, index) => (
         <div key={index}>
           <NavTreeItem navItem={item} depth={depth} initialCollapse />
         </div>
