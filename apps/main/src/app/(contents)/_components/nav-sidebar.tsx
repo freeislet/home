@@ -25,9 +25,10 @@ export function NavSidebar({ className, ...props }: React.ComponentProps<'div'>)
           'my-flex-row p-4 pb-2 space-x-1 mb-2 border-b font-medium text-foreground/80 transition-colors',
           !baseNavItem.nonlink && 'hover:text-foreground'
         )}
-        activeClassName="underline underline-offset-4 decoration-2 decoration-sky-300"
-        allowPartialMatch
-        partialActiveClassName=" "
+        activeClassName=""
+        // activeClassName="underline underline-offset-4 decoration-2 decoration-sky-300"
+        // allowPartialMatch
+        // partialActiveClassName=" "
       >
         {baseNavItem.icon}
         <span>{baseNavItem.title}</span>
