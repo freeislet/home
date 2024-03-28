@@ -5,25 +5,6 @@ import rehypePrettyCode from 'rehype-pretty-code'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/game',
-        destination: '/game/react-three-fiber',
-        permanent: false,
-      },
-      {
-        source: '/web',
-        destination: '/web/visual-scripting/react-flow',
-        permanent: false,
-      },
-      {
-        source: '/ai',
-        destination: '/ai/gemini/chatbot',
-        permanent: false,
-      },
-    ]
-  },
   images: {
     remotePatterns: [
       {

@@ -41,3 +41,27 @@ export function getBaseNavItem(nav: NavItem[], pathname: string): NavItem | unde
     if (matchPathname(navItem)) return navItem
   }
 }
+
+export function findNavItem(nav: NavItem[], href: string): NavItem | undefined {
+  for (const item of nav) {
+    if (item.href == href) return item
+    if (item.children?.length) {
+      const found = findNavItem(item.children, href)
+      if (found) return found
+    }
+  }
+}
+
+function findFirstValidUrl(navItem: NavItem): string | undefined {
+  if (!navItem.disabled && !navItem.nonlink) return navItem.href
+  if (navItem.children?.length) {
+    for (const child of navItem.children) {
+      return findFirstValidUrl(child)
+    }
+  }
+}
+
+export function getRedirectUrl(nav: NavItem[], href: string): string | undefined {
+  const navItem = findNavItem(nav, href)
+  if (navItem) return findFirstValidUrl(navItem)
+}

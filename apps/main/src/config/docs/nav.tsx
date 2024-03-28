@@ -1,4 +1,9 @@
-import { type NavItem, buildValidNav, getBaseNavItem as _getBaseNavItem } from '@/lib/nav'
+import {
+  type NavItem,
+  buildValidNav,
+  getBaseNavItem as _getBaseNavItem,
+  getRedirectUrl as _getRedirectUrl,
+} from '@/lib/nav'
 import {
   CubeIcon,
   ThreeJsIcon,
@@ -142,4 +147,8 @@ export const nav = buildValidNav(navConfig)
 
 export function getBaseNavItem(pathname: string): NavItem | undefined {
   return _getBaseNavItem(nav, pathname)
+}
+
+export function getRedirectUrl(href: string): string | undefined {
+  return _getRedirectUrl(nav, href)
 }
