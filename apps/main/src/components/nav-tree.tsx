@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect, useCallback, forwardRef, memo } from 'react'
+import { useState, useCallback, memo } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 import { type NavItem } from '@/lib/nav'
@@ -10,10 +10,9 @@ interface NavTreeProps extends React.ComponentProps<'div'> {
   depth?: number
 }
 
-const NavTree = forwardRef<HTMLDivElement, NavTreeProps>(({ nav, depth = 0, className, ...props }, ref) => {
+export default function NavTree({ nav, depth = 0, className, ...props }: NavTreeProps) {
   return (
     <div
-      ref={ref}
       className={cn(
         'my-flex-col',
         depth === 0 ? 'space-y-2 text-[15px]' : 'ml-3 py-3 space-y-2 text-sm',
@@ -29,8 +28,7 @@ const NavTree = forwardRef<HTMLDivElement, NavTreeProps>(({ nav, depth = 0, clas
       ))}
     </div>
   )
-})
-NavTree.displayName = 'NavTree'
+}
 
 interface NavTreeItemProps extends React.ComponentProps<'div'> {
   navItem: NavItem
@@ -40,15 +38,6 @@ interface NavTreeItemProps extends React.ComponentProps<'div'> {
 
 const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, ...props }: NavTreeItemProps) => {
   const [expanded, setExpanded] = useState(!initialCollapse)
-  const [subtreeHeight, setSubtreeHeight] = useState('0')
-  const subtreeRef = useRef<HTMLDivElement>(null)
-
-  useLayoutEffect(() => {
-    const subtree = subtreeRef.current
-    if (subtree) {
-      setSubtreeHeight(expanded ? `${subtree.clientHeight}px` : '0')
-    }
-  }, [expanded])
 
   const onActiveStateChange = useCallback((active: boolean, partialActive: boolean) => {
     if (active || partialActive) setExpanded(true)
@@ -72,15 +61,19 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false, className, 
         </NavLink>
         {hasChildren && <ExpandToggle expanded={expanded} onChange={setExpanded} />}
       </div>
-      {hasChildren && (
-        <div className="overflow-hidden transition-[height]" style={{ height: subtreeHeight }}>
-          <NavTree ref={subtreeRef} nav={navItem.children!} depth={depth + 1} />
+      {hasChildren && expanded && (
+        <div className="overflow-hidden">
+          <NavTree nav={navItem.children!} depth={depth + 1} />
         </div>
       )}
     </>
   )
 })
 NavTreeItem.displayName = 'NavTreeItem'
+
+/**
+ * Expand 토글 버튼
+ */
 
 interface ExpandToggleProps {
   expanded: boolean
@@ -100,5 +93,3 @@ const ExpandToggle = memo(({ expanded, onChange }: ExpandToggleProps) => {
   )
 })
 ExpandToggle.displayName = 'ExpandToggle'
-
-export default NavTree
