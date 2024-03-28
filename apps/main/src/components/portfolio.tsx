@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { PortfolioItem, filterValidPortfolio } from '@/lib/portfolio'
+import { PortfolioItem } from '@/lib/portfolio'
 import { cn } from '@/lib/utils'
 import { Image, ImageProps } from '@/components/image'
 
@@ -9,12 +9,10 @@ export interface PortfolioProps extends React.ComponentProps<'div'> {
 }
 
 export default function Portfolio({ portfolio, className, ...props }: PortfolioProps) {
-  const validPortfolio = filterValidPortfolio(portfolio)
-
   return (
     <div className={cn('text-4', className)} {...props}>
       <table>
-        <tbody>{validPortfolio.map((item, index) => row(item, index))}</tbody>
+        <tbody>{portfolio.map((item, index) => row(item, index))}</tbody>
       </table>
     </div>
   )

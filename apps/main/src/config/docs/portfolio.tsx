@@ -1,6 +1,6 @@
-import { type PortfolioItem } from '@/lib/portfolio'
+import { type PortfolioItem, filterValidPortfolio } from '@/lib/portfolio'
 
-export const mediaPipePortfolio: PortfolioItem[] = [
+export const mediaPipePortfolio: PortfolioItem[] = filterValidPortfolio([
   {
     href: '/game/mediapipe/face-tracking',
     thumbnail: '/contents/mediapipe/face-tracking.png',
@@ -26,4 +26,4 @@ export const mediaPipePortfolio: PortfolioItem[] = [
     title: 'Pose Tracking',
     description: 'Pose Landmarker를 이용한 실시간 pose tracking 예제.',
   },
-]
+])

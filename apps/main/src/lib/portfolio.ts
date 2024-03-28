@@ -7,7 +7,7 @@ export interface PortfolioItem {
 }
 
 export function filterValidPortfolio(portfolio: PortfolioItem[]): PortfolioItem[] {
-  return portfolio.filter((item) => !item.disabled) ?? []
+  return portfolio.filter((item) => !item.disabled)
 }
 
 export function findPortfolioItem(portfolio: PortfolioItem[], slug: string): PortfolioItem | undefined {
