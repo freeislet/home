@@ -29,6 +29,15 @@ export function buildNav(nav: NavItem[]): NavItem[] {
   return validNav
 }
 
+function findFirstValidUrl(navItem: NavItem): string | undefined {
+  if (!navItem.disabled && !navItem.nonlink) return navItem.href
+  if (navItem.children?.length) {
+    for (const child of navItem.children) {
+      return findFirstValidUrl(child)
+    }
+  }
+}
+
 export function getBaseNavItem(nav: NavItem[], pathname: string): NavItem | undefined {
   const matchPathname = (item: NavItem) => {
     if (item.href === pathname) return true
@@ -56,13 +65,27 @@ export function findNavItem(nav: NavItem[], href: string): NavItem | undefined {
   }
 }
 
-function findFirstValidUrl(navItem: NavItem): string | undefined {
-  if (!navItem.disabled && !navItem.nonlink) return navItem.href
-  if (navItem.children?.length) {
-    for (const child of navItem.children) {
-      return findFirstValidUrl(child)
+export function findNavItemWithAncestors(nav: NavItem[], href: string): NavItem[] {
+  function trace(nav: NavItem[], href: string): boolean {
+    for (const item of nav) {
+      if (item.href == href) {
+        itemAndAncestors = [item]
+        return true
+      }
+      if (item.children?.length) {
+        const found = trace(item.children, href)
+        if (found) {
+          itemAndAncestors.push(item)
+          return true
+        }
+      }
     }
+    return false
   }
+
+  let itemAndAncestors: NavItem[] = []
+  trace(nav, href)
+  return itemAndAncestors
 }
 
 export function getRedirectUrl(nav: NavItem[], href: string): string | undefined {

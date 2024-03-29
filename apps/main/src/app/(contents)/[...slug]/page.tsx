@@ -1,5 +1,5 @@
+import { findPortfolioItem } from '@/config/docs/portfolio'
 import MyPortfolioPage from '@/app/_components/my-portfolio-page'
-import { findPortfolioItem, PortfolioId } from '@/config/docs/portfolio'
 
 export default function FallbackPage({ params }: { params: { slug: string[] } }) {
   const slug = params.slug.join('/')

@@ -1,4 +1,10 @@
-import { type NavItem, buildNav, getBaseNavItem as _getBaseNavItem, getRedirectUrl as _getRedirectUrl } from '@/lib/nav'
+import {
+  type NavItem,
+  buildNav,
+  getBaseNavItem as _getBaseNavItem,
+  getRedirectUrl as _getRedirectUrl,
+  findNavItemWithAncestors as _findNavItemWithAncestors,
+} from '@/lib/nav'
 import {
   CubeIcon,
   ThreeJsIcon,
@@ -126,4 +132,8 @@ export function getBaseNavItem(pathname: string): NavItem | undefined {
 /** @deprecated 실시간으로 redirect url 계산하지 않고, buildNav 시 nonlinkRedirectUrl 설정하도록 변경 */
 export function getRedirectUrl(href: string): string | undefined {
   return _getRedirectUrl(nav, href)
+}
+
+export function findNavItemWithAncestors(href: string): NavItem[] {
+  return _findNavItemWithAncestors(nav, href)
 }
