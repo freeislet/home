@@ -31,30 +31,32 @@ function activeStateReducer(state: ActiveState, action: ActiveStateAction): Acti
   return getActiveState(action.href, action.pathname)
 }
 
-type NavLinkProps = LinkProps & {
+type NavLinkProps = PartialPick<LinkProps, 'href'> & {
   activeClassName: string
   allowPartialMatch?: boolean
   partialActiveClassName?: string
   onActiveStateChange?: (active: boolean, partialActive: boolean) => void
-  nonlink?: boolean
 }
 
 const NavLink = memo(
   ({
     children,
+    href,
+    className,
     activeClassName,
     allowPartialMatch,
     partialActiveClassName,
     onActiveStateChange,
-    nonlink,
-    className,
     ...props
   }: { children: React.ReactNode } & NavLinkProps) => {
     const pathname = usePathname()
-    const [activeState, dispatchActiveState] = useReducer(activeStateReducer, getActiveState(props.href, pathname))
+    const [activeState, dispatchActiveState] = useReducer(
+      activeStateReducer,
+      href ? getActiveState(href, pathname) : { active: false, partialActive: false }
+    )
 
     useEffect(() => {
-      dispatchActiveState({ href: props.href, pathname })
+      if (href) dispatchActiveState({ href, pathname })
     }, [pathname])
 
     useEffect(() => {
@@ -68,12 +70,12 @@ const NavLink = memo(
 
     className = cn(className, getClassName())
 
-    return nonlink ? (
-      <div className={className}>{children}</div>
-    ) : (
-      <Link className={className} {...props}>
+    return href ? (
+      <Link className={className} href={href} {...props}>
         {children}
       </Link>
+    ) : (
+      <div className={className}>{children}</div>
     )
   }
 )

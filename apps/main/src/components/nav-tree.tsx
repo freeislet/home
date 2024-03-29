@@ -53,6 +53,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
     if (active || partialActive) setExpanded(true)
   }, [])
 
+  const href = !navItem.nonlink ? navItem.href : undefined
   const hasChildren = !!navItem.children?.length
   const expandMotionProps = {
     initial: {
@@ -72,11 +73,10 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
     <>
       <div className="my-flex-row">
         <NavLink
-          href={navItem.href}
-          nonlink={navItem.nonlink}
+          href={href}
           className={cn(
             'my-flex-row space-x-1 text-foreground/60 transition-colors',
-            !navItem.nonlink && 'hover:text-foreground/80'
+            href && 'hover:text-foreground/80'
           )}
           activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
           allowPartialMatch
