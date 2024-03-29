@@ -1,5 +1,5 @@
-import { mediaPipePortfolio } from '@/config/docs/portfolio'
-import { findPortfolioItem, PortfolioLoaderMap } from '@/lib/portfolio'
+import { PortfolioLoaderMap } from '@/lib/portfolio'
+import { findPortfolioItem } from '@/config/docs/portfolio'
 import { load } from '@/components/loading'
 import { MediaPipeIcon } from '@/components/icons'
 
@@ -11,7 +11,7 @@ const components: PortfolioLoaderMap = {
 }
 
 export default function MediaPipePortpolioPage({ params }: { params: { slug: string } }) {
-  const portfolioItem = findPortfolioItem(mediaPipePortfolio, params.slug)
+  const portfolioItem = findPortfolioItem('mediapipe', params.slug)
   const PortfolioComponent = components[params.slug]?.()
 
   return (

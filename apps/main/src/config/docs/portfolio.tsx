@@ -1,4 +1,4 @@
-import { type PortfolioItem } from '@/lib/portfolio'
+import { type PortfolioItem, findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 
 export type PortfolioId = 'three-js' | 'mediapipe'
 export type PortfolioMap = {
@@ -65,4 +65,9 @@ export const portfolios: PortfolioMap = {
       description: 'Pose Landmarker를 이용한 실시간 pose tracking 예제.',
     },
   ],
+}
+
+export function findPortfolioItem(portfolioId: PortfolioId, slug: string): PortfolioItem | undefined {
+  const portfolio = portfolios[portfolioId]
+  return portfolio?.find((item) => item.href.endsWith(slug))
 }
