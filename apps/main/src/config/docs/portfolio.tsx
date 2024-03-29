@@ -67,7 +67,9 @@ export const portfolios: PortfolioMap = {
   ],
 }
 
-export function findPortfolioItem(portfolioId: PortfolioId, slug: string): PortfolioItem | undefined {
-  const portfolio = portfolios[portfolioId]
-  return portfolio?.find((item) => item.href.endsWith(slug))
+export function findPortfolioItem(slug: string): PortfolioItem | undefined {
+  for (const [id, portfolio] of Object.entries(portfolios)) {
+    const item = _findPortfolioItem(portfolio, slug)
+    if (item) return item
+  }
 }

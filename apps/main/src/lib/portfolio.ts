@@ -10,5 +10,5 @@ export function findPortfolioItem(portfolio: PortfolioItem[], slug: string): Por
 }
 
 export interface PortfolioLoaderMap {
-  [slug: string]: () => React.ComponentType<any>
+  [href: string]: () => React.ComponentType<any>
 }
