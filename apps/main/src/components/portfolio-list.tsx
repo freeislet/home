@@ -4,11 +4,11 @@ import { PortfolioItem } from '@/lib/portfolio'
 import { cn } from '@/lib/utils'
 import { Image, ImageProps } from '@/components/image'
 
-export interface PortfolioProps extends React.ComponentProps<'div'> {
+export interface PortfolioListProps extends React.ComponentProps<'div'> {
   portfolio: PortfolioItem[]
 }
 
-export default function Portfolio({ portfolio, className, ...props }: PortfolioProps) {
+export default function PortfolioList({ portfolio, className, ...props }: PortfolioListProps) {
   return (
     <div className={cn('text-4', className)} {...props}>
       <table>

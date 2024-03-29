@@ -1,6 +1,11 @@
-import Portfolio from '@/components/portfolio'
-import { mediaPipePortfolio } from '@/config/docs/portfolio'
+import PortfolioList from '@/components/portfolio-list'
+import { portfolios, PortfolioId } from '@/config/docs/portfolio'
 
-export function MediaPipePortfolio() {
-  return <Portfolio portfolio={mediaPipePortfolio} />
+export interface PortpolioProps {
+  id: PortfolioId
+}
+
+export default function Portfolio({ id }: PortpolioProps) {
+  const portfolio = portfolios[id]
+  return <PortfolioList portfolio={portfolio} />
 }

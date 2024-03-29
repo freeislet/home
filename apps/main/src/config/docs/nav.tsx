@@ -15,7 +15,7 @@ import {
   AiIcon,
   GeminiIcon,
 } from '@/components/icons'
-import * as allPortfolios from './portfolio'
+import { portfolios } from './portfolio'
 
 const navConfig: NavItem[] = [
   {
@@ -32,28 +32,29 @@ const navConfig: NavItem[] = [
       },
       {
         icon: <ThreeJsIcon />,
-        title: 'React Three Fiber',
-        href: '/game/react-three-fiber',
+        title: 'Three.js',
+        href: '/game/three-js',
+        portfolio: portfolios['three-js'],
         children: [
           {
             title: 'Basic demo',
-            href: '/game/react-three-fiber/basic-demo',
+            href: '/game/three-js/basic-demo',
           },
           {
             title: 'HTML',
-            href: '/game/react-three-fiber/html',
+            href: '/game/three-js/html',
           },
           {
             title: 'Shoe configurator',
-            href: '/game/react-three-fiber/shoe',
+            href: '/game/three-js/shoe',
           },
           {
             title: 'Portal shader',
-            href: '/game/react-three-fiber/portal',
+            href: '/game/three-js/portal',
           },
           {
             title: 'Particles & Effects',
-            href: '/game/react-three-fiber/particles',
+            href: '/game/three-js/particles',
           },
         ],
       },
@@ -116,7 +117,7 @@ const navConfig: NavItem[] = [
         icon: <MediaPipeIcon />,
         title: 'MediaPipe',
         href: '/ai/mediapipe',
-        portfolio: allPortfolios.mediaPipePortfolio,
+        portfolio: portfolios.mediapipe,
       },
       {
         icon: <GeminiIcon />,
