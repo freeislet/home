@@ -9,31 +9,31 @@ export const portfolios: PortfolioMap = {
   'three-js': [
     {
       href: '/game/three-js/basic-demo',
-      thumbnail: '/contents/mediapipe/face-tracking.png',
+      thumbnail: '/contents/three-js/basic-demo.png',
       title: 'Basic demo',
       description: 'Basic demo',
     },
     {
       href: '/game/three-js/html',
-      thumbnail: '/contents/mediapipe/face-tracking.png',
+      thumbnail: '/contents/three-js/html.png',
       title: 'HTML',
       description: 'HTML',
     },
     {
       href: '/game/three-js/shoe',
-      thumbnail: '/contents/mediapipe/face-tracking.png',
+      thumbnail: '/contents/three-js/shoe.png',
       title: 'Shoe configurator',
       description: 'Shoe configurator',
     },
     {
       href: '/game/three-js/portal',
-      thumbnail: '/contents/mediapipe/face-tracking.png',
+      thumbnail: '/contents/three-js/portal.png',
       title: 'Portal shader',
       description: 'Portal shader',
     },
     {
       href: '/game/three-js/particles',
-      thumbnail: '/contents/mediapipe/face-tracking.png',
+      thumbnail: '/contents/three-js/particles.png',
       title: 'Particles & Effects',
       description: 'Particles & Effects',
     },

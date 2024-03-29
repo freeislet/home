@@ -35,28 +35,6 @@ const navConfig: NavItem[] = [
         title: 'Three.js',
         href: '/game/three-js',
         portfolio: portfolios['three-js'],
-        children: [
-          {
-            title: 'Basic demo',
-            href: '/game/three-js/basic-demo',
-          },
-          {
-            title: 'HTML',
-            href: '/game/three-js/html',
-          },
-          {
-            title: 'Shoe configurator',
-            href: '/game/three-js/shoe',
-          },
-          {
-            title: 'Portal shader',
-            href: '/game/three-js/portal',
-          },
-          {
-            title: 'Particles & Effects',
-            href: '/game/three-js/particles',
-          },
-        ],
       },
       {
         icon: <UnityIcon />,
