@@ -5,19 +5,23 @@ export interface NavItem {
   icon?: React.ReactNode
   href: string
   nonlink?: boolean
+  nonlinkRedirectUrl?: string
   disabled?: boolean
 
   children?: NavItem[]
   portfolio?: PortfolioItem[]
 }
 
-export function buildValidNav(nav: NavItem[]): NavItem[] {
+export function buildNav(nav: NavItem[]): NavItem[] {
   function build(item: NavItem) {
     if (item.disabled) return false
 
     const children = item.children?.filter(build)
     const portfolioNav = item.portfolio?.map((item) => ({ title: item.title, href: item.href }))
     item.children = children || portfolioNav ? [...(children || []), ...(portfolioNav || [])] : undefined
+
+    if (item.nonlink) item.nonlinkRedirectUrl = findFirstValidUrl(item)
+
     return true
   }
 
