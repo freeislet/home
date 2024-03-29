@@ -1,9 +1,3 @@
-import { redirect } from 'next/navigation'
-
-import { getRedirectUrl } from '@/config/docs/nav'
-
-export default function RedirectPage({ params }: { params: { slug: string[] } }) {
-  const href = '/' + params.slug?.join('/')
-  const redirectUrl = getRedirectUrl(href)
-  redirect(redirectUrl ?? '/')
+export default function FallbackPage({ params }: { params: { slug: string[] } }) {
+  // TODO: 포트폴리오 렌더링
 }

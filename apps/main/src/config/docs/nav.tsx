@@ -123,7 +123,7 @@ export function getBaseNavItem(pathname: string): NavItem | undefined {
   return _getBaseNavItem(nav, pathname)
 }
 
-/** @deprecated */
+/** @deprecated 실시간으로 redirect url 계산하지 않고, buildNav 시 nonlinkRedirectUrl 설정하도록 변경 */
 export function getRedirectUrl(href: string): string | undefined {
   return _getRedirectUrl(nav, href)
 }
