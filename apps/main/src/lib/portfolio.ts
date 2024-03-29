@@ -9,6 +9,6 @@ export function findPortfolioItem(portfolio: PortfolioItem[], slug: string): Por
   return portfolio.find((item) => item.href.endsWith(slug))
 }
 
-export interface PortfolioLoaderMap {
-  [href: string]: () => React.ComponentType<any>
+export interface PortfolioComponentMap {
+  [href: string]: React.ComponentType<any>
 }

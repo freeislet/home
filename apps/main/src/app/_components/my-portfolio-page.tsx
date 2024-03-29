@@ -1,13 +1,13 @@
-import { PortfolioLoaderMap, PortfolioItem } from '@/lib/portfolio'
+import { PortfolioComponentMap, PortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 import { MediaPipeIcon } from '@/components/icons'
 
-const portfolioLoaders: PortfolioLoaderMap = {
+const portfolioLoaders: PortfolioComponentMap = {
   // TODO three-js 추가
-  '/ai/mediapipe/face-tracking': () => load(() => import('./portfolio/mediapipe/face-tracking')),
-  '/ai/mediapipe/face-avatar': () => load(() => import('./portfolio/mediapipe/face-avatar')),
-  '/ai/mediapipe/hand-tracking': () => load(() => import('./portfolio/mediapipe/hand-tracking')),
-  '/ai/mediapipe/pose-tracking': () => load(() => import('./portfolio/mediapipe/pose-tracking')),
+  '/ai/mediapipe/face-tracking': load(() => import('./portfolio/mediapipe/face-tracking')),
+  '/ai/mediapipe/face-avatar': load(() => import('./portfolio/mediapipe/face-avatar')),
+  '/ai/mediapipe/hand-tracking': load(() => import('./portfolio/mediapipe/hand-tracking')),
+  '/ai/mediapipe/pose-tracking': load(() => import('./portfolio/mediapipe/pose-tracking')),
 }
 
 interface MyPortfolioPageProps {
@@ -15,7 +15,7 @@ interface MyPortfolioPageProps {
 }
 
 export default function MyPortfolioPage({ item }: MyPortfolioPageProps) {
-  const PortfolioComponent = portfolioLoaders[item.href]?.()
+  const PortfolioComponent = portfolioLoaders[item.href]
   // TODO: nav 정보 찾기
 
   return (
