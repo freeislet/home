@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { notFound } from 'next/navigation'
 
 import { portfolioComponents } from './portfolio/components'
 import { PortfolioItem } from '@/lib/portfolio'
@@ -14,6 +15,8 @@ interface MyPortfolioPageProps {
 
 export default function MyPortfolioPage({ item }: MyPortfolioPageProps) {
   const PortfolioComponent = portfolioComponents[item.href]
+  if (!PortfolioComponent) notFound()
+
   const [state, setState] = useState<{
     navLine: NavItem[] // 특정 navItem과 ancestors 리스트
     icon?: React.ReactNode // navLine의 최초 icon
