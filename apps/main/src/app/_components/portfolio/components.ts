@@ -1,6 +1,8 @@
 import { PortfolioComponentMap } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
+// TODO: config/docs/portfolio.portfolios에 통합 검토 (docs를 /contents로 변경 후)
+
 export const portfolioComponents: PortfolioComponentMap = {
   // Three.js
   '/game/three-js/basic-demo': load(() => import('./three-js/basic-demo')),
@@ -8,6 +10,8 @@ export const portfolioComponents: PortfolioComponentMap = {
   '/game/three-js/shoe': load(() => import('./three-js/shoe')),
   '/game/three-js/portal': load(() => import('./three-js/portal')),
   '/game/three-js/particles': load(() => import('./three-js/particles')),
+  // Unity
+  // '/game/unity/kart': load(() => import('./unity/kart')),
   // MediaPipe
   '/ai/mediapipe/face-tracking': load(() => import('./mediapipe/face-tracking')),
   '/ai/mediapipe/face-avatar': load(() => import('./mediapipe/face-avatar')),

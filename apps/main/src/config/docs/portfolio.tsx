@@ -1,6 +1,6 @@
 import { type PortfolioItem, findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 
-export type PortfolioId = 'three-js' | 'mediapipe'
+export type PortfolioId = 'three-js' | 'unity' | 'mediapipe'
 export type PortfolioMap = {
   [id in PortfolioId]: PortfolioItem[]
 }
@@ -36,6 +36,20 @@ export const portfolios: PortfolioMap = {
       thumbnail: '/contents/three-js/particles.png',
       title: 'Particles & Effects',
       description: 'Particles & Effects',
+    },
+  ],
+  unity: [
+    {
+      href: '/game/unity/kart',
+      thumbnail: '/contents/unity/kart.png',
+      title: 'Kart',
+      description: 'Kart',
+    },
+    {
+      href: '/game/unity/3d-game-kit',
+      thumbnail: '/contents/unity/3d-game-kit.png',
+      title: '3D Game Kit',
+      description: '3D Game Kit',
     },
   ],
   mediapipe: [
