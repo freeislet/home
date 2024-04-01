@@ -21,7 +21,7 @@ export function CatalogSection({ className, ...props }: CatalogSectionProps) {
           <CatalogItem key={index} item={item} className={bgs[index % bgs.length]} />
         ))}
       </div>
-      <div ref={pathContainerRef} className="absolute inset-0 m-6 md:m-10">
+      <div ref={pathContainerRef} className="absolute inset-0 m-6 md:m-10 pointer-events-none">
         <CatalogPathAnimation containerWidth={pathContainerSize.width} containerHeight={pathContainerSize.height} />
       </div>
     </div>
@@ -43,7 +43,7 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
         <div className="p-3 sm:p-6 w-full">
           <h5 className="mb-2 sm:mb-4 text-2xl">{item.title}</h5>
           <hr />
-          <p>{item.content}</p>
+          <div>{item.content}</div>
         </div>
       ) : (
         <>{item.content}</>
