@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 
-import { getBaseNavItem } from '@/config/docs/nav'
+import { getBaseNavItem } from '@/contents/nav'
 import { cn } from '@/lib/utils'
 import NavLink from '@/components/nav-link'
 import NavTree from '@/components/nav-tree'

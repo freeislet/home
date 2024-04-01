@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import { catalog, type CatalogItem } from '@/config/docs/catalog'
+import { catalog, type CatalogItem } from '@/contents/catalog'
 import { cn } from '@/lib/utils'
 import { useElementSize } from '@/hooks/element'
 import { CatalogPathAnimation } from './catalog-path-animation'

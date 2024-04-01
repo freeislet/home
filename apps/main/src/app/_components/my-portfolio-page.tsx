@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { portfolioComponents } from './portfolio/components'
 import { PortfolioItem } from '@/lib/portfolio'
 import { NavItem } from '@/lib/nav'
-import { findNavItemWithAncestors } from '@/config/docs/nav'
+import { findNavItemWithAncestors } from '@/contents/nav'
 import { getNodeText } from '@/lib/node'
 
 interface MyPortfolioPageProps {

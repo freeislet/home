@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 
-import { findPortfolioItem } from '@/config/docs/portfolio'
+import { findPortfolioItem } from '@/contents/portfolio'
 import MyPortfolioPage from '@/app/_components/my-portfolio-page'
 
 export default function FallbackPage({ params }: { params: { slug: string[] } }) {

@@ -1,6 +1,6 @@
 'use client'
 
-import { nav } from '@/config/docs/nav'
+import { nav } from '@/contents/nav'
 import NavLink from '@/components/nav-link'
 
 export function NavMain() {

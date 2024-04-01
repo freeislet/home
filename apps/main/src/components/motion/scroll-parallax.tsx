@@ -8,7 +8,7 @@ import React, { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll } from 'framer-motion'
 
-import { catalog, type CatalogItem } from '@/config/docs/catalog'
+import { catalog, type CatalogItem } from '@/contents/catalog'
 import { cn } from '@/lib/utils'
 import { useParallax } from '@/components/motion'
 
