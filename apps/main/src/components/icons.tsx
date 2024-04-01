@@ -9,10 +9,16 @@ interface IconProps extends PartialExcept<ImageProps, 'src'> {
   imageClassName?: string
 }
 
-export const Icon = ({ darkInvert = false, imageClassName, alt, className, ...props }: IconProps) => {
+export const Icon = ({ darkInvert = false, imageClassName, alt, className, sizes, ...props }: IconProps) => {
   return (
     <div className={cn(DEFAULT_LAYOUT, className, 'relative')}>
-      <Image alt={alt ?? ''} className={cn(imageClassName, { 'dark:invert': darkInvert })} fill {...props} />
+      <Image
+        alt={alt ?? ''}
+        className={cn(imageClassName, { 'dark:invert': darkInvert })}
+        sizes={sizes ?? '100vw'}
+        fill
+        {...props}
+      />
     </div>
   )
 }
