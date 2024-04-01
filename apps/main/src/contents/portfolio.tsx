@@ -1,3 +1,8 @@
+'use client'
+// NOTE: PortfolioItem에 dynamic component 포함하면서 'use client' 선언
+//       -> PortfolioList, MyPortfolio, FallbackPage를 client component로 변경
+//       (다시 component 목록을 ./portfolio/portfolio-components.ts에 맵으로 분리하는게 나을지도?)
+
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
