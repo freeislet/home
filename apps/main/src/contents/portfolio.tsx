@@ -47,14 +47,19 @@ export const portfolios: PortfolioMap = {
   unity: [
     {
       title: 'Kart',
-      description: 'Kart',
+      description: '간단한 자동차 경주 예제',
       thumbnail: '/image/unity/kart.png',
       href: '/game/unity/kart',
       // component: load(() => import('./unity/kart')),
     },
     {
       title: '3D Game Kit',
-      description: '3D Game Kit',
+      description: (
+        <>
+          3D 액션 게임 개발을 위한 학습용 프로젝트 (
+          <a href="https://learn.unity.com/project/3d-game-kit-lite">3D Game Kit Lite</a>)
+        </>
+      ),
       thumbnail: '/image/unity/3d-game-kit.png',
       href: '/game/unity/3d-game-kit',
     },

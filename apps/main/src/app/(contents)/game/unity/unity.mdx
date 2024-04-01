@@ -2,8 +2,30 @@ import MyPortfolio from '@/app/_components/my-portfolio'
 
 # Unity
 
-TBD
+[Unity](https://unity.com/)는 3D 및 2D 비디오 게임의 개발 환경을 제공하는 게임 엔진이자, 3D 애니메이션과 건축 시각화, 가상현실(VR) 등 인터랙티브 콘텐츠 제작을 위한 통합 제작 도구이다.
+([위키백과](<https://ko.wikipedia.org/wiki/%EC%9C%A0%EB%8B%88%ED%8B%B0_(%EA%B2%8C%EC%9E%84_%EC%97%94%EC%A7%84)>))
+
+Unity에서 WebGL 플랫폼 빌드를 통해 웹에 배포할 수 있으며, [React Unity WebGL](https://react-unity-webgl.dev/) 라이브러리로 편리하게 React에 연동할 수 있다.
 
 ## 예제
 
 <MyPortfolio id="unity" />
+
+## 이슈
+
+### Unload 이슈
+
+현재 Unity 버그로 인해 Unity Player가 로드된 페이지에서 벗어날 때 자동으로 unload 할 수 없다.
+([Unloading the Unity Application](https://react-unity-webgl.dev/docs/api/unload))
+
+임시로 Unload 버튼을 추가하였다.
+
+### 배포 시 빌드 압축 설정
+
+기본 옵션으로 WebGL 빌드 시 gz 압축 파일이 생성되며, 브라우저에서 압축 파일을 사용하려면 `Content-Encoding` 헤더에 `gzip`을 설정해야 한다.
+
+> [웹 애플리케이션 배포](https://docs.unity3d.com/kr/2023.2/Manual/webgl-deploying.html) 참고
+
+`Content-Encoding` 헤더가 올바른 값을 가지려면 웹서버 설정이 필요한데, 웹서버 설정을 할 수 없다면 `Decompression Fallback`을 활성화하면 된다.
+
+![](https://docs.unity3d.com/kr/2023.2/uploads/Main/WebGLPublishingWindow.png)
