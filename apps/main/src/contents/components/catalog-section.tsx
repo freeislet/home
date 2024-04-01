@@ -9,7 +9,7 @@ import { CatalogPathAnimation } from './catalog-path-animation'
 
 interface CatalogSectionProps extends React.ComponentProps<'div'> {}
 
-const bgs = ['bg-[#F8E3E3]', 'bg-[#E3F1F8]', 'bg-[#E3F8EE]', 'bg-[#F4F8E3]', 'bg-[#E6E3F8]', 'bg-[#F8ECE3]']
+const bgs = ['bg-[#E6E3F8]', 'bg-[#E3F1F8]', 'bg-[#E3F8EE]', 'bg-[#F4F8E3]', 'bg-[#F8E3E3]', 'bg-[#F8ECE3]']
 
 export function CatalogSection({ className, ...props }: CatalogSectionProps) {
   const [pathContainerRef, pathContainerSize] = useElementSize()
@@ -35,13 +35,14 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
       className={cn('flex', !transparent && 'rounded-3xl overflow-hidden', className, transparent && 'bg-transparent')}
     >
       {item.image && (
-        <div className="flex-none max-w-[20vw] sm:max-w-[30vw] max-h-[80vh]">
+        <div className="flex-none max-w-[20vw] sm:max-w-[25vw] max-h-[80vh]">
           <Image src={item.image} alt="" sizes="40vw" className="w-auto h-auto max-h-full rounded-br-2xl" />
         </div>
       )}
       {item.title ? (
-        <div className="p-3 sm:p-6">
-          <h5 className="mb-2 sm:mb-4">{item.title}</h5>
+        <div className="p-3 sm:p-6 w-full">
+          <h5 className="mb-2 sm:mb-4 text-2xl">{item.title}</h5>
+          <hr />
           <p>{item.content}</p>
         </div>
       ) : (
