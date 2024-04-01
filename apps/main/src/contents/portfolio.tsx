@@ -1,4 +1,4 @@
-import { type PortfolioItem, findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
+import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 
 export type PortfolioId = 'three-js' | 'unity' | 'mediapipe'
 export type PortfolioMap = {

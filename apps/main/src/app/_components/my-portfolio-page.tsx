@@ -3,9 +3,7 @@
 import { useState } from 'react'
 import { notFound } from 'next/navigation'
 
-import { portfolioComponents } from './portfolio/components'
-import { PortfolioItem } from '@/lib/portfolio'
-import { NavItem } from '@/lib/nav'
+import { portfolioComponents } from '@/contents/portfolio/components'
 import { findNavItemWithAncestors } from '@/contents/nav'
 import { getNodeText } from '@/lib/node'
 

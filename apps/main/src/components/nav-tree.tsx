@@ -2,7 +2,6 @@ import { useState, useCallback, memo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
-import { type NavItem } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 import NavLink from '@/components/nav-link'
 

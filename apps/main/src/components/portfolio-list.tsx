@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-import { PortfolioItem } from '@/lib/portfolio'
 import { cn } from '@/lib/utils'
 import { Image, ImageProps } from '@/components/image'
 

@@ -1,5 +1,4 @@
 import {
-  type NavItem,
   buildNav,
   getBaseNavItem as _getBaseNavItem,
   getRedirectUrl as _getRedirectUrl,

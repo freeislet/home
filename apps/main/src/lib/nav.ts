@@ -1,17 +1,3 @@
-import { PortfolioItem } from './portfolio'
-
-export interface NavItem {
-  title: React.ReactNode
-  icon?: React.ReactNode
-  href: string
-  nonlink?: boolean
-  nonlinkRedirectUrl?: string
-  disabled?: boolean
-
-  children?: NavItem[]
-  portfolio?: PortfolioItem[]
-}
-
 export function buildNav(nav: NavItem[]): NavItem[] {
   function build(item: NavItem) {
     if (item.disabled) return false
