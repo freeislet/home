@@ -1,4 +1,4 @@
-import { NavSidebar } from './_components/nav-sidebar'
+import { NavSidebar } from '@/contents/components/nav-sidebar'
 
 export default function ContentsLayout({ children }: { children: React.ReactNode }) {
   return (

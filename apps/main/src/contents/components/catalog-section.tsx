@@ -29,7 +29,7 @@ export function CatalogSection({ className, ...props }: CatalogSectionProps) {
 }
 
 function CatalogItem({ item, className }: { item: CatalogItem; className?: string }) {
-  const transparent = !item.image && !item.title
+  const transparent = false //!item.image && !item.title
   return (
     <section
       className={cn('flex', !transparent && 'rounded-3xl overflow-hidden', className, transparent && 'bg-transparent')}

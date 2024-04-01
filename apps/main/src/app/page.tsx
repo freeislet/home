@@ -1,5 +1,5 @@
 import { HeroSection } from './_components/hero-section'
-import { CatalogSection } from './_components/catalog-section'
+import { CatalogSection } from '@/contents/components/catalog-section'
 
 export default async function IndexPage() {
   return (

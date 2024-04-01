@@ -5,8 +5,8 @@ import { siteConfig } from '@/config/site'
 import { Logo } from '@/components/icons'
 import { ThemeMode } from '@/components/theme-mode'
 import { UserNav } from '@/components/user-nav'
-import { NavMain } from './nav-main'
-import { NavMobile } from './nav-mobile'
+import { NavMain } from '@/contents/components/nav-main'
+import { NavMobile } from '@/contents/components/nav-mobile'
 import { ScrollProgress } from './scroll-progress'
 
 export async function SiteHeader() {
