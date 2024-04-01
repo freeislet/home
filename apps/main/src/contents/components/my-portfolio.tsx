@@ -1,5 +1,5 @@
 import PortfolioList from '@/components/portfolio-list'
-import { portfolios, PortfolioId } from '@/contents/portfolio'
+import { portfolios, PortfolioId } from '../portfolio'
 
 export interface MyPortpolioProps {
   id: PortfolioId

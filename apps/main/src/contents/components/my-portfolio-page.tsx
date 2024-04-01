@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { notFound } from 'next/navigation'
 
-import { findNavItemWithAncestors } from '@/contents/nav'
+import { findNavItemWithAncestors } from '../nav'
 import { getNodeText } from '@/lib/node'
 
 interface MyPortfolioPageProps {
