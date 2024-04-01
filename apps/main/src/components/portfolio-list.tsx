@@ -21,7 +21,7 @@ function row(item: PortfolioItem, index: number) {
   return (
     <tr key={index}>
       <td className="w-72">
-        <Link href={item.href}>{image(item.thumbnail, { className: 'w-full h-auto my-0' })}</Link>
+        <Link href={item.href}>{image(item.thumbnail, { className: 'w-full h-auto my-0 rounded-sm' })}</Link>
       </td>
       <td className="align-top">
         <Link href={item.href} className="text-lg no-underline">
