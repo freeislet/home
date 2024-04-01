@@ -15,7 +15,7 @@ export const Icon = ({ darkInvert = false, imageClassName, alt, className, sizes
       <Image
         alt={alt ?? ''}
         className={cn(imageClassName, { 'dark:invert': darkInvert })}
-        sizes={sizes ?? '100vw'}
+        sizes={sizes ?? '24px'}
         fill
         {...props}
       />
