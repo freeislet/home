@@ -74,7 +74,7 @@ export function CatalogPathAnimation({
         style={{ filter: 'drop-shadow(0.125rem 0.25rem 2px #0005)' }}
       >
         <motion.div style={{ offsetPath, offsetDistance }} animate={spriteAnimation} transition={spriteTransition}>
-          <motion.img src="./rocket.svg" style={{ transform: 'rotate(45deg)' }} />
+          <motion.img src="./image/landing/rocket.svg" style={{ transform: 'rotate(45deg)' }} />
         </motion.div>
       </div>
     </>

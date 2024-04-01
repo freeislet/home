@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 import { cn } from '@/lib/utils'
-import heroImage from '~/public/spaceboy3.jpeg'
+import heroImage from '~/public/image/landing/spaceboy3.jpeg'
 
 interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {}
 

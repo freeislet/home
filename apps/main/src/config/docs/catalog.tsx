@@ -1,9 +1,9 @@
 import { type ImageProps } from 'next/image'
 
-import image1 from '~/public/spaceship1.jpeg'
-import image2 from '~/public/spaceship2.jpeg'
-import image3 from '~/public/spaceship3.jpeg'
-import image4 from '~/public/spaceship4.jpeg'
+import image1 from '~/public/image/landing/spaceship1.jpeg'
+import image2 from '~/public/image/landing/spaceship2.jpeg'
+import image3 from '~/public/image/landing/spaceship3.jpeg'
+import image4 from '~/public/image/landing/spaceship4.jpeg'
 
 export interface CatalogItem {
   imageSrc: ImageProps['src']
