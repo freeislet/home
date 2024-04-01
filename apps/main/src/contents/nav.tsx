@@ -4,40 +4,30 @@ import {
   getRedirectUrl as _getRedirectUrl,
   findNavItemWithAncestors as _findNavItemWithAncestors,
 } from '@/lib/nav'
-import {
-  CubeIcon,
-  ThreeJsIcon,
-  UnityIcon,
-  MediaPipeIcon,
-  GameDevIcon,
-  WebDevIcon,
-  DiagramIcon,
-  AiIcon,
-  GeminiIcon,
-} from '@/components/icons'
+import * as Icons from '@/components/icons'
 import { portfolios } from './portfolio'
 
 const navConfig: NavItem[] = [
   {
-    icon: <CubeIcon />,
+    icon: <Icons.CubeIcon />,
     title: '3D/Game',
     href: '/game',
     nonlink: true,
     children: [
       {
-        icon: <GameDevIcon />,
+        icon: <Icons.GameDevIcon />,
         title: 'Game Dev',
         href: '/game/game-dev',
         disabled: true,
       },
       {
-        icon: <ThreeJsIcon />,
+        icon: <Icons.ThreeJsIcon />,
         title: 'Three.js',
         href: '/game/three-js',
         portfolio: portfolios['three-js'],
       },
       {
-        icon: <UnityIcon />,
+        icon: <Icons.UnityIcon />,
         title: 'Unity',
         href: '/game/unity',
         children: [
@@ -54,13 +44,13 @@ const navConfig: NavItem[] = [
     ],
   },
   {
-    icon: <WebDevIcon />,
+    icon: <Icons.WebDevIcon />,
     title: 'Web',
     href: '/web',
     nonlink: true,
     children: [
       {
-        icon: <DiagramIcon />,
+        icon: <Icons.DiagramIcon />,
         title: 'Visual Scripting',
         href: '/web/visual-scripting',
         nonlink: true,
@@ -86,19 +76,19 @@ const navConfig: NavItem[] = [
     ],
   },
   {
-    icon: <AiIcon />,
+    icon: <Icons.AiIcon />,
     title: 'AI/ML',
     href: '/ai',
     nonlink: true,
     children: [
       {
-        icon: <MediaPipeIcon />,
+        icon: <Icons.MediaPipeIcon />,
         title: 'MediaPipe',
         href: '/ai/mediapipe',
         portfolio: portfolios.mediapipe,
       },
       {
-        icon: <GeminiIcon />,
+        icon: <Icons.GeminiIcon />,
         title: 'Gemini',
         href: '/ai/gemini',
         nonlink: true,
