@@ -16,11 +16,13 @@ interface ActiveState {
 }
 
 interface ActiveStateAction {
-  href: Url
-  pathname: string
+  href?: Url
+  pathname?: string
 }
 
-function getActiveState(href: Url, pathname: string): ActiveState {
+function getActiveState(href?: Url, pathname?: string): ActiveState {
+  if (!href || !pathname) return { active: false, partialActive: false }
+
   const hrefStr = hrefAsString(href)
   const active = href == pathname
   const partialActive = !active && pathname.startsWith(hrefStr)
@@ -50,14 +52,11 @@ const NavLink = memo(
     ...props
   }: { children: React.ReactNode } & NavLinkProps) => {
     const pathname = usePathname()
-    const [activeState, dispatchActiveState] = useReducer(
-      activeStateReducer,
-      href ? getActiveState(href, pathname) : { active: false, partialActive: false }
-    )
+    const [activeState, dispatchActiveState] = useReducer(activeStateReducer, getActiveState(href, pathname))
 
     useEffect(() => {
-      if (href) dispatchActiveState({ href, pathname })
-    }, [pathname])
+      dispatchActiveState({ href, pathname })
+    }, [href, pathname])
 
     useEffect(() => {
       onActiveStateChange?.(activeState.active, activeState.partialActive)
