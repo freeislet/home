@@ -33,17 +33,19 @@ function activeStateReducer(state: ActiveState, action: ActiveStateAction): Acti
   return getActiveState(action.href, action.pathname)
 }
 
-type NavLinkProps = PartialPick<LinkProps, 'href'> & {
+type NavLinkProps = LinkProps & {
   activeClassName: string
   allowPartialMatch?: boolean
   partialActiveClassName?: string
   onActiveStateChange?: (active: boolean, partialActive: boolean) => void
+  nonlink?: boolean
 }
 
 const NavLink = memo(
   ({
     children,
     href,
+    nonlink,
     className,
     activeClassName,
     allowPartialMatch,
@@ -69,12 +71,12 @@ const NavLink = memo(
 
     className = cn(className, getClassName())
 
-    return href ? (
+    return nonlink ? (
+      <div className={className}>{children}</div>
+    ) : (
       <Link className={className} href={href} {...props}>
         {children}
       </Link>
-    ) : (
-      <div className={className}>{children}</div>
     )
   }
 )

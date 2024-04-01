@@ -13,17 +13,17 @@ export function NavSidebar({ className, ...props }: React.ComponentProps<'div'>)
   const baseNavItem = getBaseNavItem(pathname)
   if (!baseNavItem?.children?.length) return
 
-  const baseNavHref = !baseNavItem.nonlink ? baseNavItem.href : undefined
   return (
     <aside
       className={cn('flex-none hidden sm:flex flex-col min-w-32 space-y-2 bg-secondary border-r', className)}
       {...props}
     >
       <NavLink
-        href={baseNavHref}
+        href={baseNavItem.href}
+        nonlink={baseNavItem.nonlink}
         className={cn(
           'my-flex-row p-4 pb-2 space-x-1 mb-2 border-b font-medium text-foreground/80 transition-colors',
-          baseNavHref && 'hover:text-foreground'
+          !baseNavItem.nonlink && 'hover:text-foreground'
         )}
         activeClassName="underline underline-offset-4 decoration-2 decoration-sky-300"
         allowPartialMatch

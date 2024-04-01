@@ -9,7 +9,7 @@ export function NavMain() {
       {nav.map((item, index) => (
         <NavLink
           key={index}
-          href={item.nonlink ? item.nonlinkRedirectUrl : item.href}
+          href={(item.nonlink && item.nonlinkRedirectUrl) || item.href}
           className="group text-foreground/60 hover:text-foreground/80 transition-colors"
           activeClassName="text-foreground"
           allowPartialMatch
