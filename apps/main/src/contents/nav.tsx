@@ -10,7 +10,7 @@ import { portfolios } from './portfolio'
 const navConfig: NavItem[] = [
   {
     icon: <Icons.CubeIcon />,
-    title: '3D/Game',
+    title: 'Game/3D',
     href: '/game',
     nonlink: true,
     children: [

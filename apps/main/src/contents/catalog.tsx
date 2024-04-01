@@ -1,21 +1,34 @@
-import { type ImageProps } from 'next/image'
+import type { ImageProps } from 'next/image'
 
 import image1 from '~/public/image/landing/spaceship1.jpeg'
 import image2 from '~/public/image/landing/spaceship2.jpeg'
 import image3 from '~/public/image/landing/spaceship3.jpeg'
 import image4 from '~/public/image/landing/spaceship4.jpeg'
+import { Image } from '@/components/image'
 
 export interface CatalogItem {
-  imageSrc: ImageProps['src']
-  title: React.ReactNode
-  description: React.ReactNode
+  image?: ImageProps['src']
+  title?: React.ReactNode
+  content: React.ReactNode
 }
 
 export const catalog: CatalogItem[] = [
   {
-    imageSrc: image1,
+    content: (
+      <div className="flex-1 py-12 flex flex-col items-center">
+        <p className="text-center text-2xl font-semibold leading-relaxed">
+          게임 개발자 / 웹 개발자 / 데이터 엔지니어의
+          <br />
+          포트폴리오 & 블로그 <span className="text-lg font-normal">(...를 만드는 중)</span> 입니다.
+        </p>
+        <Image src="/spaceboy1.jpeg" className="h-72 rounded-2xl my-16 mx-auto" />
+      </div>
+    ),
+  },
+  {
+    image: image1,
     title: '🪐 이미지 1',
-    description: (
+    content: (
       <>
         우주는 행성들, 별들, 은하들 및 기타 모든 형태의 물질과 에너지를 포함하여 모든 공간과 시간 및 그 내용물이다.
         대폭발(빅뱅) 이론은 우주의 발달에 대한 지배적인 우주론적 기술이다. 이 이론에 따르면, 공간과 시간은 137.87 ±
@@ -25,9 +38,9 @@ export const catalog: CatalogItem[] = [
     ),
   },
   {
-    imageSrc: image2,
+    image: image2,
     title: '🚀 이미지 2',
-    description: (
+    content: (
       <>
         우주의 초기 우주론적 모형들은 중 일부는 고대 그리스인과 인도 철학자들에 의해 개발되었으며 또한 지구를 중심에
         두는 지구중심적이었다. 수세기들에 걸쳐, 보다 정확한 천문 관측들은 니콜라우스 코페르니쿠스가 태양이 태양계의
@@ -37,9 +50,9 @@ export const catalog: CatalogItem[] = [
     ),
   },
   {
-    imageSrc: image3,
+    image: image3,
     title: '🛸 이미지 3',
-    description: (
+    content: (
       <>
         추가적인 관측적 개선들로 인해 태양은 우리은하에 있는 수천억 개의 별들 중 하나이며, 그것은 관측가능한 우주에서
         수천억 개의 은하들 중 하나라는 사실이 밝혀졌다. 은하의 많은 별들은 행성들을 가지고 있다. 또한, 현재 관측된
@@ -52,9 +65,9 @@ export const catalog: CatalogItem[] = [
     ),
   },
   {
-    imageSrc: image4,
+    image: image4,
     title: '👽 이미지 4',
-    description: (
+    content: (
       <>
         대폭발 이론(빅뱅 이론)에 따르면, 처음에 존재하는 에너지와 물질은 우주가 팽창함에 따라 밀도가 낮아졌다. 약{' '}
         <span className="text-nowrap">
