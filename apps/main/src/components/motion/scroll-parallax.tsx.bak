@@ -32,7 +32,7 @@ function ParallaxImage({ item }: { item: CatalogItem }) {
   return (
     <section className="my-flex-row p-12 gap-12 snap-center">
       <div ref={ref} className="flex-none max-h-[90vh] h-96">
-        <Image src={item.imageSrc} alt="" className="w-auto h-full" />
+        <Image src={item.image} alt="" className="w-auto h-full" />
       </div>
       <motion.div style={{ y }}>
         <h3>{item.title}</h3>
