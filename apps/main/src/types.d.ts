@@ -17,8 +17,9 @@ interface NavItem {
 }
 
 interface PortfolioItem {
-  href: string
-  thumbnail: string | React.ReactNode
   title: string | React.ReactNode
   description: string | React.ReactNode
+  thumbnail: string | React.ReactNode
+  href: string
+  component?: React.ComponentType<any> // href에 해당하는 static route가 없을 때 이 컴포넌트를 불러옴 (MyPortfolioPage에서)
 }

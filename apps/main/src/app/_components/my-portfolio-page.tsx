@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { notFound } from 'next/navigation'
 
-import { portfolioComponents } from '@/contents/portfolio/components'
 import { findNavItemWithAncestors } from '@/contents/nav'
 import { getNodeText } from '@/lib/node'
 
@@ -12,7 +11,7 @@ interface MyPortfolioPageProps {
 }
 
 export default function MyPortfolioPage({ item }: MyPortfolioPageProps) {
-  const PortfolioComponent = portfolioComponents[item.href]
+  const PortfolioComponent = item.component
   if (!PortfolioComponent) notFound()
 
   const [state, setState] = useState<{
