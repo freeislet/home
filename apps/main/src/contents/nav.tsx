@@ -41,6 +41,20 @@ const navConfig: NavItem[] = [
           },
         ],
       },
+      {
+        icon: <Icons.AvatarIcon />,
+        title: 'Avatar',
+        href: '/game/avatar',
+        nonlink: true,
+        children: [
+          {
+            icon: <Icons.ReadyPlayerMeIcon />,
+            title: 'Ready Player Me',
+            href: '/game/avatar/ready-player-me',
+            portfolio: portfolios['ready-player-me'],
+          },
+        ],
+      },
     ],
   },
   {

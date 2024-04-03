@@ -6,7 +6,7 @@
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
-export type PortfolioId = 'three-js' | 'unity' | 'mediapipe'
+export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'mediapipe'
 export type PortfolioMap = {
   [id in PortfolioId]: PortfolioItem[]
 }
@@ -67,6 +67,15 @@ export const portfolios: PortfolioMap = {
       ),
       thumbnail: '/image/unity/3d-game-kit.png',
       href: '/game/unity/3d-game-kit',
+    },
+  ],
+  'ready-player-me': [
+    {
+      title: 'Avatar Creator',
+      description: 'Ready Player Me Avatar Creator',
+      thumbnail: '/image/threejs/basic-demo.png',
+      href: '/game/avatar/ready-player-me/avatar-creator',
+      component: load(() => import('./portfolio/ready-player-me/my-avatar-creator')),
     },
   ],
   mediapipe: [
