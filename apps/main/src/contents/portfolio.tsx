@@ -72,8 +72,8 @@ export const portfolios: PortfolioMap = {
   'ready-player-me': [
     {
       title: 'Avatar Creator',
-      description: 'Ready Player Me Avatar Creator',
-      thumbnail: '/image/threejs/basic-demo.png',
+      description: 'Ready Player Me Avatar Creator & Viewer(visage)',
+      thumbnail: '/image/ready-player-me/avatar-creator.png',
       href: '/game/avatar/ready-player-me/avatar-creator',
       component: load(() => import('./portfolio/ready-player-me/my-avatar-creator')),
     },
