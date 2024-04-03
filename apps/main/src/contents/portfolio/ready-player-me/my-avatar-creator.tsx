@@ -53,15 +53,16 @@ export default function MyAvatarCreator() {
           subdomain="freeislet"
           config={config}
           className="size-full border-none"
-          onAvatarExported={handleOnAvatarExported}
           onUserAuthorized={handleUserAuthorized}
-          onAssetUnlock={handleAssetUnlocked}
           onUserSet={handleOnUserSet}
+          onAssetUnlock={handleAssetUnlocked}
+          onAvatarExported={handleOnAvatarExported}
         />
       ) : (
         <Avatar
           modelSrc={avatarUrl}
-          // animationSrc="/visage/male-idle-1.fbx"
+          // animationSrc="/3d-animation/ready-player-me/F_Standing_Idle_001.fbx"
+          animationSrc="/3d-animation/ready-player-me/F_Dances_001.fbx"
           backLightColor="#FFB878"
           backLightIntensity={6 * Math.PI}
           backLightPosition={backLightPosition}
