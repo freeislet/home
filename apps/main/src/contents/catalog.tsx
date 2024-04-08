@@ -31,10 +31,12 @@ export const catalog: CatalogItem[] = [
     title: '🚀 게임/3D',
     content: (
       <ProseLayout>
-        <h2>Three.js</h2>
+        <h1>Three.js</h1>
         <MyPortfolio id="three-js" />
-        <h2>Unity</h2>
+        <h1>Unity</h1>
         <MyPortfolio id="unity" />
+        <h1>Ready Player Me</h1>
+        <MyPortfolio id="ready-player-me" />
       </ProseLayout>
     ),
   },
@@ -48,7 +50,7 @@ export const catalog: CatalogItem[] = [
     title: '👽 AI/ML',
     content: (
       <ProseLayout>
-        <h2>MediaPipe</h2>
+        <h1>MediaPipe</h1>
         <MyPortfolio id="mediapipe" />
         TBD
       </ProseLayout>
