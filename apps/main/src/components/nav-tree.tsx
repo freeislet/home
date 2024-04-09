@@ -121,9 +121,7 @@ interface ExpandToggleProps {
 const ExpandToggle = memo(({ expanded, onChange }: ExpandToggleProps) => {
   return (
     <ChevronDown
-      className={cn('ml-1 size-4 text-foreground/80 cursor-pointer transition duration-200', {
-        'rotate-180': expanded,
-      })}
+      className={cn('ml-1 size-4 text-foreground/80 cursor-pointer transition duration-200', !expanded && '-rotate-90')}
       onClick={(e) => {
         onChange?.(!expanded)
       }}
