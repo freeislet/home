@@ -35,7 +35,7 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
       className={cn('flex', !transparent && 'rounded-3xl overflow-hidden', className, transparent && 'bg-transparent')}
     >
       {item.image && (
-        <div className="flex-none max-w-[20vw] sm:max-w-[25vw] max-h-[80vh]">
+        <div className="flex-none w-[20vw] sm:w-[25vw] max-w-[20rem] max-h-[80vh]">
           <Image src={item.image} alt="" sizes="40vw" className="w-auto h-auto max-h-full rounded-br-2xl" />
         </div>
       )}

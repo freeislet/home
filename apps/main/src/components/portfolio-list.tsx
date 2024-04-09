@@ -22,7 +22,7 @@ export default function PortfolioList({ portfolio, className, ...props }: Portfo
 function row(item: PortfolioItem, index: number) {
   return (
     <tr key={index}>
-      <td className="w-72">
+      <td className="w-[20vw] max-w-72 min-w-28">
         <Link href={item.href}>{image(item.thumbnail, { className: 'w-full h-auto my-0 rounded-sm' })}</Link>
       </td>
       <td className="align-top">
