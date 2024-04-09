@@ -50,7 +50,12 @@ export const catalog: CatalogItem[] = [
   {
     image: webImage,
     title: '🌏 웹 개발',
-    content: <ProseLayout>TBD</ProseLayout>,
+    content: (
+      <ProseLayout>
+        <h1>Visual Scripting</h1>
+        <MyPortfolio id="visual-scripting" />
+      </ProseLayout>
+    ),
   },
   {
     image: aiImage,

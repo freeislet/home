@@ -6,7 +6,7 @@
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
-export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'mediapipe' | 'gemini'
+export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'visual-scripting' | 'mediapipe' | 'gemini'
 export type PortfolioMap = {
   [id in PortfolioId]: PortfolioItem[]
 }
@@ -77,6 +77,15 @@ export const portfolios: PortfolioMap = {
       thumbnail: '/image/ready-player-me/avatar-creator.png',
       href: '/game/avatar/ready-player-me/avatar-creator',
       component: load(() => import('./portfolio/ready-player-me/my-avatar-creator')),
+    },
+  ],
+  'visual-scripting': [
+    {
+      title: 'React Flow',
+      description: 'React Flow 테스트',
+      thumbnail: '/image/reactflow/reactflow.png',
+      href: '/web/visual-scripting/react-flow',
+      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
     },
   ],
   mediapipe: [
