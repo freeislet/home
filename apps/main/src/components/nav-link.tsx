@@ -38,6 +38,7 @@ type NavLinkProps = LinkProps & {
   allowPartialMatch?: boolean
   partialActiveClassName?: string
   onActiveStateChange?: (active: boolean, partialActive: boolean) => void
+  onClickLink?: (active: boolean, partialActive: boolean) => void
   nonlink?: boolean
 }
 
@@ -51,6 +52,7 @@ const NavLink = memo(
     allowPartialMatch,
     partialActiveClassName,
     onActiveStateChange,
+    onClickLink,
     ...props
   }: { children: React.ReactNode } & NavLinkProps) => {
     const pathname = usePathname()
@@ -64,20 +66,27 @@ const NavLink = memo(
       onActiveStateChange?.(activeState.active, activeState.partialActive)
     }, [activeState.active, activeState.partialActive])
 
+    const onClick = onClickLink && (() => onClickLink(activeState.active, activeState.partialActive))
+
     const getClassName = () => {
       if (activeState.active) return activeClassName
       if (allowPartialMatch && activeState.partialActive) return partialActiveClassName || activeClassName
     }
 
-    className = cn(className, getClassName())
-
-    return nonlink ? (
-      <div className={className}>{children}</div>
-    ) : (
-      <Link className={className} href={href} {...props}>
-        {children}
-      </Link>
-    )
+    if (nonlink) {
+      return (
+        <div className={cn(onClick && 'cursor-pointer', className, getClassName())} onClick={onClick}>
+          {children}
+        </div>
+      )
+    } else {
+      props.onClick = onClick
+      return (
+        <Link href={href} className={cn(className, getClassName())} {...props}>
+          {children}
+        </Link>
+      )
+    }
   }
 )
 NavLink.displayName = 'NavLink'

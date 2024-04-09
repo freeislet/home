@@ -51,6 +51,15 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
   const onActiveStateChange = useCallback((active: boolean, partialActive: boolean) => {
     if (active || partialActive) setExpanded(true)
   }, [])
+  const onClickLink = useCallback(
+    (active: boolean, partialActive: boolean) => {
+      // nonlink라면, 무조건 토글
+      // link라면, active면 토글, 아니면 펼치기
+      const expand = navItem.nonlink || active ? !expanded : true
+      setExpanded(expand)
+    },
+    [expanded]
+  )
 
   const hasChildren = !!navItem.children?.length
   const expandMotionProps = {
@@ -81,6 +90,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
           allowPartialMatch
           partialActiveClassName="text-foreground/70"
           onActiveStateChange={onActiveStateChange}
+          onClickLink={onClickLink}
         >
           {navItem.icon}
           <span>{navItem.title}</span>
