@@ -47,7 +47,6 @@
     "framer-motion": "^11.0.2",
     "kysely": "^0.27.2",
     "kysely-planetscale": "^1.4.0",
-    "litegraph.js": "^0.7.18",
     "lodash": "^4.17.21",
     "lucia": "^2.7.6",
     "lucide-react": "^0.309.0",
