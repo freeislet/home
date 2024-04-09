@@ -75,7 +75,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
           nonlink={navItem.nonlink}
           className={cn(
             'my-flex-row space-x-1 text-foreground/60 transition-colors',
-            !navItem.nonlink && 'hover:text-foreground/80'
+            !navItem.nonlink && 'hover:text-blue-500'
           )}
           activeClassName="text-foreground underline underline-offset-4 decoration-2 decoration-sky-300"
           allowPartialMatch
