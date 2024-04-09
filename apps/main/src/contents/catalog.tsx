@@ -14,9 +14,9 @@ export interface CatalogItem {
   content: React.ReactNode
 }
 
-const Link_h1 = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const Link_h2 = ({ href, children }: { href: string; children: React.ReactNode }) => (
   <Link href={href} className="underline-offset-8">
-    <h1>{children}</h1>
+    <h2>{children}</h2>
   </Link>
 )
 
@@ -38,11 +38,11 @@ export const catalog: CatalogItem[] = [
     title: '🚀 게임/3D',
     content: (
       <ProseLayout>
-        <Link_h1 href="/game/three-js">Three.js</Link_h1>
+        <Link_h2 href="/game/three-js">Three.js</Link_h2>
         <MyPortfolio id="three-js" />
-        <Link_h1 href="/game/unity">Unity</Link_h1>
+        <Link_h2 href="/game/unity">Unity</Link_h2>
         <MyPortfolio id="unity" />
-        <Link_h1 href="/game/avatar/ready-player-me">Ready Player Me</Link_h1>
+        <Link_h2 href="/game/avatar/ready-player-me">Ready Player Me</Link_h2>
         <MyPortfolio id="ready-player-me" />
       </ProseLayout>
     ),
@@ -52,7 +52,7 @@ export const catalog: CatalogItem[] = [
     title: '🌏 웹 개발',
     content: (
       <ProseLayout>
-        <h1>Visual Scripting</h1>
+        <h2>Visual Scripting</h2>
         <MyPortfolio id="visual-scripting" />
       </ProseLayout>
     ),
@@ -62,9 +62,9 @@ export const catalog: CatalogItem[] = [
     title: '👽 AI/ML',
     content: (
       <ProseLayout>
-        <Link_h1 href="/ai/mediapipe">MediaPipe</Link_h1>
+        <Link_h2 href="/ai/mediapipe">MediaPipe</Link_h2>
         <MyPortfolio id="mediapipe" />
-        <h1>Gemini</h1>
+        <h2>Gemini</h2>
         <MyPortfolio id="gemini" />
       </ProseLayout>
     ),
