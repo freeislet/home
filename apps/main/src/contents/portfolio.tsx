@@ -87,6 +87,27 @@ export const portfolios: PortfolioMap = {
       href: '/web/visual-scripting/react-flow',
       // component: load(() => import('./portfolio/react-flow/react-flow-test')),
     },
+    {
+      title: 'Rete',
+      description: 'Rete 테스트',
+      thumbnail: '/image/rete/rete.png',
+      href: '/web/visual-scripting/rete',
+      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+    },
+    {
+      title: 'Flume',
+      description: 'Flume 테스트',
+      thumbnail: '/image/flume/flume.png',
+      href: '/web/visual-scripting/flume',
+      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+    },
+    {
+      title: 'Blockly',
+      description: 'Blockly 테스트',
+      thumbnail: '/image/blockly/blockly.png',
+      href: '/web/visual-scripting/blockly',
+      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+    },
   ],
   mediapipe: [
     {
