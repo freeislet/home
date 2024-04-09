@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Unity, useUnityContext, type UnityConfig } from 'react-unity-webgl'
 
-import { UnityIcon } from '@/components/icons'
 import { cn } from '@/lib/utils'
 
 export default function Unity3dGameKitPage() {
@@ -33,12 +32,7 @@ export default function Unity3dGameKitPage() {
   // unload 버그 존재 (https://react-unity-webgl.dev/docs/api/unload)
 
   return (
-    <div className="my-grid-main">
-      <div className="my-flex-row m-2">
-        <UnityIcon />
-        <span className="badge mr-1 ml-0.5">Unity</span>
-        3D Game Kit Lite 예제
-      </div>
+    <>
       {isLoaded === false && (
         <div className="m-auto">
           <p>Loading... {loadingPercentage}%</p>
@@ -48,6 +42,6 @@ export default function Unity3dGameKitPage() {
       <button className="mt-4 p-1 bg-destructive text-destructive-foreground" onClick={async () => await unload()}>
         Unload
       </button>
-    </div>
+    </>
   )
 }

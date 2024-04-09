@@ -1,12 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Unity, useUnityContext, type UnityConfig } from 'react-unity-webgl'
 
-import { UnityIcon } from '@/components/icons'
 import { cn } from '@/lib/utils'
 
-export default function UnityKartPage() {
+export default function Kart() {
   const buildUrl = '/unity/Kart/Build'
   const unityConfig: UnityConfig = {
     loaderUrl: buildUrl + '/Kart.loader.js',
@@ -33,12 +32,7 @@ export default function UnityKartPage() {
   // unload 버그 존재 (https://react-unity-webgl.dev/docs/api/unload)
 
   return (
-    <div className="my-grid-main">
-      <div className="my-flex-row m-2">
-        <UnityIcon />
-        <span className="badge mr-1 ml-0.5">Unity</span>
-        Kart 예제
-      </div>
+    <>
       {isLoaded === false && (
         <div className="m-auto">
           <p>Loading... {loadingPercentage}%</p>
@@ -48,6 +42,6 @@ export default function UnityKartPage() {
       <button className="mt-4 p-1 bg-destructive text-destructive-foreground" onClick={async () => await unload()}>
         Unload
       </button>
-    </div>
+    </>
   )
 }

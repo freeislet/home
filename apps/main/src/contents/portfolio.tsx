@@ -55,7 +55,7 @@ export const portfolios: PortfolioMap = {
       description: '간단한 자동차 경주 예제',
       thumbnail: '/image/unity/kart.png',
       href: '/game/unity/kart',
-      // component: load(() => import('./unity/kart')),
+      component: load(() => import('./portfolio/unity/kart')),
     },
     {
       title: '3D Game Kit',
@@ -67,6 +67,7 @@ export const portfolios: PortfolioMap = {
       ),
       thumbnail: '/image/unity/3d-game-kit.png',
       href: '/game/unity/3d-game-kit',
+      component: load(() => import('./portfolio/unity/3d-game-kit')),
     },
   ],
   'ready-player-me': [
