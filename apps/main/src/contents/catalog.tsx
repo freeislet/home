@@ -59,7 +59,8 @@ export const catalog: CatalogItem[] = [
       <ProseLayout>
         <Link_h1 href="/ai/mediapipe">MediaPipe</Link_h1>
         <MyPortfolio id="mediapipe" />
-        TBD
+        <h1>Gemini</h1>
+        <MyPortfolio id="gemini" />
       </ProseLayout>
     ),
   },

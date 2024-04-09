@@ -106,17 +106,7 @@ const navConfig: NavItem[] = [
         title: 'Gemini',
         href: '/ai/gemini',
         nonlink: true,
-        children: [
-          {
-            title: 'Chatbot',
-            href: '/ai/gemini/chatbot',
-          },
-          {
-            title: 'Multimodal',
-            href: '/ai/gemini/multimodal',
-            disabled: true,
-          },
-        ],
+        portfolio: portfolios.gemini,
       },
     ],
   },

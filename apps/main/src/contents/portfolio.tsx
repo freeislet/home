@@ -6,7 +6,7 @@
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
-export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'mediapipe'
+export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'mediapipe' | 'gemini'
 export type PortfolioMap = {
   [id in PortfolioId]: PortfolioItem[]
 }
@@ -107,6 +107,15 @@ export const portfolios: PortfolioMap = {
       thumbnail: '/image/mediapipe/pose-tracking.png',
       href: '/ai/mediapipe/pose-tracking',
       component: load(() => import('./portfolio/mediapipe/pose-tracking')),
+    },
+  ],
+  gemini: [
+    {
+      title: 'Chatbot',
+      description: 'Gemini Chatbot API 연동을 통한 챗봇 구현 예제',
+      thumbnail: '/image/gemini/chatbot.png',
+      href: '/ai/gemini/chatbot',
+      component: load(() => import('./portfolio/gemini/chatbot')),
     },
   ],
 }
