@@ -1,4 +1,5 @@
 import type { ImageProps } from 'next/image'
+import Link from 'next/link'
 
 import gameImage from '~/public/image/landing/game.jpeg'
 import webImage from '~/public/image/landing/web.jpeg'
@@ -12,6 +13,12 @@ export interface CatalogItem {
   title?: React.ReactNode
   content: React.ReactNode
 }
+
+const Link_h1 = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <Link href={href} className="underline-offset-8">
+    <h1>{children}</h1>
+  </Link>
+)
 
 export const catalog: CatalogItem[] = [
   {
@@ -31,11 +38,11 @@ export const catalog: CatalogItem[] = [
     title: '🚀 게임/3D',
     content: (
       <ProseLayout>
-        <h1>Three.js</h1>
+        <Link_h1 href="/game/three-js">Three.js</Link_h1>
         <MyPortfolio id="three-js" />
-        <h1>Unity</h1>
+        <Link_h1 href="/game/unity">Unity</Link_h1>
         <MyPortfolio id="unity" />
-        <h1>Ready Player Me</h1>
+        <Link_h1 href="/game/avatar/ready-player-me">Ready Player Me</Link_h1>
         <MyPortfolio id="ready-player-me" />
       </ProseLayout>
     ),
@@ -50,7 +57,7 @@ export const catalog: CatalogItem[] = [
     title: '👽 AI/ML',
     content: (
       <ProseLayout>
-        <h1>MediaPipe</h1>
+        <Link_h1 href="/ai/mediapipe">MediaPipe</Link_h1>
         <MyPortfolio id="mediapipe" />
         TBD
       </ProseLayout>
