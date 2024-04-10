@@ -9,7 +9,7 @@ export function DownToDocument() {
   )
 }
 
-export function ScrollToTop({ text }: { text?: string }) {
+export function ScrollToTop({ text }: { text?: React.ReactNode }) {
   return (
     <div className="sticky top-header-height my-flex-col items-center -mb-7">
       <button

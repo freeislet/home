@@ -85,7 +85,11 @@ export const portfolios: PortfolioMap = {
       description: 'React Flow 테스트',
       thumbnail: '/image/reactflow/reactflow.png',
       href: '/web/visual-scripting/react-flow',
-      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+      component: load(() => import('./portfolio/react-flow/react-flow-test')),
+      document: load(() => import('./portfolio/react-flow/react-flow.mdx')),
+      details: {
+        scrollToTopText: 'Editor',
+      },
     },
     {
       title: 'Rete',

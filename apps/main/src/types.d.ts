@@ -22,4 +22,10 @@ interface PortfolioItem {
   thumbnail: string | React.ReactNode
   href: string
   component?: React.ComponentType<any> // href에 해당하는 static route가 없을 때 이 컴포넌트를 불러옴 (MyPortfolioPage에서)
+  document?: /*React.ReactNode |*/ React.ComponentType<any>
+  details?: PortfolioDetails
+}
+
+interface PortfolioDetails {
+  scrollToTopText?: React.ReactNode
 }
