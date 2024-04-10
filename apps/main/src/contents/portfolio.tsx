@@ -107,7 +107,11 @@ export const portfolios: PortfolioMap = {
       description: 'Flume 테스트',
       thumbnail: '/image/flume/flume.png',
       href: '/web/visual-scripting/flume',
-      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+      component: load(() => import('./portfolio/flume/flume-test')),
+      document: load(() => import('./portfolio/flume/flume.mdx')),
+      details: {
+        scrollToTopText: 'Editor',
+      },
     },
     {
       title: 'Blockly',
