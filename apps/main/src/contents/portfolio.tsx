@@ -92,11 +92,15 @@ export const portfolios: PortfolioMap = {
       },
     },
     {
-      title: 'Rete',
-      description: 'Rete 테스트',
+      title: 'Rete.js',
+      description: 'Rete.js 테스트',
       thumbnail: '/image/rete/rete.png',
       href: '/web/visual-scripting/rete',
-      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+      component: load(() => import('./portfolio/rete/rete-test')),
+      document: load(() => import('./portfolio/rete/rete.mdx')),
+      details: {
+        scrollToTopText: 'Editor',
+      },
     },
     {
       title: 'Flume',
