@@ -118,7 +118,11 @@ export const portfolios: PortfolioMap = {
       description: 'Blockly 테스트',
       thumbnail: '/image/blockly/blockly.png',
       href: '/web/visual-scripting/blockly',
-      // component: load(() => import('./portfolio/react-flow/react-flow-test')),
+      component: load(() => import('./portfolio/blockly/blockly-test')),
+      document: load(() => import('./portfolio/blockly/blockly.mdx')),
+      details: {
+        scrollToTopText: 'Workspace',
+      },
     },
   ],
   mediapipe: [
