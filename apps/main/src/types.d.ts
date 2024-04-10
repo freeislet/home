@@ -22,7 +22,7 @@ interface PortfolioItem {
   thumbnail: string | React.ReactNode
   href: string
   component?: React.ComponentType<any> // href에 해당하는 static route가 없을 때 이 컴포넌트를 불러옴 (MyPortfolioPage에서)
-  document?: /*React.ReactNode |*/ React.ComponentType<any>
+  document?: React.ComponentType<MDXProps> // React.ReactNode | React.ComponentType<any> 대신 .mdx로 한정
   details?: PortfolioDetails
 }
 
