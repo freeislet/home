@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { findNavItemWithAncestors } from '../nav'
 import { getNodeText } from '@/lib/node'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
-import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
+import { DownToDocument, ScrollToTop } from '@/contents/components/scroll-ui'
 import ProseLayout from '@/components/prose-layout'
 
 interface MyPortfolioPageProps {

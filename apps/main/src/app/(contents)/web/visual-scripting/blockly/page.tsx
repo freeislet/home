@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { CodeBlock } from '@/components/codeblock'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
-import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
+import { DownToDocument, ScrollToTop } from '@/contents/components/scroll-ui'
 import ProseLayout from '@/components/prose-layout'
 import BlocklyMdx from './blockly.mdx'
 

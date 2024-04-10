@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { load } from '@/components/loading'
 import { DiagramIcon } from '@/components/icons'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
-import { DownToDocument, ScrollToTop } from '@/app/(contents)/_components/scroll-ui'
+import { DownToDocument, ScrollToTop } from '@/contents/components/scroll-ui'
 import ProseLayout from '@/components/prose-layout'
 import FlumeMdx from './flume.mdx'
 
