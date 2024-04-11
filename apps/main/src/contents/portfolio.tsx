@@ -100,6 +100,18 @@ export const portfolios: PortfolioMap = {
       //   scrollToTopText: 'Editor',
       // },
     },
+    {
+      title: 'Monaco Editor',
+      icon: <Icons.MonacoEditorIcon />,
+      description: 'Monaco Editor 테스트',
+      thumbnail: '/image/monaco-editor/thumbnail.png',
+      href: '/web/web-components/monaco-editor',
+      component: load(() => import('./portfolio/monaco-editor/monaco-editor-test')),
+      // document: load(() => import('./portfolio/react-flow/react-flow.mdx')),
+      // details: {
+      //   scrollToTopText: 'Editor',
+      // },
+    },
   ],
   'visual-scripting': [
     {
