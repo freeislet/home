@@ -9,7 +9,14 @@ import { CatalogPathAnimation } from './catalog-path-animation'
 
 interface CatalogSectionProps extends React.ComponentProps<'div'> {}
 
-const bgs = ['bg-[#E6E3F8]', 'bg-[#E3F1F8]', 'bg-[#E3F8EE]', 'bg-[#F4F8E3]', 'bg-[#F8E3E3]', 'bg-[#F8ECE3]']
+const bgs = [
+  'bg-[#E6E3F8] dark:bg-[#504c62]',
+  'bg-[#E3F1F8] dark:bg-[#4d5b62]',
+  'bg-[#E3F8EE] dark:bg-[#4d6258]',
+  'bg-[#F4F8E3] dark:bg-[#5e624d]',
+  'bg-[#F8E3E3] dark:bg-[#624d4d]',
+  'bg-[#F8ECE3] dark:bg-[#62564d]',
+]
 
 export function CatalogSection({ className, ...props }: CatalogSectionProps) {
   const [pathContainerRef, pathContainerSize] = useElementSize()

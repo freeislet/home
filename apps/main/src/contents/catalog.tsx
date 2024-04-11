@@ -33,7 +33,7 @@ export interface CatalogItem {
 export const catalog: CatalogItem[] = [
   {
     content: (
-      <div className="flex-1 py-20 flex flex-col items-center">
+      <div className="flex-1 py-20 flex flex-col items-center text-foreground">
         <p className="mb-12 text-center text-2xl font-semibold leading-relaxed">
           게임 개발자 / 웹 개발자 / 데이터 엔지니어의
           <br />
