@@ -20,7 +20,7 @@ const PortfolioHeading = ({ href }: { href: string }) => {
   const navItem = findNavItem(href)
   if (!navItem) return
 
-  const children = <IconText icon={navItem.icon} text={navItem.title} />
+  const children = <IconText icon={navItem.icon} iconClassName="size-8 align-bottom" text={navItem.title} />
   return navItem.nonlink ? <Heading>{children}</Heading> : <LinkHeading href={href}>{children}</LinkHeading>
 }
 
@@ -37,7 +37,7 @@ export const catalog: CatalogItem[] = [
         <p className="mb-12 text-center text-2xl font-semibold leading-relaxed">
           게임 개발자 / 웹 개발자 / 데이터 엔지니어의
           <br />
-          포트폴리오 & 블로그 <span className="text-lg font-normal">(...를 만드는 중)</span> 입니다.
+          포트폴리오 & 블로그<span className="text-lg font-normal">(...를 만드는 중)</span> 입니다.
         </p>
         <Image src="/image/landing/spaceboy1.jpeg" className="h-72 rounded-2xl my-4 mx-auto" />
       </div>

@@ -1,11 +1,15 @@
+import { isValidElement, cloneElement } from 'react'
+
 interface IconTextProps {
-  icon: React.ReactNode
+  icon?: React.ReactNode
+  iconClassName?: string
   text: React.ReactNode
 }
-export default function IconText({ icon, text }: IconTextProps): React.ReactNode {
-  // const icon = isValidElement<HTMLElement>(navItem.icon)
-  //   ? cloneElement(navItem.icon, { className: 'size-8 align-bottom' })
-  //   : navItem.icon
+export default function IconText({ icon, iconClassName, text }: IconTextProps): React.ReactNode {
+  if (iconClassName && isValidElement<HTMLElement | SVGElement>(icon)) {
+    icon = cloneElement(icon, { className: iconClassName })
+  }
+
   return icon ? (
     <div className="my-flex-row space-x-1 not-prose">
       {icon}
