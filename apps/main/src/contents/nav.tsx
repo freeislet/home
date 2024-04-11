@@ -68,24 +68,7 @@ const navConfig: NavItem[] = [
         title: 'Visual Scripting',
         href: '/web/visual-scripting',
         nonlink: true,
-        children: [
-          {
-            title: 'React Flow',
-            href: '/web/visual-scripting/react-flow',
-          },
-          {
-            title: 'Rete',
-            href: '/web/visual-scripting/rete',
-          },
-          {
-            title: 'Flume',
-            href: '/web/visual-scripting/flume',
-          },
-          {
-            title: 'Blockly',
-            href: '/web/visual-scripting/blockly',
-          },
-        ],
+        portfolio: portfolios['visual-scripting'],
       },
     ],
   },
