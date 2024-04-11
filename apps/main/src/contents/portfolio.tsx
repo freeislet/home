@@ -3,6 +3,7 @@
 //       -> PortfolioList, MyPortfolio, FallbackPage를 client component로 변경
 //       (다시 component 목록을 ./portfolio/portfolio-components.ts에 맵으로 분리하는게 나을지도?)
 
+import * as Icons from '@/components/icons'
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
@@ -89,6 +90,7 @@ export const portfolios: PortfolioMap = {
   'web-components': [
     {
       title: 'CodeMirror',
+      icon: <Icons.CodeMirrorIcon />,
       description: 'CodeMirror Code Editor 테스트',
       thumbnail: '/image/reactflow/reactflow.png',
       href: '/web/web-components/codemirror',

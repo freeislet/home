@@ -3,7 +3,7 @@ export function buildNav(nav: NavItem[]): NavItem[] {
     if (item.disabled) return false
 
     const children = item.children?.filter(build)
-    const portfolioNav = item.portfolio?.map((item) => ({ title: item.title, href: item.href }))
+    const portfolioNav = item.portfolio?.map((item) => ({ title: item.title, icon: item.icon, href: item.href }))
     item.children = children || portfolioNav ? [...(children || []), ...(portfolioNav || [])] : undefined
 
     if (item.nonlink) item.nonlinkRedirectUrl = findFirstValidUrl(item)

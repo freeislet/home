@@ -18,6 +18,7 @@ interface NavItem {
 
 interface PortfolioItem {
   title: string | React.ReactNode
+  icon?: React.ReactNode
   description: string | React.ReactNode
   thumbnail: string | React.ReactNode
   href: string

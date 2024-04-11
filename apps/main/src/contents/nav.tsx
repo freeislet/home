@@ -1,13 +1,13 @@
 import { RxComponent1 } from 'react-icons/rx'
 
+import * as Icons from '@/components/icons'
+import { portfolios } from './portfolio'
 import {
   buildNav,
   getBaseNavItem as _getBaseNavItem,
   getRedirectUrl as _getRedirectUrl,
   findNavItemWithAncestors as _findNavItemWithAncestors,
 } from '@/lib/nav'
-import * as Icons from '@/components/icons'
-import { portfolios } from './portfolio'
 
 const navConfig: NavItem[] = [
   {
