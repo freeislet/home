@@ -92,7 +92,7 @@ export const portfolios: PortfolioMap = {
       title: 'CodeMirror',
       icon: <Icons.CodeMirrorIcon />,
       description: 'CodeMirror Code Editor 테스트',
-      thumbnail: '/image/codemirror/codemirror.png',
+      thumbnail: '/image/codemirror/thumbnail.png',
       href: '/web/web-components/codemirror',
       component: load(() => import('./portfolio/codemirror/codemirror-test')),
       // document: load(() => import('./portfolio/react-flow/react-flow.mdx')),
