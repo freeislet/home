@@ -18,6 +18,7 @@
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@mediapipe/tasks-vision": "^0.10.12",
+    "@monaco-editor/react": "^4.6.0",
     "@next/mdx": "^14.1.0",
     "@planetscale/database": "^1.13.0",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
