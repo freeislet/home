@@ -52,6 +52,8 @@ export const catalog: CatalogItem[] = [
     title: '🌏 웹 개발',
     content: (
       <ProseLayout>
+        <h2>Web Components</h2>
+        <MyPortfolio id="web-components" />
         <h2>Visual Scripting</h2>
         <MyPortfolio id="visual-scripting" />
       </ProseLayout>

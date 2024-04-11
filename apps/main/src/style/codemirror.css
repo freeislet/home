@@ -1,0 +1,9 @@
+@tailwind base;
+
+/* full height editor에 scroll 적용 (https://stackoverflow.com/questions/54564976/grid-with-viewport-height-and-inner-scrolling-div 참고) */
+.cm-scroller {
+  flex: 1 0 1px;
+}
+
+@layer base {
+}

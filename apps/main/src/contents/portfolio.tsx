@@ -6,7 +6,14 @@
 import { findPortfolioItem as _findPortfolioItem } from '@/lib/portfolio'
 import { load } from '@/components/loading'
 
-export type PortfolioId = 'three-js' | 'unity' | 'ready-player-me' | 'visual-scripting' | 'mediapipe' | 'gemini'
+export type PortfolioId =
+  | 'three-js'
+  | 'unity'
+  | 'ready-player-me'
+  | 'web-components'
+  | 'visual-scripting'
+  | 'mediapipe'
+  | 'gemini'
 export type PortfolioMap = {
   [id in PortfolioId]: PortfolioItem[]
 }
@@ -77,6 +84,19 @@ export const portfolios: PortfolioMap = {
       thumbnail: '/image/ready-player-me/avatar-creator.png',
       href: '/game/avatar/ready-player-me/avatar-creator',
       component: load(() => import('./portfolio/ready-player-me/my-avatar-creator')),
+    },
+  ],
+  'web-components': [
+    {
+      title: 'CodeMirror',
+      description: 'CodeMirror Code Editor 테스트',
+      thumbnail: '/image/reactflow/reactflow.png',
+      href: '/web/web-components/codemirror',
+      component: load(() => import('./portfolio/codemirror/codemirror-test')),
+      // document: load(() => import('./portfolio/react-flow/react-flow.mdx')),
+      // details: {
+      //   scrollToTopText: 'Editor',
+      // },
     },
   ],
   'visual-scripting': [

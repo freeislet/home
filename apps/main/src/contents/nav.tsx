@@ -1,3 +1,5 @@
+import { RxComponent1 } from 'react-icons/rx'
+
 import {
   buildNav,
   getBaseNavItem as _getBaseNavItem,
@@ -63,6 +65,13 @@ const navConfig: NavItem[] = [
     href: '/web',
     nonlink: true,
     children: [
+      {
+        icon: <RxComponent1 className="size-6" />,
+        title: 'Web Components',
+        href: '/web/web-components',
+        nonlink: true,
+        portfolio: portfolios['web-components'],
+      },
       {
         icon: <Icons.DiagramIcon />,
         title: 'Visual Scripting',
