@@ -45,7 +45,7 @@ export const catalog: CatalogItem[] = [
   },
   {
     image: gameImage,
-    title: '🚀 게임/3D',
+    title: '게임/3D',
     content: (
       <ProseLayout>
         <PortfolioHeading href="/game/three-js" />
@@ -59,7 +59,7 @@ export const catalog: CatalogItem[] = [
   },
   {
     image: webImage,
-    title: '🌏 웹 개발',
+    title: '웹 개발',
     content: (
       <ProseLayout>
         <PortfolioHeading href="/web/web-components" />
@@ -71,7 +71,7 @@ export const catalog: CatalogItem[] = [
   },
   {
     image: aiImage,
-    title: '👽 AI/ML',
+    title: 'AI/ML',
     content: (
       <ProseLayout>
         <PortfolioHeading href="/ai/mediapipe" />

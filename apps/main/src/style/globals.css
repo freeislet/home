@@ -187,4 +187,22 @@
   .no-ring {
     @apply ring-0 ring-offset-0;
   }
+
+  .backboard-purple {
+    @apply relative z-10;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% + 2px);
+      left: -10px;
+      width: calc(100% + 20px);
+      height: 50%;
+      transform: translateY(30%);
+      z-index: -1;
+      background-color: gray;
+      opacity: 0.3;
+    }
+  }
 }

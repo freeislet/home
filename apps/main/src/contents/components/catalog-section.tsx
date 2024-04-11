@@ -41,8 +41,9 @@ function CatalogItem({ item, className }: { item: CatalogItem; className?: strin
       )}
       {item.title ? (
         <div className="p-3 sm:p-6 w-full">
-          <h5 className="mb-2 sm:mb-4 text-2xl">{item.title}</h5>
-          <hr />
+          <h5 className="mb-2 sm:mb-4 text-3xl text-foreground font-bold backboard-purple inline-block">
+            {item.title}
+          </h5>
           <div>{item.content}</div>
         </div>
       ) : (
