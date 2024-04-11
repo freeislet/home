@@ -1,3 +1,9 @@
+/**
+ * - CodeMirror: https://codemirror.net/
+ * - react-codemirror: https://github.com/uiwjs/react-codemirror
+ * - Monaco Editor 비교: https://blog.replit.com/codemirror
+ */
+
 'use client'
 
 import CodeMirror from '@uiw/react-codemirror'
