@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { Image, ImageProps } from '@/components/image'
+import IconText from '@/components/icon-text'
 
 export interface PortfolioListProps extends React.ComponentProps<'div'> {
   portfolio: PortfolioItem[]
@@ -27,7 +28,7 @@ function row(item: PortfolioItem, index: number) {
       </td>
       <td className="align-top">
         <Link href={item.href} className="text-lg no-underline">
-          {item.title}
+          <IconText icon={item.icon} text={item.title} />
         </Link>
         <hr className="my-1"></hr>
         <span className="">{item.description}</span>
