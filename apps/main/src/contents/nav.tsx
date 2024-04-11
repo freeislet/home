@@ -6,6 +6,7 @@ import {
   buildNav,
   getBaseNavItem as _getBaseNavItem,
   getRedirectUrl as _getRedirectUrl,
+  findNavItem as _findNavItem,
   findNavItemWithAncestors as _findNavItemWithAncestors,
 } from '@/lib/nav'
 
@@ -66,7 +67,7 @@ const navConfig: NavItem[] = [
     nonlink: true,
     children: [
       {
-        icon: <RxComponent1 className="size-6" />,
+        icon: <RxComponent1 className="size-6 inline" />,
         title: 'Web Components',
         href: '/web/web-components',
         nonlink: true,
@@ -117,6 +118,10 @@ export function getBaseNavItem(pathname: string): NavItem | undefined {
 /** @deprecated 실시간으로 redirect url 계산하지 않고, buildNav 시 nonlinkRedirectUrl 설정하도록 변경 */
 export function getRedirectUrl(href: string): string | undefined {
   return _getRedirectUrl(nav, href)
+}
+
+export function findNavItem(href: string): NavItem | undefined {
+  return _findNavItem(nav, href)
 }
 
 export function findNavItemWithAncestors(href: string): NavItem[] {

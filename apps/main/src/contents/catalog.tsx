@@ -7,18 +7,28 @@ import aiImage from '~/public/image/landing/ai.jpeg'
 import { Image } from '@/components/image'
 import ProseLayout from '@/components/prose-layout'
 import MyPortfolio from '@/contents/components/my-portfolio'
+import IconText from '@/components/icon-text'
+import { findNavItem } from './nav'
+
+const Heading = ({ children }: { children: React.ReactNode }) => <h2>{children}</h2>
+const LinkHeading = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <Link href={href} className="underline-offset-8">
+    <h2>{children}</h2>
+  </Link>
+)
+const PortfolioHeading = ({ href }: { href: string }) => {
+  const navItem = findNavItem(href)
+  if (!navItem) return
+
+  const children = <IconText icon={navItem.icon} text={navItem.title} />
+  return navItem.nonlink ? <Heading>{children}</Heading> : <LinkHeading href={href}>{children}</LinkHeading>
+}
 
 export interface CatalogItem {
   image?: ImageProps['src']
   title?: React.ReactNode
   content: React.ReactNode
 }
-
-const Link_h2 = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <Link href={href} className="underline-offset-8">
-    <h2>{children}</h2>
-  </Link>
-)
 
 export const catalog: CatalogItem[] = [
   {
@@ -38,11 +48,11 @@ export const catalog: CatalogItem[] = [
     title: '🚀 게임/3D',
     content: (
       <ProseLayout>
-        <Link_h2 href="/game/three-js">Three.js</Link_h2>
+        <PortfolioHeading href="/game/three-js" />
         <MyPortfolio id="three-js" />
-        <Link_h2 href="/game/unity">Unity</Link_h2>
+        <PortfolioHeading href="/game/unity" />
         <MyPortfolio id="unity" />
-        <Link_h2 href="/game/avatar/ready-player-me">Ready Player Me</Link_h2>
+        <PortfolioHeading href="/game/avatar/ready-player-me" />
         <MyPortfolio id="ready-player-me" />
       </ProseLayout>
     ),
@@ -52,9 +62,9 @@ export const catalog: CatalogItem[] = [
     title: '🌏 웹 개발',
     content: (
       <ProseLayout>
-        <h2>Web Components</h2>
+        <PortfolioHeading href="/web/web-components" />
         <MyPortfolio id="web-components" />
-        <h2>Visual Scripting</h2>
+        <PortfolioHeading href="/web/visual-scripting" />
         <MyPortfolio id="visual-scripting" />
       </ProseLayout>
     ),
@@ -64,9 +74,9 @@ export const catalog: CatalogItem[] = [
     title: '👽 AI/ML',
     content: (
       <ProseLayout>
-        <Link_h2 href="/ai/mediapipe">MediaPipe</Link_h2>
+        <PortfolioHeading href="/ai/mediapipe" />
         <MyPortfolio id="mediapipe" />
-        <h2>Gemini</h2>
+        <PortfolioHeading href="/ai/gemini" />
         <MyPortfolio id="gemini" />
       </ProseLayout>
     ),
