@@ -41,6 +41,7 @@ export const CubeIcon = (props: IconPresetProps) => <Icon src="/icon/cube.svg" {
 export const AvatarIcon = (props: IconPresetProps) => <Icon src="/icon/avatar.svg" {...props} />
 export const MediaPipeIcon = (props: IconPresetProps) => <Icon src="/icon/mediapipe.png" {...props} />
 export const WebDevIcon = (props: IconPresetProps) => <Icon src="/icon/coding-web.svg" {...props} />
+export const CodeMirrorIcon = (props: IconPresetProps) => <Icon src="/icon/codemirror.svg" {...props} />
 export const DiagramIcon = (props: IconPresetProps) => <Icon src="/icon/diagram.svg" {...props} />
 export const AiIcon = (props: IconPresetProps) => <Icon src="/icon/ai.svg" {...props} />
 export const GeminiIcon = (props: IconPresetProps) => <Icon src="/icon/gemini.svg" {...props} />
