@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { type FaceLandmarkerResult } from '@mediapipe/tasks-vision'
 
 import { useFaceTrackingForVideo } from '@/components/mediapipe/vision/face-tracking'
@@ -11,14 +11,14 @@ export default function FaceTracking() {
   const [faceDrawer, setFaceDrawer] = useState<FaceDrawer>()
   const [setupFaceTracker, setFaceTrackingResultCallback, faceTrackingInitialized] = useFaceTrackingForVideo()
 
-  function onInitializeCanvas(canvas: HTMLCanvasElement) {
+  const onInitializeCanvas = useCallback((canvas: HTMLCanvasElement) => {
     const canvasContext = canvas.getContext('2d')!
     setFaceDrawer(new FaceDrawer(canvasContext))
-  }
+  }, [])
 
-  function onInitializeWebcam(stream: MediaStream, video: HTMLVideoElement) {
+  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
     setupFaceTracker(video)
-  }
+  }, [])
 
   useEffect(() => {
     if (faceTrackingInitialized && faceDrawer) {

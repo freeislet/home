@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { type HandLandmarkerResult } from '@mediapipe/tasks-vision'
 
 import { useHandTrackingForVideo } from '@/components/mediapipe/vision/hand-tracking'
@@ -11,14 +11,14 @@ export default function HandTracking() {
   const [handDrawer, setHandDrawer] = useState<HandDrawer>()
   const [setupHandTracker, setHandTrackingResultCallback, handTrackingInitialized] = useHandTrackingForVideo()
 
-  function onInitializeCanvas(canvas: HTMLCanvasElement) {
+  const onInitializeCanvas = useCallback((canvas: HTMLCanvasElement) => {
     const canvasContext = canvas.getContext('2d')!
     setHandDrawer(new HandDrawer(canvasContext))
-  }
+  }, [])
 
-  function onInitializeWebcam(stream: MediaStream, video: HTMLVideoElement) {
+  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
     setupHandTracker(video)
-  }
+  }, [])
 
   useEffect(() => {
     if (handTrackingInitialized && handDrawer) {

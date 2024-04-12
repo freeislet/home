@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { type PoseLandmarkerResult } from '@mediapipe/tasks-vision'
 
 import { usePoseTrackingForVideo } from '@/components/mediapipe/vision/pose-tracking'
@@ -11,14 +11,14 @@ export default function PoseTracking() {
   const [poseDrawer, setPoseDrawer] = useState<PoseDrawer>()
   const [setupPoseTracker, setPoseTrackingResultCallback, poseTrackingInitialized] = usePoseTrackingForVideo()
 
-  function onInitializeCanvas(canvas: HTMLCanvasElement) {
+  const onInitializeCanvas = useCallback((canvas: HTMLCanvasElement) => {
     const canvasContext = canvas.getContext('2d')!
     setPoseDrawer(new PoseDrawer(canvasContext))
-  }
+  }, [])
 
-  function onInitializeWebcam(stream: MediaStream, video: HTMLVideoElement) {
+  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
     setupPoseTracker(video)
-  }
+  }, [])
 
   useEffect(() => {
     if (poseTrackingInitialized && poseDrawer) {

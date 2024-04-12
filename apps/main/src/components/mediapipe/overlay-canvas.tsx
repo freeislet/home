@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useImperativeHandle, useLayoutEffect } from 'react'
+import { forwardRef, useRef, useImperativeHandle, useLayoutEffect, useCallback } from 'react'
 import useResizeObserver from '@react-hook/resize-observer'
 
 import { cn } from '@/lib/utils'
@@ -18,15 +18,8 @@ const OverlayCanvas = forwardRef<HTMLCanvasElement, OverlayCanvasProps>(
     const canvasRef = useRef<HTMLCanvasElement>(null!)
 
     useImperativeHandle(ref, () => canvasRef.current, [])
-    useLayoutEffect(() => {
-      onInitialize?.(canvasRef.current)
-    }, [])
-    useLayoutEffect(() => {
-      resizeCanvas()
-    }, [width, height, stream])
-    useResizeObserver(canvasRef, resizeCanvas)
 
-    function resizeCanvas() {
+    const resizeCanvas = useCallback(() => {
       let aspectRatio
 
       if (stream) {
@@ -45,7 +38,15 @@ const OverlayCanvas = forwardRef<HTMLCanvasElement, OverlayCanvasProps>(
       canvas.height = Math.round(containedSize.height * dpr)
 
       onResizeCanvas?.(canvas)
-    }
+    }, [width, height, stream, onResizeCanvas])
+
+    useLayoutEffect(() => {
+      onInitialize?.(canvasRef.current)
+    }, [onInitialize])
+    useLayoutEffect(() => {
+      resizeCanvas()
+    }, [resizeCanvas])
+    useResizeObserver(canvasRef, resizeCanvas)
 
     return (
       <canvas
