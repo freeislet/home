@@ -1,8 +1,8 @@
-import type { ColumnType } from "kysely";
-
-export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
-  ? ColumnType<S, I | undefined, U>
-  : ColumnType<T, T | undefined, T>;
+export interface AuthOauthAccount {
+  provider_id: string;
+  provider_user_id: string;
+  user_id: string;
+}
 
 export interface AuthUser {
   avatar_url: string | null;
@@ -11,35 +11,14 @@ export interface AuthUser {
   username: string;
 }
 
-export interface Categories {
-  id: Generated<number>;
-  name: string;
-}
-
-export interface Products {
-  category_id: number | null;
-  id: Generated<number>;
-  image_url: string | null;
-  name: string;
-}
-
-export interface UserKey {
-  hashed_password: string | null;
+export interface AuthUserSession {
+  expires_at: Date;
   id: string;
-  user_id: string;
-}
-
-export interface UserSession {
-  active_expires: number;
-  id: string;
-  idle_expires: number;
   user_id: string;
 }
 
 export interface DB {
+  auth_oauth_account: AuthOauthAccount;
   auth_user: AuthUser;
-  categories: Categories;
-  products: Products;
-  user_key: UserKey;
-  user_session: UserSession;
+  auth_user_session: AuthUserSession;
 }
