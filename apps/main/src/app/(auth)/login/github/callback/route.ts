@@ -9,6 +9,11 @@ import { getUserDbAttributes } from '@/auth/utils'
 import { filterDiff, isEmpty } from '@/lib/utils'
 
 export const GET = async (request: NextRequest) => {
+  // DB 오류 임시 처리
+  return new Response(null, {
+    status: 500,
+  })
+
   const storedState = cookies().get('github_oauth_state')?.value
   const url = new URL(request.url)
   const state = url.searchParams.get('state')

@@ -3,6 +3,11 @@ import * as context from 'next/headers'
 import type { NextRequest } from 'next/server'
 
 export const GET = async (request: NextRequest) => {
+  // DB 오류 임시 처리
+  return new Response(null, {
+    status: 500,
+  })
+
   const [url, state] = await githubAuth.getAuthorizationUrl()
 
   // store state
