@@ -16,9 +16,12 @@ export default function PoseTracking() {
     setPoseDrawer(new PoseDrawer(canvasContext))
   }, [])
 
-  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
-    setupPoseTracker(video)
-  }, [])
+  const onInitializeWebcam = useCallback(
+    (stream: MediaStream, video: HTMLVideoElement) => {
+      setupPoseTracker(video)
+    },
+    [setupPoseTracker]
+  )
 
   useEffect(() => {
     if (poseTrackingInitialized && poseDrawer) {
@@ -26,7 +29,7 @@ export default function PoseTracking() {
         poseDrawer.drawLandmark(result)
       })
     }
-  }, [poseTrackingInitialized, poseDrawer])
+  }, [poseTrackingInitialized, poseDrawer, setPoseTrackingResultCallback])
 
   return (
     <div className="grid grid-cols-[1fr_auto] mx-auto">

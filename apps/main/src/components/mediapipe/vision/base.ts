@@ -59,6 +59,7 @@ export function useTracking<T extends ITracker<OptionsT, ResultT>, OptionsT, Res
     tracker().setup(optionOverrides, () => {
       setInitialized(true)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return [setup, initialized, tracker()]

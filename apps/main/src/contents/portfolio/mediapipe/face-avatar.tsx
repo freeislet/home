@@ -42,68 +42,68 @@ export default function FaceAvatar() {
   }
 
   useEffect(() => {
+    function render(result: FaceLandmarkerResult) {
+      const avatar = avatarRef.current
+      if (avatar) {
+        // Apply transformation
+        const transformationMatrices = result.facialTransformationMatrixes
+        if (transformationMatrices && transformationMatrices.length > 0) {
+          let matrix = new THREE.Matrix4().fromArray(transformationMatrices[0].data)
+          // Example of applying matrix directly to the avatar
+          avatar.applyMatrix(matrix, matrixRetargetOption)
+        }
+
+        // Apply Blendshapes
+        const blendshapes = result.faceBlendshapes
+        if (blendshapes && blendshapes.length > 0) {
+          const coefsMap = retarget(blendshapes)
+          avatar.updateBlendshapes(coefsMap)
+        }
+      }
+    }
+
+    function retarget(blendshapes: Classifications[]) {
+      const categories = blendshapes[0].categories
+      const coefsMap = new Map<string, number>()
+
+      for (let i = 0; i < categories.length; ++i) {
+        const blendshape = categories[i]
+
+        // Adjust certain blendshape values to be less prominent.
+        switch (blendshape.categoryName) {
+          case 'browOuterUpLeft':
+          case 'browOuterUpRight':
+            blendshape.score *= 1.2
+            break
+
+          case 'eyeBlinkLeft':
+          case 'eyeBlinkRight':
+            blendshape.score *= 1.2
+            break
+
+          // case 'eyeLookDownLeft':
+          // case 'eyeLookDownRight':
+          // case 'eyeLookInLeft':
+          // case 'eyeLookInRight':
+          // case 'eyeLookOutLeft':
+          // case 'eyeLookOutRight':
+          // case 'eyeLookUpLeft':
+          // case 'eyeLookUpRight':
+          //   blendshape.score *= 2
+          //   break
+
+          default:
+        }
+        coefsMap.set(categories[i].categoryName, categories[i].score)
+      }
+
+      return coefsMap
+    }
+
     if (faceTrackingInitialized) {
       setFaceTrackingResultCallback(() => render)
     }
-  }, [faceTrackingInitialized])
-
-  function render(result: FaceLandmarkerResult) {
-    const avatar = avatarRef.current
-    if (avatar) {
-      // Apply transformation
-      const transformationMatrices = result.facialTransformationMatrixes
-      if (transformationMatrices && transformationMatrices.length > 0) {
-        let matrix = new THREE.Matrix4().fromArray(transformationMatrices[0].data)
-        // Example of applying matrix directly to the avatar
-        avatar.applyMatrix(matrix, matrixRetargetOption)
-      }
-
-      // Apply Blendshapes
-      const blendshapes = result.faceBlendshapes
-      if (blendshapes && blendshapes.length > 0) {
-        const coefsMap = retarget(blendshapes)
-        avatar.updateBlendshapes(coefsMap)
-      }
-    }
-  }
-
-  function retarget(blendshapes: Classifications[]) {
-    const categories = blendshapes[0].categories
-    const coefsMap = new Map<string, number>()
-
-    for (let i = 0; i < categories.length; ++i) {
-      const blendshape = categories[i]
-
-      // Adjust certain blendshape values to be less prominent.
-      switch (blendshape.categoryName) {
-        case 'browOuterUpLeft':
-        case 'browOuterUpRight':
-          blendshape.score *= 1.2
-          break
-
-        case 'eyeBlinkLeft':
-        case 'eyeBlinkRight':
-          blendshape.score *= 1.2
-          break
-
-        // case 'eyeLookDownLeft':
-        // case 'eyeLookDownRight':
-        // case 'eyeLookInLeft':
-        // case 'eyeLookInRight':
-        // case 'eyeLookOutLeft':
-        // case 'eyeLookOutRight':
-        // case 'eyeLookUpLeft':
-        // case 'eyeLookUpRight':
-        //   blendshape.score *= 2
-        //   break
-
-        default:
-      }
-      coefsMap.set(categories[i].categoryName, categories[i].score)
-    }
-
-    return coefsMap
-  }
+  }, [faceTrackingInitialized, setFaceTrackingResultCallback])
 
   return (
     <>

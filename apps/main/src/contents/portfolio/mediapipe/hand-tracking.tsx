@@ -16,9 +16,12 @@ export default function HandTracking() {
     setHandDrawer(new HandDrawer(canvasContext))
   }, [])
 
-  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
-    setupHandTracker(video)
-  }, [])
+  const onInitializeWebcam = useCallback(
+    (stream: MediaStream, video: HTMLVideoElement) => {
+      setupHandTracker(video)
+    },
+    [setupHandTracker]
+  )
 
   useEffect(() => {
     if (handTrackingInitialized && handDrawer) {
@@ -26,7 +29,7 @@ export default function HandTracking() {
         handDrawer.drawLandmark(result)
       })
     }
-  }, [handTrackingInitialized, handDrawer])
+  }, [handTrackingInitialized, handDrawer, setHandTrackingResultCallback])
 
   return (
     <div className="grid grid-cols-[1fr_auto] mx-auto">

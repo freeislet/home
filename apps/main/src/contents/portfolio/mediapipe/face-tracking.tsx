@@ -16,9 +16,12 @@ export default function FaceTracking() {
     setFaceDrawer(new FaceDrawer(canvasContext))
   }, [])
 
-  const onInitializeWebcam = useCallback((stream: MediaStream, video: HTMLVideoElement) => {
-    setupFaceTracker(video)
-  }, [])
+  const onInitializeWebcam = useCallback(
+    (stream: MediaStream, video: HTMLVideoElement) => {
+      setupFaceTracker(video)
+    },
+    [setupFaceTracker]
+  )
 
   useEffect(() => {
     if (faceTrackingInitialized && faceDrawer) {
@@ -26,7 +29,7 @@ export default function FaceTracking() {
         faceDrawer.drawLandmark(result)
       })
     }
-  }, [faceTrackingInitialized, faceDrawer])
+  }, [faceTrackingInitialized, faceDrawer, setFaceTrackingResultCallback])
 
   return (
     <div className="grid grid-cols-[1fr_auto] mx-auto">
