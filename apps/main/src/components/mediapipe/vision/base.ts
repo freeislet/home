@@ -80,16 +80,19 @@ export function useTrackingForVideo<T extends ITracker<OptionsT, ResultT>, Optio
   const videoRef = useRef<HTMLVideoElement>()
   const { setVideoFrameSrc } = useVideoFrame(frameLoop)
 
-  const setupForVideo = useCallback((video: HTMLVideoElement, optionOverrides?: OptionsT) => {
-    videoRef.current = video
-    setup(optionOverrides)
-  }, [])
+  const setupForVideo = useCallback(
+    (video: HTMLVideoElement, optionOverrides?: OptionsT) => {
+      videoRef.current = video
+      setup(optionOverrides)
+    },
+    [setup]
+  )
 
   useEffect(() => {
     if (initialized && videoRef.current) {
       setVideoFrameSrc(videoRef.current!)
     }
-  }, [initialized, videoRef]) // TODO: ref deps 정리
+  }, [initialized, videoRef, setVideoFrameSrc]) // TODO: ref deps 정리
 
   function frameLoop(time: number) {
     if (!initialized || !resultCallback) return
