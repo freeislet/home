@@ -58,7 +58,7 @@ const NavTreeItem = memo(({ navItem, depth, initialCollapse = false }: NavTreeIt
       const expand = navItem.nonlink || active ? !expanded : true
       setExpanded(expand)
     },
-    [expanded]
+    [expanded, navItem.nonlink]
   )
 
   const hasChildren = !!navItem.children?.length

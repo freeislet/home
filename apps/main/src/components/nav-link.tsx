@@ -64,7 +64,7 @@ const NavLink = memo(
 
     useEffect(() => {
       onActiveStateChange?.(activeState.active, activeState.partialActive)
-    }, [activeState.active, activeState.partialActive])
+    }, [onActiveStateChange, activeState.active, activeState.partialActive])
 
     const onClick = onClickLink && (() => onClickLink(activeState.active, activeState.partialActive))
 
