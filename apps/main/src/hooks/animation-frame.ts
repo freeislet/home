@@ -22,6 +22,7 @@ export function useAnimationFrame(callback: AnimationFrameCallback, deps?: Depen
   useEffect(() => {
     requestRef.current = window.requestAnimationFrame(animate)
     return () => window.cancelAnimationFrame(requestRef.current!)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps ?? [])
 
   // TODO: start, stop callback 추가

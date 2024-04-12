@@ -31,6 +31,7 @@ export function useVideoFrame(callback: VideoFrameCallback, deps?: DependencyLis
 
     requestRef.current = video.requestVideoFrameCallback(animate)
     return () => video.cancelVideoFrameCallback(requestRef.current!)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [video, ...(deps ?? [])])
 
   return { videoFrameSrc: video, setVideoFrameSrc: setVideo } // TODO: start, stop callback 추가

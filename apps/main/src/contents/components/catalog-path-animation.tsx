@@ -46,6 +46,7 @@ export function CatalogPathAnimation({
   useEffect(() => {
     setLoading(false)
     return pathProgress.on('change', (latest) => offsetDistance.set(`${latest * 100}%`))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

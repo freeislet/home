@@ -22,6 +22,7 @@ export function useElementSize<T extends HTMLElement = HTMLDivElement>(
 
   useLayoutEffect(() => {
     target.current && setSizeInternal(target.current.getBoundingClientRect())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target])
 
   useResizeObserver(target, (entry) => {
