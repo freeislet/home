@@ -13,7 +13,7 @@ export const GET = async (request: NextRequest) => {
   return new Response(null, {
     status: 500,
   })
-
+  /*
   const storedState = cookies().get('github_oauth_state')?.value
   const url = new URL(request.url)
   const state = url.searchParams.get('state')
@@ -90,5 +90,5 @@ export const GET = async (request: NextRequest) => {
     return new Response(null, {
       status: 500,
     })
-  }
+  }*/
 }
