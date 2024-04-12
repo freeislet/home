@@ -2,12 +2,15 @@
 
 import { useRef, useState } from 'react'
 import { notFound } from 'next/navigation'
+import { TbInfoHexagon } from 'react-icons/tb'
 
 import { findNavItemWithAncestors } from '../nav'
 import { getNodeText } from '@/lib/node'
+import { cn } from '@/lib/utils'
 import { ScrollTrigger, ScrollTarget } from '@/components/scroll-trigger'
 import { DownToDocument, ScrollToTop } from '@/contents/components/scroll-ui'
 import ProseLayout from '@/components/prose-layout'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 interface MyPortfolioPageProps {
   item: PortfolioItem
@@ -39,6 +42,7 @@ export default function MyPortfolioPage({ item }: MyPortfolioPageProps) {
           {state.icon}&thinsp;
           {state.badge && <span className="badge mr-1">{state.badge}</span>}
           {item.title}
+          <InfoTooltip content={item.description} className="ml-1" />
           {PortfolioDocument && (
             <ScrollTrigger targetRef={docRef} className="ml-4">
               <DownToDocument />
@@ -59,5 +63,29 @@ export default function MyPortfolioPage({ item }: MyPortfolioPageProps) {
         </>
       )}
     </>
+  )
+}
+
+function InfoTooltip({ content, className }: { content: React.ReactNode; className?: string }) {
+  if (!content) return null
+
+  return (
+    <TooltipProvider delayDuration={100}>
+      <Tooltip>
+        <TooltipTrigger>
+          <TbInfoHexagon
+            className={cn(
+              'size-5 p-0.5 rounded-sm',
+              'text-foreground/50',
+              'hover:text-foreground/80 hover:bg-foreground/10',
+              className
+            )}
+          />
+        </TooltipTrigger>
+        <TooltipContent side="right">
+          <p className="text-sm text-foreground/70">{content}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
