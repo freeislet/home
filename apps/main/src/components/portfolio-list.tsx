@@ -42,6 +42,7 @@ type ImageExtraProps = Omit<ImageProps, 'src'>
 function image(pathOrNode: string | React.ReactNode, imageProps?: ImageExtraProps) {
   if (typeof pathOrNode === 'string') {
     const path = pathOrNode as string
+    // eslint-disable-next-line
     return <Image src={path} {...imageProps} />
   } else {
     const node = pathOrNode as React.ReactNode
