@@ -108,7 +108,7 @@ export const UnityIcon = (props: SvgIconProps) => (
 
 export const ReadyPlayerMeIcon = (props: SvgIconProps) => (
   <SvgIcon xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 48" fill="none" {...props}>
-    <g clip-path="url(#clip0_212_39988)">
+    <g clipPath="url(#clip0_212_39988)">
       <path
         d="M41.1433 3.15429L41.4176 5.02857H45.2119L44.1147 0H39.0405L35.9319 5.02857H40.0919L41.1433 3.15429Z"
         fill="currentColor"
