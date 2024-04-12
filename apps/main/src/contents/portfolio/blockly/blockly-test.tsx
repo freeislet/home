@@ -17,7 +17,7 @@ export default function BlocklyTest() {
   const [outputOpen, setOutputOpen] = useState(false)
   const outputMessagesRef = useRef<string[]>([])
 
-  const workspaceOptions: BlocklyWorkspaceOptions = {
+  const [workspaceOptions, _] = useState<BlocklyWorkspaceOptions>(() => ({
     backupOnUnload: true,
     onCreate: (workspace: WorkspaceInstance) => {
       initCodeGen()
@@ -25,7 +25,7 @@ export default function BlocklyTest() {
     onDispose: (workspace: WorkspaceInstance) => {
       uninitCodeGen()
     },
-  }
+  }))
 
   const handleClear = () => {
     blocklyRef.current?.clear()

@@ -35,7 +35,7 @@ class WorkspaceInstance {
   }
 
   run() {
-    WorkspaceUtils.run()
+    WorkspaceUtils.run(this.workspace)
   }
 
   generateCode() {

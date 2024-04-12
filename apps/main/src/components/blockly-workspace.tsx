@@ -63,7 +63,7 @@ const BlocklyWorkspace = forwardRef(function BlocklyWorkspace(
         workspaceInstanceRef.current = undefined
       }
     },
-    [options, toolbox]
+    [options, toolbox, workspaceOptions]
   )
 
   useImperativeHandle(ref, () => workspaceInstanceRef.current, [workspaceInstanceRef]) // TODO: ref deps 정리
