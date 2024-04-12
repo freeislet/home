@@ -95,7 +95,7 @@ export default function Shoe() {
     }
 
     return () => (document.body.style.cursor = 'auto')
-  }, [hovered])
+  }, [hovered, snap.items])
 
   return (
     <group

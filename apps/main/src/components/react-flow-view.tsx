@@ -80,7 +80,7 @@ function ReactFlowPanel() {
       },
     }
     reactFlowInstance.addNodes(newNode)
-  }, [])
+  }, [reactFlowInstance])
 
   return (
     <Panel position="top-left" className="p-2 space-x-2 rounded-md shadow bg-secondary">
