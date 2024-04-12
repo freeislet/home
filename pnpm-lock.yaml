@@ -91,6 +91,12 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.36.1
         version: 4.36.1(react-dom@18.2.0)(react@18.2.0)
+      '@tidbcloud/kysely':
+        specifier: ^0.0.4
+        version: 0.0.4(@tidbcloud/serverless@0.1.1)(kysely@0.27.3)
+      '@tidbcloud/serverless':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@trpc/client':
         specifier: ^10.45.0
         version: 10.45.1(@trpc/server@10.45.1)
@@ -131,7 +137,7 @@ importers:
         specifier: ^11.0.2
         version: 11.0.8(react-dom@18.2.0)(react@18.2.0)
       kysely:
-        specifier: ^0.27.2
+        specifier: ^0.27.3
         version: 0.27.3
       kysely-planetscale:
         specifier: ^1.4.0
@@ -2487,6 +2493,21 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@tidbcloud/kysely@0.0.4(@tidbcloud/serverless@0.1.1)(kysely@0.27.3):
+    resolution: {integrity: sha512-DrW3Bixov3cKP8ep632wMTRWiab8kc6Fr6fMupM4qebOQ21OIEHckQ97U4GbCv39iDSMdELwop6uMcBwHRVV5g==}
+    peerDependencies:
+      '@tidbcloud/serverless': '*'
+      kysely: '*'
+    dependencies:
+      '@tidbcloud/serverless': 0.1.1
+      kysely: 0.27.3
+    dev: false
+
+  /@tidbcloud/serverless@0.1.1:
+    resolution: {integrity: sha512-km2P5Mgr9nqVah5p5aMYbO3dBqecSwZ0AU7+BhJH+03L2eJO6qCATcBR8UHPuVLhA7GCt3CambKvVYK79pVQ2g==}
+    engines: {node: '>=16'}
     dev: false
 
   /@tootallnate/once@2.0.0:
