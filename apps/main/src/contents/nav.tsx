@@ -33,16 +33,7 @@ const navConfig: NavItem[] = [
         icon: <Icons.UnityIcon />,
         title: 'Unity',
         href: '/game/unity',
-        children: [
-          {
-            title: 'Kart',
-            href: '/game/unity/kart',
-          },
-          {
-            title: '3D Game Kit',
-            href: '/game/unity/3d-game-kit',
-          },
-        ],
+        portfolio: portfolios['unity'],
       },
       {
         icon: <Icons.AvatarIcon />,
