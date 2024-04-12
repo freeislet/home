@@ -30,6 +30,7 @@
     "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@react-hook/resize-observer": "^1.2.6",
     "@react-three/drei": "^9.99.4",
     "@react-three/fiber": "^8.15.16",
