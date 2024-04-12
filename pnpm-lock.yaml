@@ -21,7 +21,7 @@ importers:
         version: 3.3.4(react-hook-form@7.51.3)
       '@lucia-auth/adapter-mysql':
         specifier: ^3.0.2
-        version: 3.0.2(@planetscale/database@1.16.0)(lucia@3.1.1)(mysql2@3.9.4)
+        version: 3.0.2(lucia@3.1.1)(mysql2@3.9.4)
       '@lucia-auth/oauth':
         specifier: ^3.5.3
         version: 3.5.3(lucia@3.1.1)
@@ -40,9 +40,6 @@ importers:
       '@next/mdx':
         specifier: ^14.2.0
         version: 14.2.0(@mdx-js/loader@3.0.1)(@mdx-js/react@3.0.1)
-      '@planetscale/database':
-        specifier: ^1.16.0
-        version: 1.16.0
       '@radix-ui/react-aspect-ratio':
         specifier: ^1.0.3
         version: 1.0.3(@types/react-dom@18.2.25)(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
@@ -139,9 +136,6 @@ importers:
       kysely:
         specifier: ^0.27.3
         version: 0.27.3
-      kysely-planetscale:
-        specifier: ^1.4.0
-        version: 1.4.0(@planetscale/database@1.16.0)(kysely@0.27.3)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -938,7 +932,7 @@ packages:
       '@lezer/common': 1.2.1
     dev: false
 
-  /@lucia-auth/adapter-mysql@3.0.2(@planetscale/database@1.16.0)(lucia@3.1.1)(mysql2@3.9.4):
+  /@lucia-auth/adapter-mysql@3.0.2(lucia@3.1.1)(mysql2@3.9.4):
     resolution: {integrity: sha512-7acTeXQbqWn4SWrd8TDlJgQL5ZDZ2P2UGC3Y43m9ycYJ9LqIcq5udOW2J85HyrV0D5RkDPrKB5xv8l6tjR83xw==}
     peerDependencies:
       '@planetscale/database': ^1.0.0
@@ -950,7 +944,6 @@ packages:
       mysql2:
         optional: true
     dependencies:
-      '@planetscale/database': 1.16.0
       lucia: 3.1.1
       mysql2: 3.9.4
     dev: false
@@ -1789,11 +1782,6 @@ packages:
     engines: {node: '>=14'}
     requiresBuild: true
     optional: true
-
-  /@planetscale/database@1.16.0:
-    resolution: {integrity: sha512-HNUrTqrd8aTRZYMDcsoZ62s36sIWkMMmKZBOehoCWR2WrfNPKq+Q1yQef5okl3pSVlldFnu2h/dbHjOsDTHXug==}
-    engines: {node: '>=16'}
-    dev: false
 
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
@@ -4775,13 +4763,6 @@ packages:
       is-data-view: 1.0.1
     dev: true
 
-  /date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
-    dependencies:
-      '@babel/runtime': 7.24.4
-    dev: false
-
   /dayjs@1.11.10:
     resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
     dev: false
@@ -6548,17 +6529,6 @@ packages:
       minimist: 1.2.8
       mysql2: 3.9.4
     dev: true
-
-  /kysely-planetscale@1.4.0(@planetscale/database@1.16.0)(kysely@0.27.3):
-    resolution: {integrity: sha512-dM2xgOM50+IiOIrSCEn/6lgXcE7J752oNpV6NcIYNgG/AfYGMtWm2ZK7PyeIPy5JG1jZvQvqwTFbGK4HGH/hJw==}
-    peerDependencies:
-      '@planetscale/database': '*'
-      kysely: '*'
-    dependencies:
-      '@planetscale/database': 1.16.0
-      date-fns: 2.30.0
-      kysely: 0.27.3
-    dev: false
 
   /kysely@0.27.3:
     resolution: {integrity: sha512-lG03Ru+XyOJFsjH3OMY6R/9U38IjDPfnOfDgO3ynhbDr+Dz8fak+X6L62vqu3iybQnj+lG84OttBuU9KY3L9kA==}
