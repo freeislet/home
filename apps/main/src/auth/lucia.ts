@@ -32,6 +32,9 @@ export const githubAuth = github(auth, {
 })
 
 export const getPageSession = cache(async (): Promise<Session | null> => {
-  const authRequest = auth.handleRequest('GET', context)
-  return await authRequest.validate()
+  // const authRequest = auth.handleRequest('GET', context)
+  // return await authRequest.validate()
+
+  // DB 오류 임시 처리
+  return null
 })
