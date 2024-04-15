@@ -1,7 +1,8 @@
 // https://codepen.io/mediapipe-preview/pen/oNPKmEy?editors=1010 참고
 
 import * as THREE from 'three'
-import { GLTF } from 'three-stdlib'
+// import { GLTF } from 'three-stdlib'
+// Type error: Cannot find module 'three-stdlib' or its corresponding type declarations. 오류 우회 테스트
 
 interface MatrixRetargetOptions {
   decompose?: boolean
@@ -10,18 +11,19 @@ interface MatrixRetargetOptions {
 }
 
 class AvatarInstance {
-  gltf?: GLTF
+  gltf?: any //GLTF
   root?: THREE.Bone
   morphTargetMeshes: THREE.Mesh[] = []
 
   constructor() {}
 
-  setModel(gltf: GLTF) {
+  setModel(gltf: any /*GLTF*/) {
     this.gltf = gltf
     this.root = undefined
     this.morphTargetMeshes = []
 
-    gltf.scene.traverse((object) => {
+    // gltf.scene.traverse((object) => {
+    gltf.scene.traverse((object: any) => {
       if ((object as THREE.Bone).isBone) {
         //* Bone
         const bone = object as THREE.Bone
