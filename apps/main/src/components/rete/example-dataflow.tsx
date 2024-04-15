@@ -3,7 +3,7 @@ import { NodeEditor, GetSchemes, ClassicPreset } from 'rete'
 import { AreaPlugin, AreaExtensions } from 'rete-area-plugin'
 import { ConnectionPlugin, Presets as ConnectionPresets } from 'rete-connection-plugin'
 import { ReactPlugin, Presets, ReactArea2D, useRete } from 'rete-react-plugin'
-import { AutoArrangePlugin, Presets as ArrangePresets } from 'rete-auto-arrange-plugin'
+// import { AutoArrangePlugin, Presets as ArrangePresets } from 'rete-auto-arrange-plugin'
 import { DataflowEngine } from 'rete-engine'
 import { ContextMenuExtra, ContextMenuPlugin, Presets as ContextMenuPresets } from 'rete-context-menu-plugin'
 
@@ -88,7 +88,7 @@ export async function createEditor(container: HTMLElement) {
   const area = new AreaPlugin<Schemes, AreaExtra>(container)
   const connection = new ConnectionPlugin<Schemes, AreaExtra>()
   const render = new ReactPlugin<Schemes, AreaExtra>({ createRoot })
-  const arrange = new AutoArrangePlugin<Schemes>()
+  // const arrange = new AutoArrangePlugin<Schemes>()
   const engine = new DataflowEngine<Schemes>()
 
   function process() {
@@ -117,13 +117,13 @@ export async function createEditor(container: HTMLElement) {
 
   connection.addPreset(ConnectionPresets.classic.setup())
 
-  arrange.addPreset(ArrangePresets.classic.setup())
+  // arrange.addPreset(ArrangePresets.classic.setup())
 
   editor.use(engine)
   editor.use(area)
   area.use(connection)
   area.use(render)
-  area.use(arrange)
+  // area.use(arrange)
 
   AreaExtensions.simpleNodesOrder(area)
   AreaExtensions.showInputControl(area)
@@ -149,7 +149,10 @@ export async function createEditor(container: HTMLElement) {
   await editor.addConnection(con1)
   await editor.addConnection(con2)
 
-  await arrange.layout()
+  // await arrange.layout()
+  await area.translate(a.id, { x: 0, y: 0 })
+  await area.translate(b.id, { x: 0, y: 150 })
+  await area.translate(c.id, { x: 270, y: 0 })
   AreaExtensions.zoomAt(area, editor.getNodes())
 
   return {
