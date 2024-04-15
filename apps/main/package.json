@@ -9,7 +9,6 @@
     "lint": "next lint",
     "kysely-codegen": "kysely-codegen --env-file .env.local --out-file src/db/schema.ts"
   },
-  "packageManager": "pnpm@8.15.7",
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
     "@google/generative-ai": "^0.6.0",
@@ -79,7 +78,6 @@
     "remark-math": "^6.0.0",
     "rete": "^2.0.3",
     "rete-area-plugin": "^2.0.4",
-    "rete-auto-arrange-plugin": "^2.0.1",
     "rete-connection-plugin": "^2.0.1",
     "rete-context-menu-plugin": "^2.0.2",
     "rete-engine": "^2.0.1",
