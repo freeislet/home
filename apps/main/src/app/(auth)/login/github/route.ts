@@ -1,27 +1,15 @@
-import { githubAuth } from '@/auth/lucia'
-import * as context from 'next/headers'
 import type { NextRequest } from 'next/server'
 
+import { storeState, githubAuth } from '@/auth/oauth/github'
+
 export const GET = async (request: NextRequest) => {
-  // DB 오류 임시 처리
-  return new Response(null, {
-    status: 500,
-  })
+  storeState()
 
-  const [url, state] = await githubAuth.getAuthorizationUrl()
-
-  // store state
-  context.cookies().set('github_oauth_state', state, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    maxAge: 60 * 60,
-  })
-
+  const authorizationUrl = await githubAuth.createAuthorizationUrl()
   return new Response(null, {
     status: 302,
     headers: {
-      Location: url.toString(),
+      Location: authorizationUrl.toString(),
     },
   })
 }

@@ -2,7 +2,6 @@ import { Selectable, Insertable, Updateable } from 'kysely'
 
 import { db } from '@/db/kysely'
 import { AuthOauthAccount } from '@/db/schema'
-import { DatabaseUser } from 'lucia'
 
 export class AuthOauthAccountRepository {
   readonly TABLE_NAME = 'auth_oauth_account'
@@ -46,7 +45,7 @@ export class AuthOauthAccountRepository {
 
       return r2
     })
-    return ret
+    return ret // NOTE: insertId: undefined, num...: 1n
   }
 }
 

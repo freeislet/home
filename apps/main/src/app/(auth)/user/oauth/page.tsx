@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation'
 
-import { getPageSession } from '@/auth/lucia'
+import { getSessionUser } from '@/auth/lucia'
 
 export default async function OauthPage() {
-  const session = await getPageSession()
-  if (!session) redirect('/login')
+  const user = await getSessionUser()
+  if (!user) redirect('/login')
 
   return (
     <div className="my-container">

@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-import { getPageSession } from '@/auth/lucia'
+import { getSessionUser } from '@/auth/lucia'
 import NavLink from '@/components/nav-link'
 
 const nav = [
@@ -9,8 +9,8 @@ const nav = [
 ]
 
 export default async function UserLayout({ children }: { children: React.ReactNode }) {
-  const session = await getPageSession()
-  if (!session) redirect('/login')
+  const user = await getSessionUser()
+  if (!user) redirect('/login')
 
   return (
     <div className="my-container flex-1 grid grid-cols-[10rem_1fr] gap-12 my-6">

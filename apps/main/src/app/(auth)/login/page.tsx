@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 // import Link from 'next/link'
 
-import { getPageSession } from '@/auth/lucia'
+import { getSessionUser } from '@/auth/lucia'
 import { Logo } from '@/components/icons'
 import { LoginForm } from '../_components/login-form'
 
@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 }
 
 export default async function LoginPage() {
-  const session = await getPageSession()
-  if (session) redirect('/')
+  const user = await getSessionUser()
+  if (user) redirect('/')
 
   return (
     <div className="my-container my-flex-col items-center justify-center">

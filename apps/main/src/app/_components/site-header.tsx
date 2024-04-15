@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { getPageSession } from '@/auth/lucia'
+import { getSessionUser } from '@/auth/lucia'
 import { siteConfig } from '@/config/site'
 import { Logo } from '@/components/icons'
 import { ThemeMode } from '@/components/theme-mode'
@@ -10,7 +10,7 @@ import { NavMobile } from '@/contents/components/nav-mobile'
 import { ScrollProgress } from './scroll-progress'
 
 export async function SiteHeader() {
-  const session = await getPageSession()
+  const user = await getSessionUser()
 
   return (
     <header className="sticky top-0 z-50 w-full h-header-height border-b border-border/40 bg-background-blur">
@@ -29,7 +29,7 @@ export async function SiteHeader() {
         </div>
 
         <div className="my-flex-row ml-auto space-x-2">
-          <UserNav user={session?.user} />
+          <UserNav user={user} />
           <ThemeMode />
         </div>
       </div>

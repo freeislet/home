@@ -1,13 +1,13 @@
 import { redirect } from 'next/navigation'
 
-import { getPageSession } from '@/auth/lucia'
+import { getSessionUser } from '@/auth/lucia'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import Form from '@/components/form'
 
 export default async function ProfilePage() {
-  const session = await getPageSession()
-  if (!session) redirect('/login')
+  const user = await getSessionUser()
+  if (!user) redirect('/login')
 
   return (
     <div className="grid items-start gap-8">
@@ -26,7 +26,7 @@ export default async function ProfilePage() {
             <CardDescription></CardDescription>
           </CardHeader>
           <CardContent>
-            <p>{session?.user.username}</p>
+            <p>{user.username}</p>
           </CardContent>
         </Card>
         <Card>
@@ -35,7 +35,7 @@ export default async function ProfilePage() {
             <CardDescription></CardDescription>
           </CardHeader>
           <CardContent>
-            <p>{session?.user.email}</p>
+            <p>{user.email}</p>
           </CardContent>
         </Card>
         <Form action="/api/logout">

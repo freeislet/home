@@ -14,6 +14,11 @@ export class AuthUserRepository {
     return await db.selectFrom('auth_user').where('id', '=', id).selectAll().executeTakeFirst()
   }
 
+  async update(id: string, values: Updateable<AuthUser>) {
+    return await db.updateTable('auth_user').set(values).where('id', '=', id).executeTakeFirst()
+    // return: { numUpdatedRows, ... }
+  }
+
   // async save(values: Insertable<AuthUser>, valuesOnConflict?: Updateable<AuthUser>) {
   //   const ret = await db
   //     .insertInto('auth_user')

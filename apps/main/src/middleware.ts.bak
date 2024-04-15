@@ -22,3 +22,32 @@
 //   matcher: '/Build/:path*', // Unity build
 // }
 // -> 동작 안 함 (matcher 경로 /:path*로 바꿔서 Content-Encoding 설정해도)
+
+
+/* lucia CSRF 처리 예제
+https://lucia-auth.com/guides/validate-session-cookies/nextjs-app
+
+For API routes, since Next.js does not implement CSRF protection for API routes, CSRF protection must be 
+implemented when dealing with forms if you're dealing with forms. This can be easily done by comparing 
+the Origin and Host header. We recommend using middleware for this.
+*/
+
+// middleware.ts
+import { verifyRequestOrigin } from "lucia";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+
+export async function middleware(request: NextRequest): Promise<NextResponse> {
+	if (request.method === "GET") {
+		return NextResponse.next();
+	}
+	const originHeader = request.headers.get("Origin");
+	// NOTE: You may need to use `X-Forwarded-Host` instead
+	const hostHeader = request.headers.get("Host");
+	if (!originHeader || !hostHeader || !verifyRequestOrigin(originHeader, [hostHeader])) {
+		return new NextResponse(null, {
+			status: 403
+		});
+	}
+	return NextResponse.next();
+}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
-import { User } from '@/auth/types'
+import { User } from '@/auth/lucia'
 import { UserAvatar } from '@/components/user-avatar'
 import {
   DropdownMenu,
@@ -21,7 +21,7 @@ import {
 import Form from './form'
 
 interface UserNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  user?: User
+  user?: User | null
 }
 
 export function UserNav({ user, ...props }: UserNavProps) {
