@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import * as THREE from 'three'
 import { Color, AdditiveBlending } from 'three'
 import { extend, Node, useFrame, type GroupProps } from '@react-three/fiber'
 import { useGLTF, useTexture } from '@react-three/drei'
