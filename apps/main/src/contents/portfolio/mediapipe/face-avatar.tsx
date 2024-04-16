@@ -6,7 +6,6 @@ import Webcam from 'react-webcam'
 import * as THREE from 'three'
 import { type MeshProps } from '@react-three/fiber'
 import { useAspect, useVideoTexture, useGLTF, Grid } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
 
 import { useFaceTrackingForVideo } from '@/components/mediapipe/vision/face-tracking'
 import ThreeCanvas from '@/components/three-canvas'
@@ -161,7 +160,7 @@ const Avatar = forwardRef((props: MeshProps, ref) => {
   useEffect(() => {
     if (gltf) {
       const instance = new AvatarInstance()
-      instance.setModel(gltf as unknown as GLTF)
+      instance.setModel(gltf)
       setInstance(instance)
     }
   }, [gltf])
