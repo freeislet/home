@@ -28,6 +28,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.3.4(react-hook-form@7.51.3)
+      '@lezer/highlight':
+        specifier: ^1.2.0
+        version: 1.2.0
       '@lucia-auth/adapter-mysql':
         specifier: ^3.0.2
         version: 3.0.2(lucia@3.1.1)(mysql2@3.9.7)
