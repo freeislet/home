@@ -42,6 +42,7 @@ const myHighlightStyle = HighlightStyle.define([
 // styles
 const commentBaseTheme = EditorView.baseTheme({
   // We need to set some transparency because the stripe are above the selection layer
+  '.cm-commentLine': { fontSize: '1rem' }, // font-size 테스트
   '&light .cm-commentLine': { backgroundColor: '#bbb7' },
   '&dark .cm-commentLine': { backgroundColor: '#4447' },
 })
@@ -116,6 +117,7 @@ const myHighlightStyle = HighlightStyle.define([
 // styles
 const commentBaseTheme = EditorView.baseTheme({
   // We need to set some transparency because the stripe are above the selection layer
+  '.cm-commentLine': { fontSize: '1rem' },
   '&light .cm-commentLine': { backgroundColor: '#bbb7' },
   '&dark .cm-commentLine': { backgroundColor: '#4447' },
 })
