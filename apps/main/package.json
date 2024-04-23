@@ -16,6 +16,7 @@
     "@codemirror/view": "^6.26.3",
     "@google/generative-ai": "^0.6.0",
     "@hookform/resolvers": "^3.3.4",
+    "@lezer/common": "^1.2.1",
     "@lezer/highlight": "^1.2.0",
     "@lucia-auth/adapter-mysql": "^3.0.2",
     "@mdx-js/loader": "^3.0.1",

@@ -11,6 +11,7 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import { javascript } from '@codemirror/lang-javascript'
 import { HighlightStyle, syntaxHighlighting, syntaxTree } from '@codemirror/language'
 import { tags } from '@lezer/highlight'
+import { SyntaxNodeRef } from '@lezer/common'
 import { EditorView, Decoration, DecorationSet, PluginValue, ViewPlugin, ViewUpdate } from '@codemirror/view'
 import { RangeSetBuilder } from '@codemirror/state'
 
@@ -27,6 +28,8 @@ const code = `
 // Decoration.line 함수로 생성한 decoration을 ViewPlugin extension에서 주석 위치에 추가한다.
 // 주석 위치는 syntax tree에서 LineComment 노드 타입(node.name)으로 판단한다. (아래 코드 참고)
 //
+
+//# 주석 파싱 테스트
 
 // 주석 highlight style
 const myHighlightStyle = HighlightStyle.define([
@@ -121,11 +124,15 @@ const commentBaseTheme = EditorView.baseTheme({
   // We need to set some transparency because the stripe are above the selection layer
   '&light .cm-commentLine': { backgroundColor: '#bbb7' },
   '&dark .cm-commentLine': { backgroundColor: '#4447' },
+  '.cm-extCommentLine': { backgroundColor: '#ff53' },
 })
 
 // line decoration
 const commentDecoration = Decoration.line({
   attributes: { class: 'cm-commentLine' },
+})
+const extCommentDecoration = Decoration.line({
+  attributes: { class: 'cm-extCommentLine' },
 })
 
 // view plugin
@@ -143,18 +150,19 @@ class CommentPlugin implements PluginValue {
   }
 
   commentDeco(view: EditorView) {
+    function enter(node: SyntaxNodeRef): boolean | void {
+      if (node.name == 'LineComment') {
+        const comment = view.state.doc.sliceString(node.from, node.to)
+        const isExt = comment.startsWith('//#') // 주석 파싱 테스트
+        const deco = isExt ? extCommentDecoration : commentDecoration
+        builder.add(node.from, node.from, deco)
+      }
+      // NOTE: BlockComment 타입은 미구현
+    }
+
     const builder = new RangeSetBuilder<Decoration>()
     for (let { from, to } of view.visibleRanges) {
-      syntaxTree(view.state).iterate({
-        from,
-        to,
-        enter: (node) => {
-          if (node.name == 'LineComment') {
-            builder.add(node.from, node.from, commentDecoration)
-          }
-          // NOTE: BlockComment 타입은 미구현
-        },
-      })
+      syntaxTree(view.state).iterate({ from, to, enter })
     }
     return builder.finish()
   }
